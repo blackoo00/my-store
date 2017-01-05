@@ -1,0 +1,207 @@
+@import "animation";
+.mui-cover{
+    background-color: #fff;
+    position: fixed;
+    z-index: 999999;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transform: translate3d(0,120%,0);
+    transition: transform .2s cubic-bezier(0,0,.25,1);
+}
+.show .mui-cover{
+    transform: translate3d(0,20%,0);
+}
+.hide .mui-cover{
+    transform: translate3d(0,120%,0);
+}
+
+.mui-enter {
+    opacity: 0.01;
+    transform: translate3d(0, 100%, 0);
+    &.mui-enter-active {
+        animation:wui-enter-animate .3s ease forwards;
+    }
+}
+.mui-leave{
+    opacity: 1;
+    transform: translate3d(0,20%,0);
+    transition: all .3s ease;
+    &.mui-leave-acitve{
+        opacity: 0.01;
+        transform: translate3d(0,120%,0);
+    }
+}
+
+.mui-leave {
+    opacity: 1;
+    transform: translate3d(0, 20%, 0);
+    transition: all .5s ease;
+    &.page-leave-active {
+        opacity: 0.01;
+        display: none;
+        transform: translate3d(0, 100%, 0);
+    }
+}
+
+.page {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    /*background-color: #fbf9fe;*/
+    display: block;
+    z-index: 1; 
+    .header{
+        background: #fff;
+        border: 0;
+        color: #333;
+        text-align: center;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 2.5;
+        text-indent: 1em;
+        border-bottom: 1px solid #ddd;
+        .back {
+            position: absolute;
+            left: 0;
+            display: block;
+            width: 80px;
+            height: 41px;
+            &:before {
+                border-left: 1px solid #333;
+                border-top: 1px solid #333;
+                position: absolute;
+                left: 16px;
+                content: '\0020';
+                color: #DDD;
+                -webkit-transform: rotate(-45deg);
+                transform: rotate(-45deg);
+                width: 16px;
+                height: 16px;
+                top: 12px;
+            }
+        }
+    }
+}
+.page-appear {
+    z-index: 1024;
+    opacity: 0.01;
+    transform: translate3d(100%, 0, 0);
+    /*transition: all .2s ease;*/
+    &.page-appear-active {
+        animation:page-enter-animate 1s ease forwards;
+    }
+}
+
+.page-enter {
+    z-index: 1024;
+    opacity: 0.01;
+    transform: translate3d(100%, 0, 0);
+    &.page-enter-active{
+         animation:page-enter-animate 0.3s ease forwards; 
+    }
+}
+
+.page-leave{
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    transition: all .5s ease;
+    &.page-leave-active {
+        opacity: 0.01;
+        transform: translate3d(100%, 0, 0);
+    }
+}
+/* add and reduc */
+.order-quantity{
+    .content {
+        line-height: 1
+    }
+    .btn {
+        display: inline-block;
+        width: 32px;
+        height: 32px;
+        background-color: #ccc;
+        position: relative;
+        line-height: 1;
+    }
+    .minus {
+        margin-right: 10px
+    }
+    .plus {
+        margin-left: 10px
+    }
+    .off {
+        background-color: #f5f5f5;
+    }
+    .amount {
+        display: inline-block;
+        vertical-align: top;
+        width: 28px;
+        height: 32px;
+        border: none;
+        text-align: center;
+        line-height: 1
+    }
+    & .minus:after,& .plus:after,& .plus:before{
+        position: absolute;
+        top: 15px;
+        left: 10px;
+        border-bottom: 2px solid #999;
+        width: 12px;
+        height: 1px;
+        content: ' '
+    }
+    & .plus:before {
+        -webkit-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        transform: rotate(90deg)
+    }
+}
+
+.am-section {
+    padding: 0 15px 10px;
+    overflow: auto;
+}
+
+.am-button {
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    display: inline-block;
+    margin: 0;
+    padding: 4px 8px;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    line-height: 2;
+    border-radius: 4px;
+    background-clip: padding-box;
+}
+
+.am-button-blue {
+    border: 1px solid #0ae;
+    color: #fff;
+    background: #0ae;
+}
+
+.list-view{
+    .list-item {
+        display: -webkit-box;
+    }
+    .p {
+        width: 100px;
+        height: 100px;
+        margin-right: 10px;
+        margin-left: 8px;
+    }
+    .d {
+        margin: 4px 15px 6px 0;
+        -webkit-box-flex: 1;
+    }
+    .d-title {
+        font-size: 14px;
+        height: 44px;
+    }
+}

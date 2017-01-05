@@ -1,0 +1,194 @@
+#product-parameter-wrapper{
+	font-size: .3rem;
+	h2{
+		color: #666;
+		margin-bottom: .5em;
+	}
+	.body {
+	    position: absolute;
+	    top: 100px;
+	    bottom: 48px;
+	    left: 0;
+	    right: 0;
+	    height: 15.3rem;
+	    overflow-y: auto;
+	    .sku-control{
+	    	border-bottom: 1px solid #e5e5e5;
+	    	-webkit-tap-highlight-color: transparent;
+	    	margin: 0 .76rem;
+	    	margin-bottom: 0.76rem;
+	    	.mui-sku{
+	    		-webkit-tap-highlight-color: transparent;
+	    		li{
+	    			display: list-item;
+	    			text-align: -webkit-match-parent;
+	    			padding: 1em 0 .5em;	 
+	    		}
+	    		label{
+	    			display: inline-block;
+	    			border: 1px solid #e5e5e5;
+	    			background-color: #fff;
+	    			min-width: 2em;
+	    			padding: .5em 1.2em;
+	    			margin: 0 .5em .5em 0;
+	    			max-width: 100%;
+	    			text-align: center;
+	    			-webkit-box-sizing: border-box;
+	    			box-sizing: border-box;
+	    			-webkit-border-radius: 3px;
+	    			border-radius: 3px;
+	    			&.checked {
+	    			    border-color: #b10000;
+	    			    color: #000;
+	    			}
+	    		}
+	    	}
+	    }
+	}
+	.summary{
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		-webkitbox-shadow: 0 1px 0 rgba(0,0,0,.05),0 .5px 0 rgba(0,0,0,.09);
+		box-shadow: 0 1px 0 rgba(0,0,0,.05),0 .5px 0 rgba(0,0,0,.09);
+		padding: .5rem;
+		height: 78px;
+		img{
+			position: relative;
+			top: -32px;
+			background-color: #fff;
+			z-index: 10;
+			padding: 2px;
+			border: 1px solid #ddd;
+			border-radius: 4px;
+			float: left;
+			margin-right: 1em;
+			height: 5rem;
+			width: 5rem;
+		}
+		.main{
+			overflow: hidden;
+			.priceContainer {
+			    font-size: 0.78rem;
+			    line-height: .8rem;
+			    display: inline-block;
+			    vertical-align: middle;
+			    &>span:first-child {
+			        color: #DD2727;
+			    }
+			}
+			.stock-control{
+				.label {
+				    font-size: .71rem;
+				    margin-right: 5px;
+				}
+			}
+			.sku-dtips {
+			    margin-right: .38rem;
+			    display: -webkit-box;
+			    span{
+			    	padding-left: 5px;
+			    }
+			}
+		}
+		.sback {
+		    position: absolute;
+		    width: 24px;
+		    height: 28px;
+		    display: block;
+		    top: 5px;
+		    right: 1.5rem;
+		    &:after{
+		    	content: '\e612';
+		    	font-family: 'iconfont';
+		    	font-size: 22px;
+		    	color: #5f646e;
+		    }
+		}
+	}
+	.number {
+		-webkit-tap-highlight-color: transparent;
+	    margin: 0 .76rem;
+	    padding-bottom: 20px;
+	    .content{
+	    	overflow: hidden;
+	    	.number-control{
+	    		float: left;
+	    		.mui-number{
+	    			display: inline-block;
+	    			vertical-align: middle;
+	    			border: 1px solid #b3b3b3;
+	    			-webkit-border-radius: 3px;
+	    			border-radius: 3px;
+	    			letter-spacing: 0;
+	    			height: 1.85rem;
+	    			line-height: 1.85rem;
+	    			overflow: hidden;
+	    			.decrease,.increase{
+	    				font-style: normal;
+	    				font-size: 1rem;
+	    				font-weight: 700;
+	    				border: none;
+	    				display: inline-block;
+	    				width: 1.7rem;
+	    				height: 100%;
+	    				-webkit-user-select: none;
+	    				-ms-user-select: none;
+	    				background-color: #fff;
+	    				color: #5f646e;
+	    			}
+	    			.decrease{
+	    				border-right: 1px solid #b3b3b3;
+	    			}
+	    			.increase{
+	    				border-left: 1px solid #b3b3b3;
+	    			}
+	    			.num {
+	    			    height: 100%;
+	    			    min-width: 3rem;
+	    			    max-width: 5rem;
+	    			    -webkit-box-sizing: border-box;
+	    			    box-sizing: border-box;
+	    			    padding: 0 .02rem;
+	    			    border: none;
+	    			    -webkit-border-radius: 0;
+	    			    border-radius: 0;
+	    			    font-weight: 700;
+	    			    color: #3d4245;
+	    			    text-align: center;
+	    			}
+	    			.decrease.disabled,.increase.disabled {
+	    			    color: #cfcfcf;
+	    			}
+	    		}
+	    	}
+	    }
+	}
+	.option {
+		position: absolute;
+		bottom: 5.7rem;
+		left: 0;
+	    border-top: 1px solid #e5e5e5;
+	    text-align: center;
+	    width: 100%;
+	    .ok{
+			background-color: #DD2727;
+	    }
+	    .cell {
+	        height: 48px;
+	        border: none;
+	        font-size: 15px;
+	        color: #fff;
+	        width: 100%;
+	    }
+	}
+}
+.mui-flex>.cell {
+    flex: 1;
+    flex-basis: 0;
+    max-width: 100%;
+    display: block;
+    padding: 0!important;
+    position: relative;
+}

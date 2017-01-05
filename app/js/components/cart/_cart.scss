@@ -1,0 +1,92 @@
+.cartbuy{
+	.bundlev2 {
+	    margin-top: .32rem;
+	    background: #fff;
+	    border-bottom: 1px solid #e7e7e7;
+	}
+	.footer {
+	    height: 1.307rem;
+	    margin-top: .8rem;
+	    cursor: pointer;
+	    .f-fx {
+	        position: fixed;
+	        left: 0;
+	        right: 0;
+	        bottom: 0;
+	        border-top: .8rem solid transparent;
+	        &>div {
+			    width: 100%;
+			    height: 2.307rem;
+			    background: #fff;
+			    border-top: 1px solid #e7e7e7;
+			    display: -webkit-box;
+			    display: -ms-flexbox;
+			    display: flex;
+			}
+	    }
+	    .ft-cb {
+	        width: 1.173rem;
+	        -webkit-box-pack: center;
+	        -ms-flex-pack: center;
+	        justify-content: center;
+	        -webkit-box-align: center;
+	        -ms-flex-align: center;
+	        align-items: center;
+	        display: -webkit-box;
+	        display: -ms-flexbox;
+	        display: flex;
+	    }
+	    .qx {
+	        -webkit-box-pack: center;
+	        -ms-flex-pack: center;
+	        justify-content: center;
+	        -webkit-box-align: center;
+	        -ms-flex-align: center;
+	        align-items: center;
+	        display: -webkit-box;
+	        display: -ms-flexbox;
+	        display: flex;
+	    }
+	    .pay {
+	        -webkit-box-flex: 1;
+	        -ms-flex: 1;
+	        flex: 1;
+	        -webkit-box-align: center;
+	        -ms-flex-align: center;
+	        align-items: center;
+	        display: -webkit-box;
+	        display: -ms-flexbox;
+	        display: flex;
+	        &>div {
+			    -webkit-box-flex: 1;
+			    -ms-flex: 1;
+			    flex: 1;
+			    text-align: right;
+			}
+			p{
+				font-size: 0.6rem;
+			}
+	    }
+	    .hj {
+	        font-size: 0.7rem;
+	    }
+	    .btn {
+	        width: 4.5rem;
+	        color: #fff;
+	        background: #f50;
+	        -webkit-box-pack: center;
+	        -ms-flex-pack: center;
+	        justify-content: center;
+	        -webkit-box-align: center;
+	        -ms-flex-align: center;
+	        align-items: center;
+	        display: -webkit-box;
+	        display: -ms-flexbox;
+	        display: flex;
+	        margin-left: .32rem;
+	        p {
+	            font-size: 0.8rem;
+	        }
+	    }
+	}
+}
