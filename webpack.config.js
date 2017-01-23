@@ -27,7 +27,7 @@ module.exports = {
 	                path.join(process.cwd(), './app'),
 	            ],
 				query: {
-	              	presets: ['es2015','react']//转义es6
+	              	presets: ['es2015','react', 'stage-0']//转义es6
 	            },
 				exclude: function(path) {
 		            // 路径中含有 node_modules 的就不去解析。(提高webpack性能)
@@ -64,7 +64,7 @@ module.exports = {
 	    // }),
 	    new BrowserSyncPlugin({//实时刷新
 	            host: 'localhost',
-	            port: 3000,
+	            port: 3001,
 	            files: '',
 	            server: {
 	                //指定服务器启动根目录

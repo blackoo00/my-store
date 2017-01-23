@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import UP from '../../extend/ajaxfileupload.js';
 import FileInput from '../../extend/fileInput';
-import Weui from '../common/weui';
+import {FormList} from '../common/weui';
 import MyQrcode from './myqrcode';
 
 export default React.createClass({
@@ -121,13 +121,13 @@ export default React.createClass({
 						</li>
 					</ul>
 					<div className="weui_cells weui_cells_access">
-						<Weui value="查看全部订单" icon="form" href="/Cart"/>
+						<FormList value="查看全部订单" icon="form" href="/Cart"/>
 					</div>
 				</section>
 				<div className="weui_cells weui_cells_access">
 
-					<Weui value="购物车" icon="cart" href="/Cart"/>
-					<Weui value="二维码" icon="code" href="/MyQrcode" query={qrcode}/>
+					<FormList value="购物车" icon="cart" href="/Cart"/>
+					<FormList value="二维码" icon="code" href="/MyQrcode" query={qrcode}/>
 				</div>
 			</div>
 		)

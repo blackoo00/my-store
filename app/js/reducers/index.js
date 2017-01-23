@@ -1,9 +1,8 @@
-export default (state = 0, action) => {
-	switch(action.type){
-		case 'TEST':
-			return state+1
-		default:
-			return state
-	}
-}
+import {combineReducers} from 'redux';
+import carts from './carts';
+import settle from './settle';
 
+export default combineReducers({
+	carts,
+	settle
+})
