@@ -2,15 +2,15 @@ import shop from '../api/shop';
 import * as types from '../constants/ActionTypes';
 import {hashHistory} from 'react-router';
 
+//初始化获取购物车全部信息
 const receiveProducts = products => ({
   type: types.ALL_CARTS_PRODUCTS,
   products: products
 })
-//初始化获取购物车全部信息
-export const getAllProducts = () => dispatch => {
+export const getAllProducts = (arg = false) => dispatch => {
   shop.getProducts(products => {
     dispatch(receiveProducts(products))
-  })
+  },0,arg)
 }
 //点击编辑按钮
 export const editCart = cartId =>({
@@ -46,9 +46,21 @@ const delCartProduct = (cartId) =>({
 	cartId: cartId
 })
 
-export const delCartProductById = (cartId) => dispatch =>{
-	shop.delCartProduct(cartId)
-	dispatch(delCartProduct(cartId))
+export const delCartProductById = (cartId,number) => dispatch =>{
+	if(number > 1){
+		shop.delCartProduct(cartId)
+		dispatch(delCartProduct(cartId))
+	}
+}
+//通过购物车ID删除指定购物车商品信息
+const removeCartProByIdDip = (cartId) => ({
+	type: types.REMOVE_CART_BY_ID,
+	cartId: cartId,
+})
+export const removeCartProById = (cartId) => dispatch =>{
+	shop.removeCartProById(cartId,function(){
+		dispatch(removeCartProByIdDip(cartId));
+	});
 }
 //结算
 const settleCartDispath = (cartIds) =>({
@@ -56,8 +68,19 @@ const settleCartDispath = (cartIds) =>({
 	cartIds: cartIds
 })
 export const settleCart = (cartIds) => dispatch =>{
-	shop.settleCart(cartIds);
-	dispatch(settleCartDispath(cartIds));
-	hashHistory.push({pathname:"/confirmOrderWap",query:{cart_id:'7,8'}});
+	if(!cartIds.length){
+		$.alert('请选择商品');
+		return;
+	}
+	shop.settleCart(cartIds,function(){
+		dispatch(settleCartDispath(cartIds));
+		hashHistory.push({pathname:"/confirmOrderWap"});
+	});
+}
+//提交订单
+export const handleSubmitOrder = (remark) => dispatch =>{
+	shop.handleSubmitOrder(remark,function(order_sn,user_name,total_fee){
+		hashHistory.push({ pathname: '/Wxpay',query: {order_sn:order_sn,user_name:user_name,total_fee:total_fee} });
+	})
 }
 

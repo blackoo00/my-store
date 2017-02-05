@@ -7,7 +7,7 @@ import * as cartsActions from '../../actions/carts';
 import {CommonHeader} from '../../components/common/weui';
 import {hashHistory} from 'react-router';
 
-const CartContainer = ({init,settle,products,editId,edit,chooseById,carts,chooseAll,addCartProductById,delCartProductById}) => 
+const CartContainer = ({init,settle,products,editId,edit,chooseById,carts,chooseAll,addCartProductById,delCartProductById,removeCartProById}) => 
 {
 	componentWillMount:{
 		if(products.length == 0){
@@ -17,21 +17,27 @@ const CartContainer = ({init,settle,products,editId,edit,chooseById,carts,choose
 	render:return(
 	<div className="cart-wrap">
 		<CommonHeader
-			value = {carts.chooseNum}
+			value = {'购物车(' + carts.chooseNum + ')'}
 		/>
 		<div className="cartbuy">
 			<CartList>
-					{products.map(product =>
-						<CartItem
-							key = {product.id}
-							elem = {product}
-							editId = {editId}
-							edit = {() => edit(product.id)}
-							chooseById = {() => chooseById(product.id)}
-							addCartProductById = {() => addCartProductById(product.id)}
-							delCartProductById = {() => delCartProductById(product.id)}
-							carts = {carts}
-						/>
+					{products.map(product =>{
+						if(product.delete == 0){
+							return(
+								<CartItem
+									key = {product.id}
+									elem = {product}
+									editId = {editId}
+									edit = {() => edit(product.id)}
+									chooseById = {() => chooseById(product.id)}
+									addCartProductById = {() => addCartProductById(product.id)}
+									delCartProductById = {() => delCartProductById(product.id,product.number)}
+									removeCartProById = {() => removeCartProById(product.id)}
+									carts = {carts}
+								/>
+							)
+						}
+					}
 					)}
 			</CartList>
 			<Footer
@@ -51,27 +57,36 @@ const mapStateToProps = (state) =>({
 })
 
 const mapDispatchToProps = (dispatch) =>({
+	//点击编辑按钮
 	edit: (cartId) => {
 	  dispatch(cartsActions.editCart(cartId))
 	},
+	//单选
 	chooseById:(cartId) => {
 		dispatch(cartsActions.chooseById(cartId))
 	},
+	//全选
 	chooseAll:()=>{
 		dispatch(cartsActions.chooseAll())
 	},
+	//增加购物车商品数量
 	addCartProductById:(cartId)=>{
 		dispatch(cartsActions.addCartProductById(cartId))
 	},
-	delCartProductById:(cartId)=>{
-		dispatch(cartsActions.delCartProductById(cartId))
+	//减少购物车商品数量
+	delCartProductById:(cartId,number)=>{
+		dispatch(cartsActions.delCartProductById(cartId,number))
 	},
+	//结算
 	settle:(cartIds)=>{
-		//hashHistory.push({pathname:"/confirmOrderWap",query:{cart_id:'7,8'}});
 		dispatch(cartsActions.settleCart(cartIds))
 	},
+	//购物车初始化
 	init:()=>{
-		dispatch(cartsActions.getAllProducts());
+		dispatch(cartsActions.getAllProducts(true));
+	},
+	removeCartProById:(cartId) => {
+		dispatch(cartsActions.removeCartProById(cartId));
 	}
 })
 

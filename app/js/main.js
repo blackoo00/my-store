@@ -4,13 +4,11 @@ import { Router, Route, hashHistory , IndexRoute} from 'react-router';
 import Example from './components/Example';
 import StoreApp from './components/StoreApp';
 import Pdetail from './components/pdetail/index';
-// import confirmOrderWap from './components/confirmOrder/index';
 import confirmOrderWap from './containers/confirmOrder/SettleController';
 import AddressList from './components/address/list';
 import AddAddress from './components/address/add';
 import Wxpay from './components/wxpay/wxpay';
 import Search from './components/search/search';
-// import Cart from './components/cart/cart';
 import Cart from './containers/cart/CartContainer';
 import My from './components/my/my';
 import MyQrcode from './components/my/myqrcode';
@@ -99,20 +97,3 @@ render(
   </Provider>,
   document.getElementById('wrapper')
 )
-// render((
-//   <Router history={hashHistory}>
-//     <Route path="/" component={Container}>
-//         <IndexRoute component={StoreApp} />
-//         <Route path="example" component={Example}/>
-//         <Route path="pdetail" component={Pdetail}/>
-//         <Route path="confirmOrderWap" component={confirmOrderWap}/>
-//         <Route path="AddressList" component={AddressList}/>
-//         <Route path="AddAddress" component={AddAddress}/>
-//         <Route path="Wxpay" component={Wxpay}/>
-//         <Route path="Search" component={Search}/>
-//         <Route path="Cart" component={Cart}/>
-//         <Route path="My" component={My}/>
-//         <Route path="MyQrcode" component={MyQrcode}/>
-//     </Route>
-//   </Router>
-// ), document.getElementById('wrapper'));

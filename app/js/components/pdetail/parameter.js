@@ -76,7 +76,6 @@ module.exports = React.createClass({
 			url:'http://127.0.0.1/my-store/index.php/Home/Store/addProductToCart',
 			data:{pid:pro.id,did:did,num:num},
 			success:function(data){
-				console.log(data);
 				//判断是立即购买还是加入购物车
 				if(_self.props.Buy){
 					// window.location.href="#/confirmOrderWap";

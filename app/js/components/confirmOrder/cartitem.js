@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CartItem = ({cart}) => (
+const CartItem = ({cart,addCartProductById,delCartProductById}) => (
 	<div className="pro-list">
 		<div className="weui_cell">
 			<div className="weui_cell_hd">
@@ -21,9 +21,9 @@ const CartItem = ({cart}) => (
 			</div>
 			<div className="weui_cell_ft order-quantity">
 				<div className="content cell">
-					<a className="btn minus off"></a>
+					<a className="btn minus off" onClick={delCartProductById}></a>
 					<input className="amount" type="number" value={cart.number || ''} readOnly/>
-					<a className="btn plus"></a>
+					<a className="btn plus" onClick={addCartProductById}></a>
 				</div>
 			</div>
 		</div>

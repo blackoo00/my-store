@@ -4,5 +4,4 @@ import settle from './settle';
 
 export default combineReducers({
 	carts,
-	settle
 })

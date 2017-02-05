@@ -2,31 +2,54 @@ import * as types from '../constants/ActionTypes';
 
 const initialState = {
     products:[],
-    editId:[],
-    chooseId:[],
-    chooseNum:0,
-    totalFee:0,
-    chooseAll:false,
+    editId:[],//点击编辑商品ID
+    chooseId:[],//选中商品ID
+    chooseNum:0,//选中商品数量
+    totalFee:0,//选中商品总额
+    chooseAll:false,//是否全选
+    totalNum:0,//购物车选中商品总数
+    remark:'',//购物留言
 };
+
 //计算总价
-const totalFee = (state) =>{
-    let choose_id_ar = state.chooseId;
-    let products = state.products;
-    let totalFee = 0;
-    choose_id_ar.map(function(index) {
-        totalFee += products[index]['goods_price'] * products[index]['number'];
-    })
-    state.totalFee = totalFee;
-    chooseNum(state);
+const totalFee = (products) =>{
+  let total_fee = 0;
+  console.log(products);
+  for(let i in products){
+    if(products[i].choose == 1){
+      total_fee += products[i].goods_price*products[i].number;
+    }
+  }
+  return total_fee;
 }
+
+//计算商品总数
+const totalNum = (products) =>{
+  let total_num = 0;
+  for(let i in products){
+    if(products[i].choose == 1){
+      total_num += products[i].number;
+    }
+  }
+  return total_num;
+}
+
 //计算选中个数
-const chooseNum = (state) =>{
-    let choose_id_ar = state.chooseId;
-    let chooseNum = 0;
-    choose_id_ar.map(function(index,elem) {
-        chooseNum ++;
-    })
-    state.chooseNum = chooseNum;
+const chooseNum = (products) =>{
+  let choose_num = 0;
+  for(let i in products){
+    if(products[i].choose == 1){
+      choose_num += 1;
+    }
+  }
+  return choose_num;
+}
+
+//删除数组指定元素
+const arrRemove = (arr,val) =>{
+  let index = arr.indexOf(val);
+  arr.splice(index,1);
+  return arr;
 }
 
 const carts = (state = initialState, action) => {
@@ -34,78 +57,78 @@ const carts = (state = initialState, action) => {
     const chooseId_arr = state.chooseId;
     switch(action.type){
         case types.ALL_CARTS_PRODUCTS://初始化
-            let cart = [];
-            action.products.map(function(elem, index) {
-              cart[elem.id] = elem
-            })
-            state.products = cart;
             return {
               ...state,
+              products:action.products.reduce((obj, product) => {
+                  obj[product.id] = product
+                  return obj
+              },[]),
+              totalFee:totalFee(action.products),
+              totalNum:totalNum(action.products),
             }
         case types.EDIT_CART://点击编辑按钮
-            const {cartId} = action;
-            let editId = state.editId
-            if(editId.includes(cartId)){
-              let length = editId.length;
-              let index = editId.indexOf(cartId);
-              editId.splice(index,1);
-              state.editId = [...editId,editId];
-            }else{
-              state.editId = [...editId,cartId];
-              state.editId = Array.from(new Set(state.editId));
-            }
-            // return Object.assign({}, state);
+            let {cartId} = action;
+            let state_editId = state.editId;
             return {
-              ...state
+              ...state,
+              editId:state_editId.includes(cartId) ? arrRemove(state_editId,cartId) : Array.from(new Set([
+                  ...state_editId,
+                  cartId
+                ])),
             }
         case types.CHOOSE_CART://单选
             const {chooseId} = action;
-            const goods_price = products[chooseId]['goods_price'];
-            if(chooseId_arr.includes(chooseId)){
-              let length = chooseId_arr.length;
-              let index = chooseId_arr.indexOf(chooseId);
-              chooseId_arr.splice(index,1);
-              state.chooseId = [...chooseId_arr,...chooseId_arr];
-              state.chooseId = Array.from(new Set(state.chooseId));
-            }else{
-              state.chooseId = [...chooseId_arr,chooseId];
-              state.chooseId = Array.from(new Set(state.chooseId));
-            }
-            totalFee(state);
+            let state_chooseId = state.chooseId;
+            state.products[chooseId].choose = state_chooseId.includes(chooseId) ? 0 : 1;
             return {
-              ...state
+              ...state,
+              chooseId:state_chooseId.includes(chooseId) ? arrRemove(state_chooseId,chooseId) : Array.from(new Set([
+                  ...state_chooseId,
+                  chooseId
+                ])),
+              totalFee:totalFee(state.products)
             }
         case types.CHOOSE_ALL://全选
             let choose_id = [];
-            if(!state.chooseAll){
-              for(let i in products){
+            for(let i in products){
                 choose_id.push(i);
-              }
-              state.chooseId = choose_id;
-            }else{
-              state.chooseId = [];
+                state.chooseAll ? products[i].choose = 0 : products[i].choose = 1;
             }
-            state.chooseAll = !state.chooseAll;
-            totalFee(state);
             return {
-              ...state
+              ...state,
+              chooseAll:!state.chooseAll,
+              chooseId:state.chooseAll ? [] : choose_id,
+              totalFee:totalFee(state.products),
+              chooseNum:chooseNum(state.products)
             }
         case types.ADD_CART_PRODUCT://增加购物车商品数量
             state.products[action.cartId].number +=1;
-            totalFee(state);
             return{
               ...state,
+              totalFee:totalFee(state.products),
+              totalNum:totalNum(state.products),
+              chooseNum:chooseNum(state.products)
             }
         case types.DEL_CART_PRODUCT://减少购物车商品数量
             if(state.products[action.cartId].number > 1){
               state.products[action.cartId].number -=1;
-              totalFee(state);
             }
             return{
               ...state,
+              totalFee:totalFee(state.products),
+              totalNum:totalNum(state.products),
+              chooseNum:chooseNum(state.products)
             }
-        case types.GET_CART_INFO://结算页面
-            console.log(action.carts)
+        case types.REMOVE_CART_BY_ID:
+            state.products[action.cartId].delete = 1;
+            return{
+              ...state
+            }
+        case types.ASSIGN_SETTLE_CHOOSEIDS://结算页面
+            state.products.map((item,key)=>{
+              action.cartIds.includes(item.id) ? state.products[key].choose = 1 : state.products[key].choose = 0;
+            })
+            return {...state};
         default:
           return state;
     }

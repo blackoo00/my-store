@@ -15,6 +15,6 @@ export const FormList = ({value,icon,href,query}) =>(
 
 export const CommonHeader = ({value}) => (
 	<div className="header">
-		<span>购物车({value})</span>
+		<span>{value}</span>
 	</div>
 )

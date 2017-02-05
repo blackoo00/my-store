@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CartItem = ({elem,editId,edit,chooseById,carts,addCartProductById,delCartProductById}) => (
+const CartItem = ({elem,editId,edit,chooseById,carts,addCartProductById,delCartProductById,removeCartProById}) => (
 	<div className="bundlev2">
 		<div className="shop">
 			<div className="o-t-title-shop">
@@ -74,7 +74,7 @@ const CartItem = ({elem,editId,edit,chooseById,carts,addCartProductById,delCartP
 					</div>
 				</div>
 			</div>
-			<div className="item-del c-edit-delhide">
+			<div className="item-del c-edit-delhide" onClick={removeCartProById}>
 				<p>删除</p>
 			</div>
 		</div>

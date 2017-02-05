@@ -77,10 +77,10 @@ var StoreIndex = React.createClass({
 				<div className="weui_search_bar" id="search_bar">
 				  <form className="weui_search_outer">
 				    <div className="weui_search_inner"> <i className="weui_icon_search"></i>
-				      <input type="search" className="weui_search_input" id="search_input" placeholder="你搜一个试试！" required/>
+				      <input type="search" className="weui_search_input" id="search_input1" placeholder="你搜一个试试！" required/>
 				      <a href="javascript:" className="weui_icon_clear" id="search_clear"></a>
 				    </div>
-				    <label htmlFor="search_input" className="weui_search_text" id="search_text" onClick={this.handleSearch}> 
+				    <label htmlFor="search_input1" className="weui_search_text" id="search_text" onClick={this.handleSearch}> 
 				      <i className="weui_icon_search"></i>
 				      <span>你搜一个试试！</span>
 				    </label>
