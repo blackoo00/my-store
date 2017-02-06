@@ -5,6 +5,7 @@ const ajaxData = (url,data,async = true,type = 'get' ,callback = function(){}) =
 		data:data,
 		async:async,
 		type:type,
+		dataType:'json',
 		success:function(data){
 			ajax_data = data.data;
 			callback()
@@ -31,9 +32,13 @@ export default {
 	}, timeout || TIMEOUT),
 	//获取商品详情
 	getProDetails:(cb,pid,timeout) => setTimeout(() => {
-		let pdetails = ajaxData('getProDetail',{pid:pid});
+		let pdetails = ajaxData('getProDetail',{pid:pid},false);
 		cb(pdetails)
 	},timeout || TIMEOUT),
+	//收藏商品
+	collectionProduct:(pid,callback) => {
+		ajaxData('collection',{pid:pid},false,'get',callback());
+	},
 	//添加购物车商品数量
 	addCartProduct: (cart_id, timeout) => setTimeout(() => {
 	 	ajaxData('addCartProduct',{cid:cart_id})
@@ -51,8 +56,8 @@ export default {
 		ajaxData('settleCart',{cart_ids:cart_ids},true,'get',callback())
 	},
 	//加入购物车
-	addCart: (pid) =>{
-		ajaxData()
+	addCart: (pid,did,num,callback) =>{
+		ajaxData('addProductToCart',{pid:pid,did:did,num:num},true,'get',callback())
 	},
 	//提交订单
 	handleSubmitOrder:(remark,callback) =>{

@@ -2,27 +2,27 @@ var React = require('react');
 var swiper = require('swiper');
 
 var SwiperDom = React.createClass({
-	componentWillMount:function(){
-        //this.addCssByLink('css/swiper-3.4.0.min.css');
-        //this.addJsByScript('js/swiper-3.4.0.jquery.min.js');
-	},
-	addCssByLink:function(url){
-	    var doc=document;  
-	    var link=document.createElement("link");  
-	    link.setAttribute("rel", "stylesheet");  
-	    link.setAttribute("href", url);  
+	// componentWillMount:function(){
+ //        //this.addCssByLink('css/swiper-3.4.0.min.css');
+ //        //this.addJsByScript('js/swiper-3.4.0.jquery.min.js');
+	// },
+	// addCssByLink:function(url){
+	//     var doc=document;  
+	//     var link=document.createElement("link");  
+	//     link.setAttribute("rel", "stylesheet");  
+	//     link.setAttribute("href", url);  
 	  
-	    var heads = doc.getElementsByTagName("head");  
-	    if(heads.length)  
-	        heads[0].appendChild(link);  
-	    else  
-	        doc.documentElement.appendChild(link);  
-	},
-	addJsByScript:function(url){
-		var script = document.createElement('script');
-        script.src = url;
-        document.body.appendChild(script);
-	},
+	//     var heads = doc.getElementsByTagName("head");  
+	//     if(heads.length)  
+	//         heads[0].appendChild(link);  
+	//     else  
+	//         doc.documentElement.appendChild(link);  
+	// },
+	// addJsByScript:function(url){
+	// 	var script = document.createElement('script');
+ //        script.src = url;
+ //        document.body.appendChild(script);
+	// },
 	componentDidUpdate:function(){
 		var mySwiper = new Swiper ('.swiper-container', {
 		    autoplay: 2000,//可选选项，自动滑动

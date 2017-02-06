@@ -64,67 +64,67 @@
 
 	var _StoreApp2 = _interopRequireDefault(_StoreApp);
 
-	var _index = __webpack_require__(68);
+	var _PdetailsController = __webpack_require__(68);
 
-	var _index2 = _interopRequireDefault(_index);
+	var _PdetailsController2 = _interopRequireDefault(_PdetailsController);
 
-	var _SettleController = __webpack_require__(93);
+	var _SettleController = __webpack_require__(98);
 
 	var _SettleController2 = _interopRequireDefault(_SettleController);
 
-	var _list = __webpack_require__(101);
+	var _list = __webpack_require__(103);
 
 	var _list2 = _interopRequireDefault(_list);
 
-	var _add = __webpack_require__(102);
+	var _add = __webpack_require__(104);
 
 	var _add2 = _interopRequireDefault(_add);
 
-	var _wxpay = __webpack_require__(103);
+	var _wxpay = __webpack_require__(105);
 
 	var _wxpay2 = _interopRequireDefault(_wxpay);
 
-	var _search = __webpack_require__(104);
+	var _search = __webpack_require__(106);
 
 	var _search2 = _interopRequireDefault(_search);
 
-	var _CartContainer = __webpack_require__(106);
+	var _CartContainer = __webpack_require__(108);
 
 	var _CartContainer2 = _interopRequireDefault(_CartContainer);
 
-	var _my = __webpack_require__(110);
+	var _my = __webpack_require__(112);
 
 	var _my2 = _interopRequireDefault(_my);
 
-	var _myqrcode = __webpack_require__(113);
+	var _myqrcode = __webpack_require__(115);
 
 	var _myqrcode2 = _interopRequireDefault(_myqrcode);
 
-	var _fastclick = __webpack_require__(105);
+	var _fastclick = __webpack_require__(107);
 
 	var _fastclick2 = _interopRequireDefault(_fastclick);
 
-	var _reactAddonsCssTransitionGroup = __webpack_require__(70);
+	var _reactAddonsCssTransitionGroup = __webpack_require__(75);
 
 	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 
-	var _redux = __webpack_require__(114);
+	var _redux = __webpack_require__(116);
 
-	var _reactRedux = __webpack_require__(94);
+	var _reactRedux = __webpack_require__(69);
 
-	var _reduxThunk = __webpack_require__(115);
+	var _reduxThunk = __webpack_require__(117);
 
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
-	var _reduxLogger = __webpack_require__(116);
+	var _reduxLogger = __webpack_require__(118);
 
 	var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
 
-	var _index3 = __webpack_require__(122);
+	var _index = __webpack_require__(124);
 
-	var _index4 = _interopRequireDefault(_index3);
+	var _index2 = _interopRequireDefault(_index);
 
-	var _carts = __webpack_require__(95);
+	var _carts = __webpack_require__(99);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -133,6 +133,8 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	// import Pdetail from './components/pdetail/index';
+
 
 	var Container = function (_React$Component) {
 	    _inherits(Container, _React$Component);
@@ -199,7 +201,7 @@
 	if (true) {
 	    middleware.push((0, _reduxLogger2.default)());
 	}
-	var store = (0, _redux.createStore)(_index4.default, (0, _redux.applyMiddleware)(_reduxThunk2.default, (0, _reduxLogger2.default)()));
+	var store = (0, _redux.createStore)(_index2.default, (0, _redux.applyMiddleware)(_reduxThunk2.default, (0, _reduxLogger2.default)()));
 
 	(0, _reactDom.render)(_react2.default.createElement(
 	    _reactRedux.Provider,
@@ -212,7 +214,7 @@
 	            { path: '/', component: Container },
 	            _react2.default.createElement(_reactRouter.IndexRoute, { component: _StoreApp2.default }),
 	            _react2.default.createElement(_reactRouter.Route, { path: 'example', component: _Example2.default }),
-	            _react2.default.createElement(_reactRouter.Route, { path: 'pdetail', component: _index2.default }),
+	            _react2.default.createElement(_reactRouter.Route, { path: 'pdetail', component: _PdetailsController2.default }),
 	            _react2.default.createElement(_reactRouter.Route, { path: 'confirmOrderWap', component: _SettleController2.default }),
 	            _react2.default.createElement(_reactRouter.Route, { path: 'AddressList', component: _list2.default }),
 	            _react2.default.createElement(_reactRouter.Route, { path: 'AddAddress', component: _add2.default }),
@@ -5320,24 +5322,27 @@
 	var SwiperDom = React.createClass({
 		displayName: 'SwiperDom',
 
-		componentWillMount: function componentWillMount() {
-			//this.addCssByLink('css/swiper-3.4.0.min.css');
-			//this.addJsByScript('js/swiper-3.4.0.jquery.min.js');
-		},
-		addCssByLink: function addCssByLink(url) {
-			var doc = document;
-			var link = document.createElement("link");
-			link.setAttribute("rel", "stylesheet");
-			link.setAttribute("href", url);
+		// componentWillMount:function(){
+		//        //this.addCssByLink('css/swiper-3.4.0.min.css');
+		//        //this.addJsByScript('js/swiper-3.4.0.jquery.min.js');
+		// },
+		// addCssByLink:function(url){
+		//     var doc=document;  
+		//     var link=document.createElement("link");  
+		//     link.setAttribute("rel", "stylesheet");  
+		//     link.setAttribute("href", url);  
 
-			var heads = doc.getElementsByTagName("head");
-			if (heads.length) heads[0].appendChild(link);else doc.documentElement.appendChild(link);
-		},
-		addJsByScript: function addJsByScript(url) {
-			var script = document.createElement('script');
-			script.src = url;
-			document.body.appendChild(script);
-		},
+		//     var heads = doc.getElementsByTagName("head");  
+		//     if(heads.length)  
+		//         heads[0].appendChild(link);  
+		//     else  
+		//         doc.documentElement.appendChild(link);  
+		// },
+		// addJsByScript:function(url){
+		// 	var script = document.createElement('script');
+		//        script.src = url;
+		//        document.body.appendChild(script);
+		// },
 		componentDidUpdate: function componentDidUpdate() {
 			var mySwiper = new Swiper('.swiper-container', {
 				autoplay: 2000, //可选选项，自动滑动
@@ -10868,111 +10873,52 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _reactRedux = __webpack_require__(69);
+
+	var _pdetails = __webpack_require__(70);
+
+	var actions = _interopRequireWildcard(_pdetails);
+
 	var _SwiperDom = __webpack_require__(63);
 
 	var _SwiperDom2 = _interopRequireDefault(_SwiperDom);
 
-	var _reactRouter = __webpack_require__(4);
+	var _SpectController = __webpack_require__(73);
 
-	var _parameter = __webpack_require__(69);
+	var _SpectController2 = _interopRequireDefault(_SpectController);
 
-	var _parameter2 = _interopRequireDefault(_parameter);
-
-	var _reactAddonsCssTransitionGroup = __webpack_require__(70);
-
-	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	exports.default = _react2.default.createClass({
-		displayName: 'pdetail',
-		getInitialState: function getInitialState() {
-			return {
-				ban: [],
-				pro: [],
-				col: false,
-				showpar: true,
-				paranimate: '',
-				buy: false
-			};
-		},
+	var PdetailsContainer = _react2.default.createClass({
+		displayName: 'PdetailsContainer',
 		componentWillMount: function componentWillMount() {
-			//获取商品ID
+			var init = this.props.init;
+
 			var pid = this.props.location.query.id;
-			var _self = this;
-			//获取商品banner
-			$.ajax({
-				url: "http://127.0.0.1/my-store/index.php/Home/Store/getProDetail",
-				data: { pid: pid },
-				dataType: 'json',
-				success: function success(data) {
-					console.log(data);
-					_self.setState({
-						ban: data.ban,
-						pro: data.pro,
-						col: data.col
-					});
-				}
-			});
+			init(pid);
 		},
+		componentWillUnmount: function componentWillUnmount() {
+			var handleHidePra = this.props.handleHidePra;
 
-		//加入购物车
-		handleShowPra: function handleShowPra() {
-			this.setState({
-				showpar: true,
-				paranimate: 'show'
-			});
-		},
-
-		//立即购买
-		handleBuyNow: function handleBuyNow() {
-			// { pathname: 'confirmOrderWap', query: { id: 1 } }
-			// hashHistory.push({ pathname: '/confirmOrderWap', query: { id: 1 } });
-			this.setState({
-				showpar: true,
-				paranimate: 'show',
-				buy: true
-			});
-		},
-
-		//关闭弹出框
-		handleClosePra: function handleClosePra() {
-			this.setState({
-				showpar: false,
-				paranimate: 'hide'
-			});
-		},
-
-		//收藏
-		handleCollection: function handleCollection() {
-			var _self = this;
-			$.ajax({
-				url: 'http://127.0.0.1/my-store/index.php/Home/Store/collection',
-				data: { pid: _self.state.pro.id },
-				success: function success(data) {
-					$.toast(data.info, function () {
-						console.log('close');
-					});
-					if (data.status == 1) {
-						_self.setState({
-							col: !_self.state.col
-						});
-					}
-				}
-			});
+			handleHidePra();
 		},
 		render: function render() {
-			var parameter;
-			if (this.state.showpar) {
-				parameter = _react2.default.createElement(_parameter2.default, { handleClosePra: this.handleClosePra, proDetail: this.state.pro, Buy: this.state.buy });
-			}
+			var _props = this.props,
+			    pdetails = _props.pdetails,
+			    handleCollection = _props.handleCollection,
+			    handleShowPra = _props.handleShowPra,
+			    handleHidePra = _props.handleHidePra;
+
+			var pro = pdetails.pro;
 			return _react2.default.createElement(
 				'div',
 				{ className: 'pro-detail-wrapper' },
 				_react2.default.createElement(
 					'div',
 					{ className: 'pro-banner' },
-					_react2.default.createElement(_SwiperDom2.default, { BanList: this.state.ban })
+					_react2.default.createElement(_SwiperDom2.default, { BanList: pdetails.ban })
 				),
 				_react2.default.createElement(
 					'div',
@@ -10983,335 +10929,605 @@
 						_react2.default.createElement(
 							'div',
 							{ className: 'pro-name' },
-							this.state.pro.name
+							pro.name
 						),
 						_react2.default.createElement(
 							'div',
 							{ className: 'pro-price' },
 							'\uFFE5',
-							this.state.pro.price
+							pro.price
 						)
 					),
 					_react2.default.createElement(
 						'div',
 						{ className: 'page-module-item' },
-						_react2.default.createElement('div', { dangerouslySetInnerHTML: { __html: this.state.pro.desc } })
+						_react2.default.createElement('div', { dangerouslySetInnerHTML: { __html: pro.desc } })
 					)
 				),
 				_react2.default.createElement(
 					'div',
 					{ className: 'bottom_bar' },
 					_react2.default.createElement(
-						_reactRouter.Link,
-						{ to: '/' },
-						_react2.default.createElement(
-							'div',
-							{ className: 'bottom_bar_icon service' },
-							'\u5BA2\u670D'
-						)
+						'div',
+						{ className: 'bottom_bar_icon service' },
+						'\u5BA2\u670D'
 					),
 					_react2.default.createElement(
 						'div',
-						{ className: (this.state.col ? "active" : "") + " bottom_bar_icon collection iconfont", onClick: this.handleCollection },
-						this.state.col ? '已收藏' : '收藏'
+						{ className: (pdetails.col ? "active" : "") + " bottom_bar_icon collection iconfont", onClick: function onClick() {
+								handleCollection(pro.id);
+							} },
+						pdetails.col ? '已收藏' : '收藏'
 					),
 					_react2.default.createElement(
 						'div',
-						{ className: 'sys_button cart', onClick: this.handleShowPra },
+						{ className: 'sys_button cart', onClick: function onClick() {
+								handleShowPra('');
+							} },
 						'\u52A0\u5165\u8D2D\u7269\u8F66'
 					),
 					_react2.default.createElement(
 						'div',
-						{ className: 'sys_button buy', onClick: this.handleBuyNow },
+						{ className: 'sys_button buy', onClick: function onClick() {
+								handleShowPra('buy');
+							} },
 						'\u7ACB\u5373\u8D2D\u4E70'
 					)
 				),
-				_react2.default.createElement(
-					_reactAddonsCssTransitionGroup2.default,
-					{
-						component: 'div',
-						transitionName: 'mui',
-						className: this.state.paranimate,
-						transitionEnterTimeout: 300,
-						transitionLeaveTimeout: 300
-					},
-					parameter
-				)
+				_react2.default.createElement(_SpectController2.default, { pdetails: pdetails })
 			);
 		}
 	});
+
+	var mapStatetoProps = function mapStatetoProps(state) {
+		return {
+			pdetails: state.pdetails
+		};
+	};
+
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+		return {
+			init: function init(pid) {
+				dispatch(actions.proDetailInit(pid));
+			},
+			//收藏
+			handleCollection: function handleCollection(pid) {
+				dispatch(actions.handleCollection(pid));
+			},
+			//显示规格选项
+			handleShowPra: function handleShowPra(arg) {
+				dispatch(actions.handleShowPra(arg));
+			},
+			//关闭商品规格选项
+			handleHidePra: function handleHidePra() {
+				dispatch(actions.handleHidePra());
+			}
+		};
+	};
+
+	var getQueryString = function getQueryString() {};
+
+	exports.default = (0, _reactRedux.connect)(mapStatetoProps, mapDispatchToProps)(PdetailsContainer);
 
 /***/ },
 /* 69 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactRouter = __webpack_require__(4);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	module.exports = _react2.default.createClass({
-		displayName: 'exports',
-		getInitialState: function getInitialState() {
-			return {
-				choose_attr: [], //显示选择的东西
-				choose_show: '', //显示选择信息
-				choose_sid_arr: [], //选中的属性(以规格为键值)
-				choose_aid: [], //选中属性ID
-				num: 1, //数量
-				price: 0, //价格
-				choose_did: 0 };
-		},
-		componentWillMount: function componentWillMount() {},
-
-		//选择规格
-		handleChooseAttr: function handleChooseAttr(data) {
-			// console.log(data);
-			var choose_show = '';
-			var pdetail = this.props.proDetail.detail;
-			var choose_sid_arr = this.state.choose_sid_arr;
-			var choose_aid = [];
-			//赋值选中规格属性
-			choose_sid_arr[data['sid']] = data;
-
-			for (var i in choose_sid_arr) {
-				choose_aid.push(choose_sid_arr[i]['id']);
-			}
-			//重新计算价格
-			if (choose_aid.length == 2) {
-				var new_price = pdetail[choose_aid[0]][choose_aid[1]].price;
-				var choose_did = pdetail[choose_aid[0]][choose_aid[1]].id;
-				if (!isNaN(new_price) && !isNaN(choose_did)) {
-					this.setState({
-						price: new_price,
-						choose_did: choose_did
-					});
-				}
-			}
-			this.setState({
-				choose_show: choose_show,
-				choose_aid: choose_aid,
-				choose_sid_arr: choose_sid_arr
-			});
-		},
-		handleDelNum: function handleDelNum() {
-			var num = this.state.num;
-			num == 1 ? num = 1 : num--;
-			this.setState({
-				num: num
-			});
-		},
-		handleAddNum: function handleAddNum() {
-			var num = this.state.num;
-			num++;
-			this.setState({
-				num: num
-			});
-		},
-
-		//加入购物车
-		handleAddCart: function handleAddCart() {
-			var pro = this.props.proDetail;
-			var _self = this;
-			var did = _self.state.choose_did;
-			var num = _self.state.num;
-			console.log(pro);
-			if (did == 0 && pro.detail) {
-				$.alert("请选择规格！", "警告！");
-				return;
-			}
-			$.ajax({
-				url: 'http://127.0.0.1/my-store/index.php/Home/Store/addProductToCart',
-				data: { pid: pro.id, did: did, num: num },
-				success: function success(data) {
-					//判断是立即购买还是加入购物车
-					if (_self.props.Buy) {
-						// window.location.href="#/confirmOrderWap";
-						_reactRouter.hashHistory.push({ pathname: '/confirmOrderWap', query: { cart_id: data.data } });
-						// _self.props.history.replaceState(null, 'confirmOrderWap');
-					} else {
-						if (data.info != '') {
-							$.toast(data.info, function () {
-								_self.props.handleClosePra();
-							});
-						}
-					}
-				}
-			});
-		},
-		render: function render() {
-			var pro = this.props.proDetail;
-			var attr = [];
-			var choose_show = [];
-			var choose_aid = this.state.choose_aid;
-			if (pro.length != 0) {
-				var pro_attr;
-				this.state.choose_attr.length == 0 ? pro_attr = pro.attr : pro_attr = this.state.choose_attr;
-				// console.log(pro_attr);
-				/*规格*/
-				for (var s in pro_attr) {
-					var sa = [];
-					/*属性*/
-					for (var a in pro_attr[s]['child']) {
-						sa.push(_react2.default.createElement(
-							'label',
-							{ key: a, className: choose_aid.indexOf(pro_attr[s]['child'][a].id) > -1 ? "checked" : "", onClick: this.handleChooseAttr.bind(this, pro_attr[s]['child'][a]) },
-							pro_attr[s]['child'][a].value
-						));
-					}
-					attr.push(_react2.default.createElement(
-						'li',
-						{ key: s, className: 'J_SkuGroup mui-sku-group' },
-						_react2.default.createElement(
-							'h2',
-							null,
-							pro_attr[s]['value']
-						),
-						_react2.default.createElement(
-							'div',
-							{ className: 'items' },
-							sa
-						)
-					));
-				}
-			}
-			if (this.state.choose_show != '') {
-				choose_show.push(_react2.default.createElement(
-					'div',
-					{ key: 'choose_attr', className: 'sku-dtips' },
-					'\u5DF2\u9009\u62E9:',
-					_react2.default.createElement('div', { dangerouslySetInnerHTML: { __html: this.state.choose_show } })
-				));
-			}
-			return _react2.default.createElement(
-				'div',
-				{ className: 'mui-cover', id: 'product-parameter-wrapper' },
-				_react2.default.createElement(
-					'div',
-					{ className: 'summary' },
-					_react2.default.createElement(
-						'div',
-						{ className: 'img' },
-						_react2.default.createElement('img', { src: pro.logo, alt: '' })
-					),
-					_react2.default.createElement(
-						'div',
-						{ className: 'main' },
-						_react2.default.createElement(
-							'div',
-							{ className: 'priceContainer' },
-							_react2.default.createElement(
-								'span',
-								{ className: 'price' },
-								'\xA5',
-								this.state.price == 0 ? pro.price : this.state.price
-							)
-						),
-						_react2.default.createElement(
-							'div',
-							{ className: 'stock-control' },
-							_react2.default.createElement(
-								'span',
-								{ className: 'stock' },
-								_react2.default.createElement(
-									'label',
-									{ className: 'label' },
-									'\u5E93\u5B58'
-								),
-								pro.number,
-								'\u4EF6'
-							),
-							_react2.default.createElement('span', { className: 'limitTip' })
-						),
-						choose_show
-					),
-					_react2.default.createElement('a', { className: 'sback', onClick: this.props.handleClosePra })
-				),
-				_react2.default.createElement(
-					'div',
-					{ className: 'body' },
-					_react2.default.createElement(
-						'section',
-						{ id: 's-decision' },
-						_react2.default.createElement(
-							'div',
-							{ className: 'sku-control' },
-							_react2.default.createElement(
-								'ul',
-								{ className: 'mui-sku' },
-								attr
-							)
-						),
-						_react2.default.createElement(
-							'div',
-							{ className: 'number' },
-							_react2.default.createElement(
-								'h2',
-								null,
-								'\u6570\u91CF'
-							),
-							_react2.default.createElement(
-								'div',
-								{ className: 'content' },
-								_react2.default.createElement(
-									'div',
-									{ className: 'number-control' },
-									_react2.default.createElement(
-										'div',
-										{ className: 'mui-number' },
-										_react2.default.createElement(
-											'button',
-											{ type: 'button', className: 'decrease disabled', onClick: this.handleDelNum },
-											'-'
-										),
-										_react2.default.createElement('input', { type: 'number', readOnly: true, className: 'num', value: this.state.num, min: this.state.num, max: pro.number, step: '', name: 'quantity' }),
-										_react2.default.createElement(
-											'button',
-											{ type: 'button', className: 'increase', onClick: this.handleAddNum },
-											'+'
-										)
-									)
-								)
-							)
-						)
-					)
-				),
-				_react2.default.createElement(
-					'div',
-					{ className: 'option mui-flex' },
-					_react2.default.createElement(
-						'button',
-						{ className: 'ok cell', onClick: this.handleAddCart },
-						'\u786E\u5B9A'
-					),
-					_react2.default.createElement(
-						'button',
-						{ className: 'cart cell', style: { display: 'none' } },
-						'\u52A0\u5165\u8D2D\u7269\u8F66'
-					),
-					_react2.default.createElement(
-						'button',
-						{ className: 'buy cell', style: { display: 'none' } },
-						'\u7ACB\u5373\u8D2D\u4E70'
-					)
-				)
-			);
-		}
-	});
+	module.exports = (__webpack_require__(2))(179);
 
 /***/ },
 /* 70 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(71);
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.addCart = exports.delNumber = exports.addNumber = exports.chooseAttr = exports.handleHidePra = exports.handleShowPra = exports.handleCollection = exports.proDetailInit = undefined;
+
+	var _shop = __webpack_require__(71);
+
+	var _shop2 = _interopRequireDefault(_shop);
+
+	var _ActionTypes = __webpack_require__(72);
+
+	var types = _interopRequireWildcard(_ActionTypes);
+
+	var _reactRouter = __webpack_require__(4);
+
+	var _carts = __webpack_require__(99);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	//获取商品详情
+	var proDetailsInitDip = function proDetailsInitDip(pdetails) {
+		return {
+			type: types.PRODETAILS_INIT,
+			pdetails: pdetails
+		};
+	};
+
+	var proDetailInit = exports.proDetailInit = function proDetailInit(pid) {
+		return function (dispatch) {
+			_shop2.default.getProDetails(function (pdetails) {
+				dispatch(proDetailsInitDip(pdetails));
+			}, pid);
+		};
+	};
+
+	//收藏商品
+	var handleCollectionDip = function handleCollectionDip() {
+		return {
+			type: types.PRODUCT_COLLECTION
+		};
+	};
+
+	var handleCollection = exports.handleCollection = function handleCollection(pid) {
+		return function (dispatch) {
+			_shop2.default.collectionProduct(pid, function () {
+				dispatch(handleCollectionDip());
+			});
+		};
+	};
+	//显示规格
+	var handleShowPra = exports.handleShowPra = function handleShowPra(arg) {
+		return {
+			type: types.SHOW_PRO_SPEC,
+			arg: arg
+		};
+	};
+	//隐藏规格
+	var handleHidePra = exports.handleHidePra = function handleHidePra() {
+		return {
+			type: types.HIDE_PRO_SPEC
+		};
+	};
+	//选择规格
+	var chooseAttr = exports.chooseAttr = function chooseAttr(sid, aid) {
+		return {
+			type: types.CHOOSE_ATTR,
+			sid: sid,
+			aid: aid
+		};
+	};
+	//增加数量
+	var addNumber = exports.addNumber = function addNumber() {
+		return {
+			type: types.ADD_CART_PRODUCT_NUMBER
+		};
+	};
+	//减少数量
+	var delNumber = exports.delNumber = function delNumber() {
+		return {
+			type: types.DEL_CART_PRODUCT_NUMBER
+		};
+	};
+	//加入购物车
+	var addCart = exports.addCart = function addCart(arg, pid, did, num, dprice) {
+		return function (dispatch) {
+			if (Object.keys(dprice).length > 0) {
+				if (isNaN(pid) || did == 0 || num <= 0) {
+					$.alert('请选择属性');
+					return;
+				}
+			} else if (num <= 0) {
+				$.alert('请选择数量');
+				return;
+			}
+			_shop2.default.addCart(pid, did, num, function () {
+				if (arg) {
+					dispatch(handleHidePra());
+					(0, _carts.getAllProducts)(true); //刷新下购物车
+					_reactRouter.hashHistory.push({ pathname: "/Cart" });
+				} else {
+					$.alert('加入成功');
+					dispatch(handleHidePra());
+				}
+			});
+		};
+	};
 
 /***/ },
 /* 71 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	var ajaxData = function ajaxData(url, data) {
+		var async = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+		var type = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 'get';
+		var callback = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : function () {};
+
+		var ajax_data;
+		$.ajax({
+			url: STORESERVER + url,
+			data: data,
+			async: async,
+			type: type,
+			dataType: 'json',
+			success: function success(data) {
+				ajax_data = data.data;
+				callback();
+			}
+		});
+		return ajax_data;
+	};
+
+	var TIMEOUT = 100;
+
+	exports.default = {
+		getProducts: function getProducts(cb, timeout, arg) {
+			return setTimeout(function () {
+				//获取购物车全部信息
+				var _products = [];
+				var carts = ajaxData('getCartList', '', false);
+				carts.map(function (elem, index) {
+					carts[index]['number'] = parseInt(carts[index]['number']);
+					carts[index]['goods_price'] = parseFloat(carts[index]['goods_price']);
+					if (arg) {
+						carts[index]['choose'] = 0;
+					}
+				});
+				_products = carts;
+				cb(_products);
+			}, timeout || TIMEOUT);
+		},
+		//获取商品详情
+		getProDetails: function getProDetails(cb, pid, timeout) {
+			return setTimeout(function () {
+				var pdetails = ajaxData('getProDetail', { pid: pid }, false);
+				cb(pdetails);
+			}, timeout || TIMEOUT);
+		},
+		//收藏商品
+		collectionProduct: function collectionProduct(pid, callback) {
+			ajaxData('collection', { pid: pid }, false, 'get', callback());
+		},
+		//添加购物车商品数量
+		addCartProduct: function addCartProduct(cart_id, timeout) {
+			return setTimeout(function () {
+				ajaxData('addCartProduct', { cid: cart_id });
+			}, timeout || TIMEOUT);
+		},
+		//减少购物车商品数量
+		delCartProduct: function delCartProduct(cart_id, timeout) {
+			return setTimeout(function () {
+				ajaxData('delCartProduct', { cid: cart_id });
+			}, timeout || TIMEOUT);
+		},
+		//删除购物车指定商品
+		removeCartProById: function removeCartProById(cart_id, callback) {
+			ajaxData('deleteCartById', { cid: cart_id }, true, 'get', callback());
+		},
+		//保存选择的购物车商品
+		settleCart: function settleCart(cart_ids, callback) {
+			ajaxData('settleCart', { cart_ids: cart_ids }, true, 'get', callback());
+		},
+		//加入购物车
+		addCart: function addCart(pid, did, num, callback) {
+			ajaxData('addProductToCart', { pid: pid, did: did, num: num }, true, 'get', callback());
+		},
+		//提交订单
+		handleSubmitOrder: function handleSubmitOrder(remark, callback) {
+			var return_data = ajaxData('orderSave', { postscript: remark }, false, 'post');
+			if (Object.keys(return_data).length > 0) {
+				callback(return_data.order_sn, return_data.user_name, return_data.total_fee);
+			}
+		}
+	};
+
+/***/ },
+/* 72 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var ALL_CARTS_PRODUCTS = exports.ALL_CARTS_PRODUCTS = 'ALL_CARTS_PRODUCTS';
+	var EDIT_CART = exports.EDIT_CART = 'EDIT_CART';
+	var CHOOSE_CART = exports.CHOOSE_CART = 'CHOOSE_CART';
+	var CHOOSE_ALL = exports.CHOOSE_ALL = 'CHOOSE_ALL';
+	var ADD_CART_PRODUCT = exports.ADD_CART_PRODUCT = 'ADD_CART_PRODUCT';
+	var DEL_CART_PRODUCT = exports.DEL_CART_PRODUCT = 'DEL_CART_PRODUCT';
+	var GET_CART_INFO = exports.GET_CART_INFO = 'GET_CART_INFO';
+	var ASSIGN_SETTLE_CHOOSEIDS = exports.ASSIGN_SETTLE_CHOOSEIDS = 'ASSIGN_SETTLE_CHOOSEIDS';
+	var CARTS_REMARK = exports.CARTS_REMARK = 'CARTS_REMARK'; //留言
+	var REMOVE_CART_BY_ID = exports.REMOVE_CART_BY_ID = 'REMOVE_CART_BY_ID'; //删除购物车商品
+	var ADD_CART = exports.ADD_CART = 'ADD_CART'; //加入购物车
+	var PRODETAILS_INIT = exports.PRODETAILS_INIT = 'PRODETAILS_INIT'; //商品详情
+	var PRODUCT_COLLECTION = exports.PRODUCT_COLLECTION = 'PRODUCT_COLLECTION'; //收藏商品
+	var SHOW_PRO_SPEC = exports.SHOW_PRO_SPEC = 'SHOW_PRO_SPEC'; //显示商品规格
+	var HIDE_PRO_SPEC = exports.HIDE_PRO_SPEC = 'HIDE_PRO_SPEC'; //隐藏商品规格
+	var CHOOSE_ATTR = exports.CHOOSE_ATTR = 'CHOOSE_ATTR'; //选择商品规格
+	var ADD_CART_PRODUCT_NUMBER = exports.ADD_CART_PRODUCT_NUMBER = 'ADD_CART_PRODUCT_NUMBER'; //商品详情页中增加商品个数
+	var DEL_CART_PRODUCT_NUMBER = exports.DEL_CART_PRODUCT_NUMBER = 'DEL_CART_PRODUCT_NUMBER'; //商品详情页中减少商品个数
+
+/***/ },
+/* 73 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _parameter = __webpack_require__(74);
+
+	var _parameter2 = _interopRequireDefault(_parameter);
+
+	var _reactRedux = __webpack_require__(69);
+
+	var _reactAddonsCssTransitionGroup = __webpack_require__(75);
+
+	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
+
+	var _pdetails = __webpack_require__(70);
+
+	var actions = _interopRequireWildcard(_pdetails);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var SpectContainer = function SpectContainer(_ref) {
+		var pdetails = _ref.pdetails,
+		    handleHidePra = _ref.handleHidePra,
+		    chooseAttr = _ref.chooseAttr,
+		    addNumber = _ref.addNumber,
+		    delNumber = _ref.delNumber,
+		    _clickSubmit = _ref.clickSubmit;
+		return _react2.default.createElement(
+			_reactAddonsCssTransitionGroup2.default,
+			{
+				component: 'div',
+				transitionName: 'mui',
+				className: pdetails.paranimate,
+				transitionEnterTimeout: 300,
+				transitionLeaveTimeout: 300
+			},
+			_react2.default.createElement(
+				_parameter2.default,
+				{
+					pdetails: pdetails,
+					clickSubmit: function clickSubmit() {
+						_clickSubmit(pdetails.buy, pdetails.pro.id, pdetails.chooseDid, pdetails.number, pdetails.dprice);
+					},
+					handleHidePra: handleHidePra,
+					addNumber: addNumber,
+					delNumber: delNumber
+				},
+				pdetails.spec.map(function (item, index) {
+					if (item.attr.length != 0) {
+						return _react2.default.createElement(
+							'li',
+							{ key: item.id, id: 'J_SkuGroup_-1', className: 'J_SkuGroup mui-sku-group' },
+							_react2.default.createElement(
+								'h2',
+								null,
+								item.value
+							),
+							_react2.default.createElement(
+								'div',
+								{ className: 'items' },
+								item.attr.map(function (item2, index2) {
+									return _react2.default.createElement(
+										'label',
+										{ className: pdetails.chooseId[index] == index2 ? "checked" : "", onClick: function onClick() {
+												chooseAttr(index, index2);
+											}, key: item2.id },
+										item2.value
+									);
+								})
+							)
+						);
+					}
+				})
+			)
+		);
+	};
+
+	var mapStateToProps = function mapStateToProps(state) {
+		return {};
+	};
+
+	var mapDispatchToProps = function mapDispatchToProps(dispatch, state) {
+		return {
+			//关闭商品规格选项
+			handleHidePra: function handleHidePra() {
+				dispatch(actions.handleHidePra());
+			},
+			//选择商品规格
+			chooseAttr: function chooseAttr(sid, aid) {
+				dispatch(actions.chooseAttr(sid, aid));
+			},
+			//增加商品数量
+			addNumber: function addNumber() {
+				dispatch(actions.addNumber());
+			},
+			//减少商品数量
+			delNumber: function delNumber() {
+				dispatch(actions.delNumber());
+			},
+			//点击确认按钮
+			clickSubmit: function clickSubmit(arg, pid, did, num, dprice) {
+				if (arg) {
+					//立即购买
+					dispatch(actions.addCart(arg, pid, did, num, dprice));
+				} else {
+					//加入购物车
+					dispatch(actions.addCart(arg, pid, did, num, dprice));
+				}
+			}
+		};
+	};
+
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(SpectContainer);
+
+/***/ },
+/* 74 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Paramenter = function Paramenter(_ref) {
+		var pdetails = _ref.pdetails,
+		    children = _ref.children,
+		    handleHidePra = _ref.handleHidePra,
+		    addNumber = _ref.addNumber,
+		    delNumber = _ref.delNumber,
+		    clickSubmit = _ref.clickSubmit;
+		return _react2.default.createElement(
+			"div",
+			{ className: "mui-cover", id: "product-parameter-wrapper" },
+			_react2.default.createElement(
+				"div",
+				{ className: "summary" },
+				_react2.default.createElement(
+					"div",
+					{ className: "img" },
+					_react2.default.createElement("img", { src: pdetails.pro.logo, alt: "" })
+				),
+				_react2.default.createElement(
+					"div",
+					{ className: "main" },
+					_react2.default.createElement(
+						"div",
+						{ className: "priceContainer" },
+						_react2.default.createElement(
+							"span",
+							{ className: "price" },
+							"\xA5",
+							pdetails.price > 0 ? pdetails.price : pdetails.pro.price
+						)
+					),
+					_react2.default.createElement(
+						"div",
+						{ className: "stock-control" },
+						_react2.default.createElement(
+							"span",
+							{ className: "stock" },
+							_react2.default.createElement(
+								"label",
+								{ className: "label" },
+								"\u5E93\u5B58"
+							),
+							pdetails.pro.number,
+							"\u4EF6"
+						),
+						_react2.default.createElement("span", { className: "limitTip" })
+					),
+					_react2.default.createElement(
+						"div",
+						{ key: "choose_attr", className: "sku-dtips" },
+						"\u5DF2\u9009\u62E9:",
+						pdetails.chooseAttr
+					)
+				),
+				_react2.default.createElement("a", { className: "sback", onClick: handleHidePra })
+			),
+			_react2.default.createElement(
+				"div",
+				{ className: "body" },
+				_react2.default.createElement(
+					"section",
+					{ id: "s-decision" },
+					_react2.default.createElement(
+						"div",
+						{ className: "sku-control" },
+						_react2.default.createElement(
+							"ul",
+							{ className: "mui-sku" },
+							children
+						)
+					),
+					_react2.default.createElement(
+						"div",
+						{ className: "number" },
+						_react2.default.createElement(
+							"h2",
+							null,
+							"\u6570\u91CF"
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "content" },
+							_react2.default.createElement(
+								"div",
+								{ className: "number-control" },
+								_react2.default.createElement(
+									"div",
+									{ className: "mui-number" },
+									_react2.default.createElement(
+										"button",
+										{ type: "button", className: "decrease disabled", onClick: delNumber },
+										"-"
+									),
+									_react2.default.createElement("input", { type: "number", readOnly: true, className: "num", value: pdetails.number, min: "1", max: "2", step: "", name: "quantity" }),
+									_react2.default.createElement(
+										"button",
+										{ type: "button", className: "increase", onClick: addNumber },
+										"+"
+									)
+								)
+							)
+						)
+					)
+				)
+			),
+			_react2.default.createElement(
+				"div",
+				{ className: "option mui-flex" },
+				_react2.default.createElement(
+					"button",
+					{ className: "ok cell", onClick: clickSubmit },
+					"\u786E\u5B9A"
+				),
+				_react2.default.createElement(
+					"button",
+					{ className: "cart cell", style: { display: 'none' } },
+					"\u52A0\u5165\u8D2D\u7269\u8F66"
+				),
+				_react2.default.createElement(
+					"button",
+					{ className: "buy cell", style: { display: 'none' } },
+					"\u7ACB\u5373\u8D2D\u4E70"
+				)
+			)
+		);
+	};
+	exports.default = Paramenter;
+
+/***/ },
+/* 75 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(76);
+
+/***/ },
+/* 76 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -11326,7 +11542,7 @@
 
 	'use strict';
 
-	var _assign = __webpack_require__(72);
+	var _assign = __webpack_require__(77);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -11334,10 +11550,10 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var React = __webpack_require__(73);
+	var React = __webpack_require__(78);
 
-	var ReactTransitionGroup = __webpack_require__(74);
-	var ReactCSSTransitionGroupChild = __webpack_require__(86);
+	var ReactTransitionGroup = __webpack_require__(79);
+	var ReactCSSTransitionGroupChild = __webpack_require__(91);
 
 	function createTransitionTimeoutPropValidator(transitionType) {
 	  var timeoutPropName = 'transition' + transitionType + 'Timeout';
@@ -11420,19 +11636,19 @@
 	module.exports = ReactCSSTransitionGroup;
 
 /***/ },
-/* 72 */
+/* 77 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = (__webpack_require__(2))(4);
 
 /***/ },
-/* 73 */
+/* 78 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = (__webpack_require__(2))(2);
 
 /***/ },
-/* 74 */
+/* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -11447,7 +11663,7 @@
 
 	'use strict';
 
-	var _assign = __webpack_require__(72);
+	var _assign = __webpack_require__(77);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -11455,11 +11671,11 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var React = __webpack_require__(73);
-	var ReactAddonsDOMDependencies = __webpack_require__(75);
-	var ReactTransitionChildMapping = __webpack_require__(78);
+	var React = __webpack_require__(78);
+	var ReactAddonsDOMDependencies = __webpack_require__(80);
+	var ReactTransitionChildMapping = __webpack_require__(83);
 
-	var emptyFunction = __webpack_require__(85);
+	var emptyFunction = __webpack_require__(90);
 
 	/**
 	 * A basis for animations. When children are declaratively added or removed,
@@ -11686,7 +11902,7 @@
 	module.exports = ReactTransitionGroup;
 
 /***/ },
-/* 75 */
+/* 80 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -11701,8 +11917,8 @@
 
 	'use strict';
 
-	var ReactDOM = __webpack_require__(76);
-	var ReactInstanceMap = __webpack_require__(77);
+	var ReactDOM = __webpack_require__(81);
+	var ReactInstanceMap = __webpack_require__(82);
 
 	exports.getReactDOM = function () {
 	  return ReactDOM;
@@ -11726,19 +11942,19 @@
 	}
 
 /***/ },
-/* 76 */
+/* 81 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = (__webpack_require__(2))(33);
 
 /***/ },
-/* 77 */
+/* 82 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = (__webpack_require__(2))(117);
 
 /***/ },
-/* 78 */
+/* 83 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -11753,7 +11969,7 @@
 
 	'use strict';
 
-	var flattenChildren = __webpack_require__(79);
+	var flattenChildren = __webpack_require__(84);
 
 	var ReactTransitionChildMapping = {
 	  /**
@@ -11845,7 +12061,7 @@
 	module.exports = ReactTransitionChildMapping;
 
 /***/ },
-/* 79 */
+/* 84 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -11861,9 +12077,9 @@
 
 	'use strict';
 
-	var KeyEscapeUtils = __webpack_require__(81);
-	var traverseAllChildren = __webpack_require__(82);
-	var warning = __webpack_require__(83);
+	var KeyEscapeUtils = __webpack_require__(86);
+	var traverseAllChildren = __webpack_require__(87);
+	var warning = __webpack_require__(88);
 
 	var ReactComponentTreeHook;
 
@@ -11873,7 +12089,7 @@
 	  // https://github.com/facebook/react/issues/7240
 	  // Remove the inline requires when we don't need them anymore:
 	  // https://github.com/facebook/react/pull/7178
-	  ReactComponentTreeHook = __webpack_require__(84);
+	  ReactComponentTreeHook = __webpack_require__(89);
 	}
 
 	/**
@@ -11923,46 +12139,46 @@
 	}
 
 	module.exports = flattenChildren;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(80)))
-
-/***/ },
-/* 80 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = (__webpack_require__(2))(3);
-
-/***/ },
-/* 81 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = (__webpack_require__(2))(17);
-
-/***/ },
-/* 82 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = (__webpack_require__(2))(15);
-
-/***/ },
-/* 83 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = (__webpack_require__(2))(11);
-
-/***/ },
-/* 84 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = (__webpack_require__(2))(26);
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(85)))
 
 /***/ },
 /* 85 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = (__webpack_require__(2))(12);
+	module.exports = (__webpack_require__(2))(3);
 
 /***/ },
 /* 86 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = (__webpack_require__(2))(17);
+
+/***/ },
+/* 87 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = (__webpack_require__(2))(15);
+
+/***/ },
+/* 88 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = (__webpack_require__(2))(11);
+
+/***/ },
+/* 89 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = (__webpack_require__(2))(26);
+
+/***/ },
+/* 90 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = (__webpack_require__(2))(12);
+
+/***/ },
+/* 91 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -11977,13 +12193,13 @@
 
 	'use strict';
 
-	var React = __webpack_require__(73);
-	var ReactAddonsDOMDependencies = __webpack_require__(75);
+	var React = __webpack_require__(78);
+	var ReactAddonsDOMDependencies = __webpack_require__(80);
 
-	var CSSCore = __webpack_require__(87);
-	var ReactTransitionEvents = __webpack_require__(89);
+	var CSSCore = __webpack_require__(92);
+	var ReactTransitionEvents = __webpack_require__(94);
 
-	var onlyChild = __webpack_require__(92);
+	var onlyChild = __webpack_require__(97);
 
 	var TICK = 17;
 
@@ -12133,7 +12349,7 @@
 	module.exports = ReactCSSTransitionGroupChild;
 
 /***/ },
-/* 87 */
+/* 92 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12149,7 +12365,7 @@
 	 * @typechecks
 	 */
 
-	var invariant = __webpack_require__(88);
+	var invariant = __webpack_require__(93);
 
 	/**
 	 * The CSSCore module specifies the API (and implements most of the methods)
@@ -12259,13 +12475,13 @@
 	module.exports = CSSCore;
 
 /***/ },
-/* 88 */
+/* 93 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = (__webpack_require__(2))(8);
 
 /***/ },
-/* 89 */
+/* 94 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -12280,9 +12496,9 @@
 
 	'use strict';
 
-	var ExecutionEnvironment = __webpack_require__(90);
+	var ExecutionEnvironment = __webpack_require__(95);
 
-	var getVendorPrefixedEventName = __webpack_require__(91);
+	var getVendorPrefixedEventName = __webpack_require__(96);
 
 	var endEvents = [];
 
@@ -12342,25 +12558,25 @@
 	module.exports = ReactTransitionEvents;
 
 /***/ },
-/* 90 */
+/* 95 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = (__webpack_require__(2))(48);
 
 /***/ },
-/* 91 */
+/* 96 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = (__webpack_require__(2))(108);
 
 /***/ },
-/* 92 */
+/* 97 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = (__webpack_require__(2))(31);
 
 /***/ },
-/* 93 */
+/* 98 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12373,21 +12589,21 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactRedux = __webpack_require__(94);
+	var _reactRedux = __webpack_require__(69);
 
-	var _carts = __webpack_require__(95);
+	var _carts = __webpack_require__(99);
 
 	var actions = _interopRequireWildcard(_carts);
 
-	var _cartlist = __webpack_require__(98);
+	var _cartlist = __webpack_require__(100);
 
 	var _cartlist2 = _interopRequireDefault(_cartlist);
 
-	var _cartitem = __webpack_require__(99);
+	var _cartitem = __webpack_require__(101);
 
 	var _cartitem2 = _interopRequireDefault(_cartitem);
 
-	var _weui = __webpack_require__(100);
+	var _weui = __webpack_require__(102);
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -12555,13 +12771,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(SettleController);
 
 /***/ },
-/* 94 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = (__webpack_require__(2))(179);
-
-/***/ },
-/* 95 */
+/* 99 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12571,11 +12781,11 @@
 	});
 	exports.handleSubmitOrder = exports.settleCart = exports.removeCartProById = exports.delCartProductById = exports.addCartProductById = exports.chooseAll = exports.chooseById = exports.editCart = exports.getAllProducts = undefined;
 
-	var _shop = __webpack_require__(96);
+	var _shop = __webpack_require__(71);
 
 	var _shop2 = _interopRequireDefault(_shop);
 
-	var _ActionTypes = __webpack_require__(97);
+	var _ActionTypes = __webpack_require__(72);
 
 	var types = _interopRequireWildcard(_ActionTypes);
 
@@ -12699,115 +12909,7 @@
 	};
 
 /***/ },
-/* 96 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	var ajaxData = function ajaxData(url, data) {
-		var async = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
-		var type = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 'get';
-		var callback = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : function () {};
-
-		var ajax_data;
-		$.ajax({
-			url: STORESERVER + url,
-			data: data,
-			async: async,
-			type: type,
-			success: function success(data) {
-				ajax_data = data.data;
-				callback();
-			}
-		});
-		return ajax_data;
-	};
-
-	var TIMEOUT = 100;
-
-	exports.default = {
-		getProducts: function getProducts(cb, timeout, arg) {
-			return setTimeout(function () {
-				//获取购物车全部信息
-				var _products = [];
-				var carts = ajaxData('getCartList', '', false);
-				carts.map(function (elem, index) {
-					carts[index]['number'] = parseInt(carts[index]['number']);
-					carts[index]['goods_price'] = parseFloat(carts[index]['goods_price']);
-					if (arg) {
-						carts[index]['choose'] = 0;
-					}
-				});
-				_products = carts;
-				cb(_products);
-			}, timeout || TIMEOUT);
-		},
-		//获取商品详情
-		getProDetails: function getProDetails(cb, pid, timeout) {
-			return setTimeout(function () {
-				var pdetails = ajaxData('getProDetail', { pid: pid });
-				cb(pdetails);
-			}, timeout || TIMEOUT);
-		},
-		//添加购物车商品数量
-		addCartProduct: function addCartProduct(cart_id, timeout) {
-			return setTimeout(function () {
-				ajaxData('addCartProduct', { cid: cart_id });
-			}, timeout || TIMEOUT);
-		},
-		//减少购物车商品数量
-		delCartProduct: function delCartProduct(cart_id, timeout) {
-			return setTimeout(function () {
-				ajaxData('delCartProduct', { cid: cart_id });
-			}, timeout || TIMEOUT);
-		},
-		//删除购物车指定商品
-		removeCartProById: function removeCartProById(cart_id, callback) {
-			ajaxData('deleteCartById', { cid: cart_id }, true, 'get', callback());
-		},
-		//保存选择的购物车商品
-		settleCart: function settleCart(cart_ids, callback) {
-			ajaxData('settleCart', { cart_ids: cart_ids }, true, 'get', callback());
-		},
-		//加入购物车
-		addCart: function addCart(pid) {
-			ajaxData();
-		},
-		//提交订单
-		handleSubmitOrder: function handleSubmitOrder(remark, callback) {
-			var return_data = ajaxData('orderSave', { postscript: remark }, false, 'post');
-			if (Object.keys(return_data).length > 0) {
-				callback(return_data.order_sn, return_data.user_name, return_data.total_fee);
-			}
-		}
-	};
-
-/***/ },
-/* 97 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	var ALL_CARTS_PRODUCTS = exports.ALL_CARTS_PRODUCTS = 'ALL_CARTS_PRODUCTS';
-	var EDIT_CART = exports.EDIT_CART = 'EDIT_CART';
-	var CHOOSE_CART = exports.CHOOSE_CART = 'CHOOSE_CART';
-	var CHOOSE_ALL = exports.CHOOSE_ALL = 'CHOOSE_ALL';
-	var ADD_CART_PRODUCT = exports.ADD_CART_PRODUCT = 'ADD_CART_PRODUCT';
-	var DEL_CART_PRODUCT = exports.DEL_CART_PRODUCT = 'DEL_CART_PRODUCT';
-	var GET_CART_INFO = exports.GET_CART_INFO = 'GET_CART_INFO';
-	var ASSIGN_SETTLE_CHOOSEIDS = exports.ASSIGN_SETTLE_CHOOSEIDS = 'ASSIGN_SETTLE_CHOOSEIDS';
-	var CARTS_REMARK = exports.CARTS_REMARK = 'CARTS_REMARK';
-	var REMOVE_CART_BY_ID = exports.REMOVE_CART_BY_ID = 'REMOVE_CART_BY_ID';
-	var ADD_CART = exports.ADD_CART = 'ADD_CART';
-
-/***/ },
-/* 98 */
+/* 100 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12835,7 +12937,7 @@
 	exports.default = CartList;
 
 /***/ },
-/* 99 */
+/* 101 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -12926,7 +13028,7 @@
 	exports.default = CartItem;
 
 /***/ },
-/* 100 */
+/* 102 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12984,7 +13086,7 @@
 	};
 
 /***/ },
-/* 101 */
+/* 103 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13141,7 +13243,7 @@
 	});
 
 /***/ },
-/* 102 */
+/* 104 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13266,7 +13368,7 @@
 	});
 
 /***/ },
-/* 103 */
+/* 105 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13424,7 +13526,7 @@
 	});
 
 /***/ },
-/* 104 */
+/* 106 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13437,7 +13539,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _fastclick = __webpack_require__(105);
+	var _fastclick = __webpack_require__(107);
 
 	var _fastclick2 = _interopRequireDefault(_fastclick);
 
@@ -13667,7 +13769,7 @@
 	});
 
 /***/ },
-/* 105 */
+/* 107 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;;(function () {
@@ -14514,7 +14616,7 @@
 
 
 /***/ },
-/* 106 */
+/* 108 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14527,25 +14629,25 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactRedux = __webpack_require__(94);
+	var _reactRedux = __webpack_require__(69);
 
-	var _cartList = __webpack_require__(107);
+	var _cartList = __webpack_require__(109);
 
 	var _cartList2 = _interopRequireDefault(_cartList);
 
-	var _cartItem = __webpack_require__(108);
+	var _cartItem = __webpack_require__(110);
 
 	var _cartItem2 = _interopRequireDefault(_cartItem);
 
-	var _footer = __webpack_require__(109);
+	var _footer = __webpack_require__(111);
 
 	var _footer2 = _interopRequireDefault(_footer);
 
-	var _carts = __webpack_require__(95);
+	var _carts = __webpack_require__(99);
 
 	var cartsActions = _interopRequireWildcard(_carts);
 
-	var _weui = __webpack_require__(100);
+	var _weui = __webpack_require__(102);
 
 	var _reactRouter = __webpack_require__(4);
 
@@ -14668,7 +14770,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(CartContainer);
 
 /***/ },
-/* 107 */
+/* 109 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14681,7 +14783,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _cartItem = __webpack_require__(108);
+	var _cartItem = __webpack_require__(110);
 
 	var _cartItem2 = _interopRequireDefault(_cartItem);
 
@@ -14699,7 +14801,7 @@
 	exports.default = CartList;
 
 /***/ },
-/* 108 */
+/* 110 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -14908,7 +15010,7 @@
 	exports.default = CartItem;
 
 /***/ },
-/* 109 */
+/* 111 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -15004,7 +15106,7 @@
 	exports.default = Footer;
 
 /***/ },
-/* 110 */
+/* 112 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15021,17 +15123,17 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _ajaxfileupload = __webpack_require__(111);
+	var _ajaxfileupload = __webpack_require__(113);
 
 	var _ajaxfileupload2 = _interopRequireDefault(_ajaxfileupload);
 
-	var _fileInput = __webpack_require__(112);
+	var _fileInput = __webpack_require__(114);
 
 	var _fileInput2 = _interopRequireDefault(_fileInput);
 
-	var _weui = __webpack_require__(100);
+	var _weui = __webpack_require__(102);
 
-	var _myqrcode = __webpack_require__(113);
+	var _myqrcode = __webpack_require__(115);
 
 	var _myqrcode2 = _interopRequireDefault(_myqrcode);
 
@@ -15288,7 +15390,7 @@
 	});
 
 /***/ },
-/* 111 */
+/* 113 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -15469,7 +15571,7 @@
 	module.exports = $;
 
 /***/ },
-/* 112 */
+/* 114 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15529,7 +15631,7 @@
 	});
 
 /***/ },
-/* 113 */
+/* 115 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15558,13 +15660,13 @@
 	});
 
 /***/ },
-/* 114 */
+/* 116 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = (__webpack_require__(2))(190);
 
 /***/ },
-/* 115 */
+/* 117 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -15592,7 +15694,7 @@
 	exports['default'] = thunk;
 
 /***/ },
-/* 116 */
+/* 118 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15603,11 +15705,11 @@
 	  value: true
 	});
 
-	var _core = __webpack_require__(117);
+	var _core = __webpack_require__(119);
 
-	var _helpers = __webpack_require__(118);
+	var _helpers = __webpack_require__(120);
 
-	var _defaults = __webpack_require__(121);
+	var _defaults = __webpack_require__(123);
 
 	var _defaults2 = _interopRequireDefault(_defaults);
 
@@ -15710,7 +15812,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 117 */
+/* 119 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15720,9 +15822,9 @@
 	});
 	exports.printBuffer = printBuffer;
 
-	var _helpers = __webpack_require__(118);
+	var _helpers = __webpack_require__(120);
 
-	var _diff = __webpack_require__(119);
+	var _diff = __webpack_require__(121);
 
 	var _diff2 = _interopRequireDefault(_diff);
 
@@ -15851,7 +15953,7 @@
 	}
 
 /***/ },
-/* 118 */
+/* 120 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -15875,7 +15977,7 @@
 	var timer = exports.timer = typeof performance !== "undefined" && performance !== null && typeof performance.now === "function" ? performance : Date;
 
 /***/ },
-/* 119 */
+/* 121 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15885,7 +15987,7 @@
 	});
 	exports.default = diffLogger;
 
-	var _deepDiff = __webpack_require__(120);
+	var _deepDiff = __webpack_require__(122);
 
 	var _deepDiff2 = _interopRequireDefault(_deepDiff);
 
@@ -15971,7 +16073,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 120 */
+/* 122 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global) {/*!
@@ -16400,7 +16502,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 121 */
+/* 123 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -16451,7 +16553,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 122 */
+/* 124 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16460,24 +16562,29 @@
 		value: true
 	});
 
-	var _redux = __webpack_require__(114);
+	var _redux = __webpack_require__(116);
 
-	var _carts = __webpack_require__(123);
+	var _carts = __webpack_require__(125);
 
 	var _carts2 = _interopRequireDefault(_carts);
 
-	var _settle = __webpack_require__(124);
+	var _settle = __webpack_require__(126);
 
 	var _settle2 = _interopRequireDefault(_settle);
+
+	var _pdetails = __webpack_require__(127);
+
+	var _pdetails2 = _interopRequireDefault(_pdetails);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = (0, _redux.combineReducers)({
-		carts: _carts2.default
+		carts: _carts2.default,
+		pdetails: _pdetails2.default
 	});
 
 /***/ },
-/* 123 */
+/* 125 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16488,7 +16595,7 @@
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _ActionTypes = __webpack_require__(97);
+	var _ActionTypes = __webpack_require__(72);
 
 	var types = _interopRequireWildcard(_ActionTypes);
 
@@ -16629,7 +16736,7 @@
 	exports.default = carts;
 
 /***/ },
-/* 124 */
+/* 126 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16638,7 +16745,7 @@
 		value: true
 	});
 
-	var _ActionTypes = __webpack_require__(97);
+	var _ActionTypes = __webpack_require__(72);
 
 	var types = _interopRequireWildcard(_ActionTypes);
 
@@ -16657,6 +16764,119 @@
 	};
 
 	exports.default = settle;
+
+/***/ },
+/* 127 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _ActionTypes = __webpack_require__(72);
+
+	var types = _interopRequireWildcard(_ActionTypes);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	var inititalState = {
+		ban: [], //商品BANNER
+		pro: {}, //商品详情信息
+		col: false, //判断是否收藏商品
+		paranimate: 'false', //DIV的类名用于判断显示还是隐藏
+		spec: [], //规格，显示用
+		dprice: [], //服务端读取的规格价格,键值为属性ID（例：['1,4':30.0]）
+		chooseId: [], //选中的属性ID(1：用于选中属性的红框标记，2：用于读取价格，服务端传入的价格是根据属性ID来设置价格的)
+		chooseAttr: '', //选中的属性（例：已选择：尺寸：30 颜色：黄色）
+		price: 0, //商品对应的属性价格(没有选中属性的时候默认显示pro的价格)
+		number: 1, //选择商品的数量
+		buy: false, //true:立即购买;false:加入购物车
+		chooseDid: 0 };
+
+	var pdetails = function pdetails() {
+		var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : inititalState;
+		var action = arguments[1];
+
+		var _ret = function () {
+			switch (action.type) {
+				//获取商品详情
+				case types.PRODETAILS_INIT:
+					return {
+						v: _extends({}, state, action.pdetails)
+					};
+				//收藏商品
+				case types.PRODUCT_COLLECTION:
+					return {
+						v: _extends({}, state, {
+							col: !state.col
+						})
+					};
+				//显示商品规格选项
+				case types.SHOW_PRO_SPEC:
+					return {
+						v: _extends({}, state, {
+							paranimate: 'show',
+							buy: action.arg == 'buy' ? true : false
+						})
+					};
+				//隐藏商品规格选项
+				case types.HIDE_PRO_SPEC:
+					return {
+						v: _extends({}, state, {
+							paranimate: 'hide'
+						})
+					};
+				//选择商品规格
+				case types.CHOOSE_ATTR:
+					var sid = action.sid; //传入的是数组的键值，不是ID
+					var aid = action.aid; //传入的是数组的键值，不是ID
+					state.chooseId[sid] = aid;
+					var spec = state.spec;
+					var str = '';
+					var attr = '';
+					state.chooseId.map(function (elem, index) {
+						str += spec[index]['attr'][elem]['id'] + ',';
+						attr += spec[index]['value'] + ':' + spec[index]['attr'][elem]['value'] + ' ';
+					});
+					return {
+						v: _extends({}, state, {
+							chooseId: state.chooseId,
+							price: $.type(state.dprice[str]) != 'undefined' ? state.dprice[str].price : 0,
+							chooseAttr: attr,
+							chooseDid: $.type(state.dprice[str]) != 'undefined' ? state.dprice[str].id : 0
+						})
+					};
+				//增加商品数量
+				case types.ADD_CART_PRODUCT_NUMBER:
+					return {
+						v: _extends({}, state, {
+							number: state.number + 1
+						})
+					};
+				//减少商品数量
+				case types.DEL_CART_PRODUCT_NUMBER:
+					return {
+						v: _extends({}, state, {
+							number: state.number > 1 ? state.number - 1 : 1
+						})
+					};
+				default:
+					return {
+						v: state
+					};
+			}
+		}();
+
+		if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
+	};
+
+	exports.default = pdetails;
 
 /***/ }
 /******/ ]);
