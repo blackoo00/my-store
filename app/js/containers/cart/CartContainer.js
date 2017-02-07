@@ -1,11 +1,12 @@
 import React,{PropTypes} from 'react';
 import { connect } from 'react-redux'
-import CartList from '../../components/cart/cartList';
 import CartItem from '../../components/cart/cartItem';
 import Footer from '../../components/cart/footer';
 import * as cartsActions from '../../actions/carts';
 import {CommonHeader} from '../../components/common/weui';
 import {hashHistory} from 'react-router';
+import '../../components/cart/_cart.scss';
+
 
 const CartContainer = ({init,settle,products,editId,edit,chooseById,carts,chooseAll,addCartProductById,delCartProductById,removeCartProById}) => 
 {
@@ -20,26 +21,24 @@ const CartContainer = ({init,settle,products,editId,edit,chooseById,carts,choose
 			value = {'购物车(' + carts.chooseNum + ')'}
 		/>
 		<div className="cartbuy">
-			<CartList>
-					{products.map(product =>{
-						if(product.delete == 0){
-							return(
-								<CartItem
-									key = {product.id}
-									elem = {product}
-									editId = {editId}
-									edit = {() => edit(product.id)}
-									chooseById = {() => chooseById(product.id)}
-									addCartProductById = {() => addCartProductById(product.id)}
-									delCartProductById = {() => delCartProductById(product.id,product.number)}
-									removeCartProById = {() => removeCartProById(product.id)}
-									carts = {carts}
-								/>
-							)
-						}
-					}
-					)}
-			</CartList>
+			{products.map(product =>{
+				if(product.delete == 0){
+					return(
+						<CartItem
+							key = {product.id}
+							elem = {product}
+							editId = {editId}
+							edit = {() => edit(product.id)}
+							chooseById = {() => chooseById(product.id)}
+							addCartProductById = {() => addCartProductById(product.id)}
+							delCartProductById = {() => delCartProductById(product.id,product.number)}
+							removeCartProById = {() => removeCartProById(product.id)}
+							carts = {carts}
+						/>
+					)
+				}
+			}
+			)}
 			<Footer
 				carts = {carts}
 				chooseAll = {chooseAll}

@@ -102,7 +102,6 @@ a{
 	}
 }
 .pro-detail-wrapper{
-	@import "../js/components/pdetail/parameter";
 	.pro-detail{
 		.pro-name{
 			overflow: hidden;
@@ -147,11 +146,9 @@ a{
 		}
 	}
 }
-@import "../js/components/confirmOrder/confirmOrder";
 @import "../js/components/address/address";
 @import "../js/components/wxpay/wxpay";
 @import "../js/components/search/search";
-@import "../js/components/cart/cart";
 @import "../js/components/my/my";
 .footer{
 	position: fixed !important;

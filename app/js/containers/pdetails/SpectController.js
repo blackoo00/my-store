@@ -11,33 +11,34 @@ const SpectContainer = ({pdetails,handleHidePra,chooseAttr,addNumber,delNumber,c
       className={pdetails.paranimate}
       transitionEnterTimeout={300}
       transitionLeaveTimeout={300}
-      >
-      <Paramenter 
-      	pdetails={pdetails} 
-      	clickSubmit={()=>{clickSubmit(pdetails.buy,pdetails.pro.id,pdetails.chooseDid,pdetails.number,pdetails.dprice)}} 
-      	handleHidePra={handleHidePra} 
-      	addNumber={addNumber} 
-      	delNumber={delNumber}
-      >
-      	{pdetails.spec.map((item,index)=>{
-      		if(item.attr.length != 0){
-	      		return(
-		      		<li key={item.id} id="J_SkuGroup_-1" className="J_SkuGroup mui-sku-group">
-		      			<h2>{item.value}</h2>
-		      				<div className="items">
-		      					{item.attr.map((item2,index2) =>(
-		      						<label className={pdetails.chooseId[index] == index2 ? "checked" : ""} onClick={()=>{chooseAttr(index,index2)}} key={item2.id}>{item2.value}</label>
-		      					))}
-		      				</div>
-		      		</li>
-	      		)
-      		}
-      	})}
-      </Paramenter>
+    >
+	    <Paramenter 
+	    	pdetails={pdetails} 
+	    	clickSubmit={()=>{clickSubmit(pdetails.buy,pdetails.pro.id,pdetails.chooseDid,pdetails.number,pdetails.dprice)}} 
+	    	handleHidePra={handleHidePra} 
+	    	addNumber={addNumber} 
+	    	delNumber={delNumber}
+	    >
+	    	{pdetails.spec.map((item,index)=>{
+	    		if(item.attr.length != 0){
+			    	return(
+			      		<li key={item.id} id="J_SkuGroup_-1" className="J_SkuGroup mui-sku-group">
+			      			<h2>{item.value}</h2>
+			      				<div className="items">
+			      					{item.attr.map((item2,index2) =>(
+			      						<label className={pdetails.chooseId[index] == index2 ? "checked" : ""} onClick={()=>{chooseAttr(index,index2)}} key={item2.id}>{item2.value}</label>
+			      					))}
+			      				</div>
+			      		</li>
+			    	)
+	    		}
+	    	})}
+	    </Paramenter>
     </ReactCSSTransitionGroup>
 )
 
 const mapStateToProps = (state) => ({
+	pdetails:state.pdetails
 })
 
 const mapDispatchToProps = (dispatch,state) => ({

@@ -4,6 +4,7 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var webpack = require("webpack");
 var path = require("path");
 var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
 	entry:{
@@ -35,6 +36,16 @@ module.exports = {
 		            return isNpmModule;
 		        },
 			},
+			{ 
+            	test: /\.css?$/, 
+            	exclude: /node_modules/,
+            	loader: ExtractTextPlugin.extract("style", "css?modules!postcss") 
+            },
+            { 
+            	test: /\.scss?$/, 
+				exclude: /node_modules/,
+            	loader: ExtractTextPlugin.extract('style', 'css!sass?modules!postcss')//postcss：样式前缀;!sass解析scss
+            },
         ]
 	},
 	resolve: {
@@ -71,7 +82,7 @@ module.exports = {
 	                baseDir: './dist'
 	            }
 	    }),
-	    // new ExtractTextPlugin("styles.css"),//提取的样式文件明
+	    new ExtractTextPlugin("./css/style.css"),//提取的样式文件名
 	    // new webpack.ProvidePlugin({//设置全局jquery
      //        $: 'jquery'
      //    }),
@@ -91,5 +102,5 @@ module.exports = {
      //    }),
        
     ],
-	// postcss:[autoprefixer({browsers:['last 4 versions']})]//样式前缀4个前缀
+	postcss:[autoprefixer({browsers:['last 4 versions']})]//样式前缀4个前缀
 }

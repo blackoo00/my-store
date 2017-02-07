@@ -14,7 +14,6 @@ const initialState = {
 //计算总价
 const totalFee = (products) =>{
   let total_fee = 0;
-  console.log(products);
   for(let i in products){
     if(products[i].choose == 1){
       total_fee += products[i].goods_price*products[i].number;
@@ -27,6 +26,7 @@ const totalFee = (products) =>{
 const totalNum = (products) =>{
   let total_num = 0;
   for(let i in products){
+    console.log(products[i]);
     if(products[i].choose == 1){
       total_num += products[i].number;
     }
@@ -86,7 +86,8 @@ const carts = (state = initialState, action) => {
                   ...state_chooseId,
                   chooseId
                 ])),
-              totalFee:totalFee(state.products)
+              totalFee:totalFee(state.products),
+              totalNum:totalNum(state.products),
             }
         case types.CHOOSE_ALL://全选
             let choose_id = [];
@@ -99,6 +100,7 @@ const carts = (state = initialState, action) => {
               chooseAll:!state.chooseAll,
               chooseId:state.chooseAll ? [] : choose_id,
               totalFee:totalFee(state.products),
+              totalNum:totalNum(state.products),
               chooseNum:chooseNum(state.products)
             }
         case types.ADD_CART_PRODUCT://增加购物车商品数量

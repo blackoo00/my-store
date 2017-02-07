@@ -16,3 +16,4 @@ export const HIDE_PRO_SPEC = 'HIDE_PRO_SPEC';//隐藏商品规格
 export const CHOOSE_ATTR = 'CHOOSE_ATTR';//选择商品规格
 export const ADD_CART_PRODUCT_NUMBER = 'ADD_CART_PRODUCT_NUMBER';//商品详情页中增加商品个数
 export const DEL_CART_PRODUCT_NUMBER = 'DEL_CART_PRODUCT_NUMBER';//商品详情页中减少商品个数
+export const GET_DEFAULT_ADDRESS = 'GET_DEFAULT_ADDRESS';//读取默认地址

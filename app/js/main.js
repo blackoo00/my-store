@@ -22,6 +22,10 @@ import createLogger from 'redux-logger'
 import reducer from './reducers/index';
 import { getAllProducts } from './actions/carts'
 
+import '../css/style.scss';
+
+// const STORESERVER="http://127.0.0.1/my-store/index.php/Home/Store/",ADDRESSSERVER="http://127.0.0.1/my-store/index.php/Home/Address/",MYSERVER="http://127.0.0.1/my-store/index.php/Home/My/";
+
  class Container extends React.Component {
 
     constructor(props) {
