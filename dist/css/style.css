@@ -230,6 +230,65 @@
   .confirm-order-wrapper .order-submitOrder .count, .confirm-order-wrapper .order-submitOrder .weight {
     color: #DD2727;
     font-weight: 400; }
+.my-order-list {
+  min-height: 100%; }
+  .my-order-list .choose-address-item {
+    padding: 0.4rem 0.4rem; }
+
+#actionBtn, #header {
+  left: 0;
+  position: absolute; }
+
+#actionBtn {
+  background-color: #f50;
+  color: #fff;
+  font-size: 0.69rem;
+  height: 2.05rem;
+  width: 100%;
+  bottom: 0;
+  border: 0;
+  position: fixed; }
+
+#addressList {
+  width: 100%;
+  background-color: #fff; }
+  #addressList .address-row.active .right-icons, #addressList .modify .address-row .right-icons {
+    visibility: visible; }
+  #addressList .address-row, #addressList .help-icon, #addressList .navigate-right:after {
+    background-repeat: no-repeat; }
+  #addressList .address-row.active .icon-check, #addressList .modify .address-row.active .icon-right {
+    display: block; }
+  #addressList .address-row {
+    border: none;
+    background-image: linear-gradient(to bottom, #ddd 0, #ddd 50%, transparent 50%), linear-gradient(to bottom, transparent 50%, #d8d8d8 50%, #d8d8d8 100%);
+    background-size: 100% 1px, 100% 1px;
+    background-position: top;
+    min-height: 1.84rem;
+    font-size: .32rem;
+    padding: .4rem .5rem;
+    position: relative; }
+    #addressList .address-row .address-tel {
+      float: right; }
+  #addressList .address-row:first-child {
+    margin-bottom: .16rem; }
+  #addressList .address-row.active {
+    background-color: #5e6b85;
+    color: #fff; }
+  #addressList .address-row .right-icons .icon-right, #addressList .address-row.active .icon-right {
+    display: none; }
+  #addressList .address-row div {
+    margin-right: 1.2533333rem; }
+  #addressList .address-row .right-icons {
+    visibility: hidden;
+    position: absolute;
+    right: 0;
+    width: 1.2533333rem;
+    height: 100%;
+    top: 0;
+    padding-top: 1.5rem;
+    padding-left: .16rem; }
+  #addressList .address-row .right-icons i {
+    font-size: 1rem; }
 .cartbuy .bundlev2 {
   margin-top: .32rem;
   background: #fff;
@@ -1248,68 +1307,6 @@ a {
 
 .pro-detail-wrapper .bottom_bar .buy {
   background-color: #ff5000; }
-
-.my-order-list {
-  min-height: 100%; }
-  .my-order-list .choose-address-item {
-    padding: 0.4rem 0.4rem; }
-
-#actionBtn, #header {
-  left: 0;
-  position: absolute; }
-
-#actionBtn {
-  background-color: #f50;
-  color: #fff;
-  font-size: 0.69rem;
-  height: 2.05rem;
-  width: 100%;
-  bottom: 0;
-  border: 0; }
-
-#addressList {
-  width: 100%;
-  background-color: #fff; }
-  #addressList .address-row.active .right-icons, #addressList .modify .address-row .right-icons {
-    visibility: visible; }
-  #addressList .address-row, #addressList .help-icon, #addressList .navigate-right:after {
-    background-repeat: no-repeat; }
-  #addressList .address-row.active .icon-check, #addressList .modify .address-row.active .icon-right {
-    display: block; }
-  #addressList .address-row {
-    border: none;
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #ddd), color-stop(50%, #ddd), color-stop(50%, transparent)), -webkit-gradient(linear, left top, left bottom, color-stop(50%, transparent), color-stop(50%, transparent), color-stop(100%, #d8d8d8));
-    background-image: -webkit-linear-gradient(top, #ddd 0, #ddd 50%, transparent 50%), -webkit-linear-gradient(top, transparent 50%, #d8d8d8 50%, #d8d8d8 100%);
-    background-image: linear-gradient(to bottom, #ddd 0, #ddd 50%, transparent 50%), linear-gradient(to bottom, transparent 50%, #d8d8d8 50%, #d8d8d8 100%);
-    -webkit-background-size: 100% 1px, 100% 1px;
-    background-size: 100% 1px, 100% 1px;
-    background-position: top;
-    min-height: 1.84rem;
-    font-size: .32rem;
-    padding: .4rem .5rem;
-    position: relative; }
-    #addressList .address-row .address-tel {
-      float: right; }
-  #addressList .address-row:first-child {
-    margin-bottom: .16rem; }
-  #addressList .address-row.active {
-    background-color: #5e6b85;
-    color: #fff; }
-  #addressList .address-row .right-icons .icon-right, #addressList .address-row.active .icon-right {
-    display: none; }
-  #addressList .address-row div {
-    margin-right: 1.2533333rem; }
-  #addressList .address-row .right-icons {
-    visibility: hidden;
-    position: absolute;
-    right: 0;
-    width: 1.2533333rem;
-    height: 100%;
-    top: 0;
-    padding-top: 1.5rem;
-    padding-left: .16rem; }
-  #addressList .address-row .right-icons i {
-    font-size: 1rem; }
 
 .cashierView {
   background-color: #fff;

@@ -17,3 +17,6 @@ export const CHOOSE_ATTR = 'CHOOSE_ATTR';//选择商品规格
 export const ADD_CART_PRODUCT_NUMBER = 'ADD_CART_PRODUCT_NUMBER';//商品详情页中增加商品个数
 export const DEL_CART_PRODUCT_NUMBER = 'DEL_CART_PRODUCT_NUMBER';//商品详情页中减少商品个数
 export const GET_DEFAULT_ADDRESS = 'GET_DEFAULT_ADDRESS';//读取默认地址
+export const GET_MY_ADDRESSES = 'GET_MY_ADDRESSES';//读取个人地址列表
+export const SET_DEFAULT_ADDRESS = 'SET_DEFAULT_ADDRESS';//设置默认地址
+export const ADD_ADDRESS = 'ADD_ADDRESS';//添加地址

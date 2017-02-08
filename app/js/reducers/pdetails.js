@@ -46,9 +46,9 @@ const pdetails = (state = inititalState, action) =>{
 			let sid = action.sid;//传入的是数组的键值，不是ID
 			let aid = action.aid;//传入的是数组的键值，不是ID
 			state.chooseId[sid] = aid;
-			let spec = state.spec;
-			let str = '';
-			let attr = '';
+			let spec = state.spec;//商品规格
+			let str = '';//选择的属性ID串(用逗号隔开)(作为键值查询商品价格)
+			let attr = '';//已选的属性名
 			state.chooseId.map(function(elem, index) {
 				str += spec[index]['attr'][elem]['id'] + ',';
 				attr += spec[index]['value'] + ':' + spec[index]['attr'][elem]['value'] + ' ';

@@ -22,6 +22,7 @@ const SettleController = ({getDefaultAddress,address,carts,getCartsInfo,addCartP
 				refs = {node => {input = node}}
 				handleSubmitOrder = {handleSubmitOrder}
 				carts = {carts}
+				address={address}
 			>
 				{carts.products.map(cart =>{
 					if(cart.choose == 1){

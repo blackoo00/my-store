@@ -3,18 +3,18 @@ import {CommonHeader} from '../../components/common/weui';
 import {Link} from 'react-router';
 
 
-const Settle = ({children,refs,handleSubmitOrder,carts}) => (
+const Settle = ({children,refs,handleSubmitOrder,carts,address}) => (
 	<div className="confirm-order-wrapper">
-		<CommonHeader value="下单结算"/>
+		<CommonHeader value="下单结算" back={true} pathname={'/Cart'}/>
 		<div className="order-address weui_cells weui_cells_access">
-			<Link className="weui_cell" to={{pathname:'/'}}>
+			<Link className="weui_cell" to={{pathname:'/AddressList'}}>
 				<div className="weui_cell_hd">
 					<div className="address-icon iconfont">&#xe617;</div>
 				</div>
 				<div className="weui_cell_bd weui_cell_primary">
-					<p>收货人:</p>
+					<p>收货人:{address.consignee}({address.tel})</p>
 					<p>
-						
+						{address.address}
 					</p>
 				</div>
 				<div className="weui_cell_ft"></div>

@@ -26,7 +26,6 @@ const totalFee = (products) =>{
 const totalNum = (products) =>{
   let total_num = 0;
   for(let i in products){
-    console.log(products[i]);
     if(products[i].choose == 1){
       total_num += products[i].number;
     }

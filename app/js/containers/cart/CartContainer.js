@@ -1,52 +1,43 @@
 import React,{PropTypes} from 'react';
 import { connect } from 'react-redux'
 import CartItem from '../../components/cart/cartItem';
-import Footer from '../../components/cart/footer';
 import * as cartsActions from '../../actions/carts';
-import {CommonHeader} from '../../components/common/weui';
 import {hashHistory} from 'react-router';
 import '../../components/cart/_cart.scss';
+import Cart from '../../components/cart/index';
 
 
 const CartContainer = ({init,settle,products,editId,edit,chooseById,carts,chooseAll,addCartProductById,delCartProductById,removeCartProById}) => 
 {
-	componentWillMount:{
-		if(products.length == 0){
-			init();
-		}
+	if(products.length == 0){
+		init();
 	}
-	render:return(
-	<div className="cart-wrap">
-		<CommonHeader
-			value = {'购物车(' + carts.chooseNum + ')'}
-		/>
-		<div className="cartbuy">
-			{products.map(product =>{
-				if(product.delete == 0){
-					return(
-						<CartItem
-							key = {product.id}
-							elem = {product}
-							editId = {editId}
-							edit = {() => edit(product.id)}
-							chooseById = {() => chooseById(product.id)}
-							addCartProductById = {() => addCartProductById(product.id)}
-							delCartProductById = {() => delCartProductById(product.id,product.number)}
-							removeCartProById = {() => removeCartProById(product.id)}
-							carts = {carts}
-						/>
-					)
-				}
+	return(
+		<Cart
+			carts = {carts}
+			chooseAll = {chooseAll}
+			settle = {() => settle(carts.chooseId)}
+		>
+		{products.map(product =>{
+			if(product.delete == 0){
+				return(
+					<CartItem
+						key = {product.id}
+						elem = {product}
+						editId = {editId}
+						edit = {() => edit(product.id)}
+						chooseById = {() => chooseById(product.id)}
+						addCartProductById = {() => addCartProductById(product.id)}
+						delCartProductById = {() => delCartProductById(product.id,product.number)}
+						removeCartProById = {() => removeCartProById(product.id)}
+						carts = {carts}
+					/>
+				)
 			}
-			)}
-			<Footer
-				carts = {carts}
-				chooseAll = {chooseAll}
-				settle = {() => settle(carts.chooseId)}
-			/>
-		</div>
-	</div>
-)}
+		})}
+		</Cart>
+	)
+}
 
 const mapStateToProps = (state) =>({
     products: state.carts.products,

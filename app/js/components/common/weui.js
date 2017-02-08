@@ -13,8 +13,11 @@ export const FormList = ({value,icon,href,query}) =>(
 	</Link>
 )
 
-export const CommonHeader = ({value}) => (
+export const CommonHeader = ({value,back,pathname}) => (
 	<div className="header">
+		<Link to={{pathname:pathname}}>
+			<span className={back ? "back" : ""}></span>
+		</Link>
 		<span>{value}</span>
 	</div>
 )

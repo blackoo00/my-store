@@ -26,9 +26,35 @@ const ajaxData = (arr = initialArr,callback = function(){}) => {
 const TIMEOUT = 100
 
 export default {
+	//添加地址
+	addAddress:(cb,name,tel,address,callback) => {
+		let _address = ajaxData({
+			server:ADDRESSSERVER,
+			url:'add',
+			data:{consignee:name,tel:tel,address:address},
+			type:'post',
+			callback:callback(),
+			async:false,
+		})
+		cb(_address);
+	},
+	//设置默认地址
+	setDefaultAddress:(aid,callback) => {
+		ajaxData({
+			server:ADDRESSSERVER,
+			url:'choose',
+			data:{id:aid},
+			callback:callback()
+		})
+	},
+	//获取个人地址列表
+	getMyAddresses:(cb,timeout) => setTimeout(() => {
+		let _addresses = ajaxData({server:ADDRESSSERVER,async:false,url:'showList'});
+		cb(_addresses);
+	},timeout || TIMEOUT),
 	//获取默认地址
 	getDefaultAddress:(cb, timeout, callback) => setTimeout(() => {
-		let _address = ajaxData({server:ADDRESSSERVER,url:'getDefaultAddress'});
+		let _address = ajaxData({server:ADDRESSSERVER,url:'getDefaultAddress',async:false});
 		cb(_address);
 	},timeout || TIMEOUT),
 	//获取购物车全部信息

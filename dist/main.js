@@ -72,35 +72,35 @@
 
 	var _SettleController2 = _interopRequireDefault(_SettleController);
 
-	var _list = __webpack_require__(110);
+	var _ListController = __webpack_require__(141);
 
-	var _list2 = _interopRequireDefault(_list);
+	var _ListController2 = _interopRequireDefault(_ListController);
 
-	var _add = __webpack_require__(111);
+	var _AddController = __webpack_require__(142);
 
-	var _add2 = _interopRequireDefault(_add);
+	var _AddController2 = _interopRequireDefault(_AddController);
 
-	var _wxpay = __webpack_require__(112);
+	var _wxpay = __webpack_require__(113);
 
 	var _wxpay2 = _interopRequireDefault(_wxpay);
 
-	var _search = __webpack_require__(113);
+	var _search = __webpack_require__(114);
 
 	var _search2 = _interopRequireDefault(_search);
 
-	var _CartContainer = __webpack_require__(115);
+	var _CartContainer = __webpack_require__(116);
 
 	var _CartContainer2 = _interopRequireDefault(_CartContainer);
 
-	var _my = __webpack_require__(120);
+	var _my = __webpack_require__(121);
 
 	var _my2 = _interopRequireDefault(_my);
 
-	var _myqrcode = __webpack_require__(123);
+	var _myqrcode = __webpack_require__(124);
 
 	var _myqrcode2 = _interopRequireDefault(_myqrcode);
 
-	var _fastclick = __webpack_require__(114);
+	var _fastclick = __webpack_require__(115);
 
 	var _fastclick2 = _interopRequireDefault(_fastclick);
 
@@ -108,25 +108,25 @@
 
 	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 
-	var _redux = __webpack_require__(124);
+	var _redux = __webpack_require__(125);
 
 	var _reactRedux = __webpack_require__(69);
 
-	var _reduxThunk = __webpack_require__(125);
+	var _reduxThunk = __webpack_require__(126);
 
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
-	var _reduxLogger = __webpack_require__(126);
+	var _reduxLogger = __webpack_require__(127);
 
 	var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
 
-	var _index = __webpack_require__(132);
+	var _index = __webpack_require__(133);
 
 	var _index2 = _interopRequireDefault(_index);
 
 	var _carts = __webpack_require__(73);
 
-	__webpack_require__(136);
+	__webpack_require__(137);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -136,6 +136,10 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	// import Pdetail from './components/pdetail/index';
+
+	// import AddressList from './components/address/list';
+
+	// import AddAddress from './components/address/add';
 
 
 	// const STORESERVER="http://127.0.0.1/my-store/index.php/Home/Store/",ADDRESSSERVER="http://127.0.0.1/my-store/index.php/Home/Address/",MYSERVER="http://127.0.0.1/my-store/index.php/Home/My/";
@@ -220,8 +224,8 @@
 	            _react2.default.createElement(_reactRouter.Route, { path: 'example', component: _Example2.default }),
 	            _react2.default.createElement(_reactRouter.Route, { path: 'pdetail', component: _PdetailsController2.default }),
 	            _react2.default.createElement(_reactRouter.Route, { path: 'confirmOrderWap', component: _SettleController2.default }),
-	            _react2.default.createElement(_reactRouter.Route, { path: 'AddressList', component: _list2.default }),
-	            _react2.default.createElement(_reactRouter.Route, { path: 'AddAddress', component: _add2.default }),
+	            _react2.default.createElement(_reactRouter.Route, { path: 'AddressList', component: _ListController2.default }),
+	            _react2.default.createElement(_reactRouter.Route, { path: 'AddAddress', component: _AddController2.default }),
 	            _react2.default.createElement(_reactRouter.Route, { path: 'Wxpay', component: _wxpay2.default }),
 	            _react2.default.createElement(_reactRouter.Route, { path: 'Search', component: _search2.default }),
 	            _react2.default.createElement(_reactRouter.Route, { path: 'Cart', component: _CartContainer2.default }),
@@ -10807,18 +10811,14 @@
 					'div',
 					{ className: 'weui_tabbar_item' },
 					React.createElement(
-						_reactRouter.Link,
-						{ to: 'pdetail' },
-						React.createElement(
-							'div',
-							{ className: 'weui_tabbar_icon' },
-							React.createElement('img', { src: './img/icon_nav_msg.png' })
-						),
-						React.createElement(
-							'p',
-							{ className: 'weui_tabbar_label' },
-							'\u6D3B\u52A8'
-						)
+						'div',
+						{ className: 'weui_tabbar_icon' },
+						React.createElement('img', { src: './img/icon_nav_msg.png' })
+					),
+					React.createElement(
+						'p',
+						{ className: 'weui_tabbar_label' },
+						'\u6D3B\u52A8'
 					)
 				),
 				React.createElement(
@@ -11123,10 +11123,38 @@
 	var TIMEOUT = 100;
 
 	exports.default = {
+		//添加地址
+		addAddress: function addAddress(cb, name, tel, address, callback) {
+			var _address = ajaxData({
+				server: ADDRESSSERVER,
+				url: 'add',
+				data: { consignee: name, tel: tel, address: address },
+				type: 'post',
+				callback: callback(),
+				async: false
+			});
+			cb(_address);
+		},
+		//设置默认地址
+		setDefaultAddress: function setDefaultAddress(aid, callback) {
+			ajaxData({
+				server: ADDRESSSERVER,
+				url: 'choose',
+				data: { id: aid },
+				callback: callback()
+			});
+		},
+		//获取个人地址列表
+		getMyAddresses: function getMyAddresses(cb, timeout) {
+			return setTimeout(function () {
+				var _addresses = ajaxData({ server: ADDRESSSERVER, async: false, url: 'showList' });
+				cb(_addresses);
+			}, timeout || TIMEOUT);
+		},
 		//获取默认地址
 		getDefaultAddress: function getDefaultAddress(cb, timeout, callback) {
 			return setTimeout(function () {
-				var _address = ajaxData({ server: ADDRESSSERVER, url: 'getDefaultAddress' });
+				var _address = ajaxData({ server: ADDRESSSERVER, url: 'getDefaultAddress', async: false });
 				cb(_address);
 			}, timeout || TIMEOUT);
 		},
@@ -11218,6 +11246,9 @@
 	var ADD_CART_PRODUCT_NUMBER = exports.ADD_CART_PRODUCT_NUMBER = 'ADD_CART_PRODUCT_NUMBER'; //商品详情页中增加商品个数
 	var DEL_CART_PRODUCT_NUMBER = exports.DEL_CART_PRODUCT_NUMBER = 'DEL_CART_PRODUCT_NUMBER'; //商品详情页中减少商品个数
 	var GET_DEFAULT_ADDRESS = exports.GET_DEFAULT_ADDRESS = 'GET_DEFAULT_ADDRESS'; //读取默认地址
+	var GET_MY_ADDRESSES = exports.GET_MY_ADDRESSES = 'GET_MY_ADDRESSES'; //读取个人地址列表
+	var SET_DEFAULT_ADDRESS = exports.SET_DEFAULT_ADDRESS = 'SET_DEFAULT_ADDRESS'; //设置默认地址
+	var ADD_ADDRESS = exports.ADD_ADDRESS = 'ADD_ADDRESS'; //添加地址
 
 /***/ },
 /* 73 */
@@ -12804,19 +12835,19 @@
 
 	var actions = _interopRequireWildcard(_carts);
 
-	var _address = __webpack_require__(139);
+	var _address = __webpack_require__(105);
 
 	var addactions = _interopRequireWildcard(_address);
 
-	var _cartitem = __webpack_require__(105);
+	var _cartitem = __webpack_require__(106);
 
 	var _cartitem2 = _interopRequireDefault(_cartitem);
 
-	var _weui = __webpack_require__(106);
+	var _weui = __webpack_require__(107);
 
-	__webpack_require__(107);
+	__webpack_require__(108);
 
-	var _index = __webpack_require__(109);
+	var _index = __webpack_require__(110);
 
 	var _index2 = _interopRequireDefault(_index);
 
@@ -12850,7 +12881,8 @@
 						input = node;
 					},
 					handleSubmitOrder: handleSubmitOrder,
-					carts: carts
+					carts: carts,
+					address: address
 				},
 				carts.products.map(function (cart) {
 					if (cart.choose == 1) {
@@ -12902,6 +12934,99 @@
 
 /***/ },
 /* 105 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.addAddress = exports.setDefaultAddress = exports.getMyAddresses = exports.getDefaultAddress = undefined;
+
+	var _ActionTypes = __webpack_require__(72);
+
+	var types = _interopRequireWildcard(_ActionTypes);
+
+	var _shop = __webpack_require__(71);
+
+	var _shop2 = _interopRequireDefault(_shop);
+
+	var _reactRouter = __webpack_require__(4);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	//获取默认地址
+	var getDefaultAddressDip = function getDefaultAddressDip(address) {
+		return {
+			type: types.GET_DEFAULT_ADDRESS,
+			address: address
+		};
+	};
+
+	var getDefaultAddress = exports.getDefaultAddress = function getDefaultAddress() {
+		return function (dispatch) {
+			_shop2.default.getDefaultAddress(function (address) {
+				dispatch(getDefaultAddressDip(address));
+			});
+		};
+	};
+	//获取个人地址列表
+	var getMyAddressesDip = function getMyAddressesDip(addresses) {
+		return {
+			type: types.GET_MY_ADDRESSES,
+			addresses: addresses
+		};
+	};
+
+	var getMyAddresses = exports.getMyAddresses = function getMyAddresses() {
+		return function (dispatch) {
+			_shop2.default.getMyAddresses(function (addresses) {
+				dispatch(getMyAddressesDip(addresses));
+			});
+		};
+	};
+	//设置默认地址
+	var setDefaultAddressDip = function setDefaultAddressDip(aid) {
+		return {
+			type: types.SET_DEFAULT_ADDRESS,
+			aid: aid
+		};
+	};
+
+	var setDefaultAddress = exports.setDefaultAddress = function setDefaultAddress(aid) {
+		return function (dispatch) {
+			_shop2.default.setDefaultAddress(aid, function () {
+				dispatch(setDefaultAddressDip(aid));
+				_reactRouter.hashHistory.push({ pathname: '/confirmOrderWap' });
+			});
+		};
+	};
+	//添加地址
+	var addAddressDip = function addAddressDip(address) {
+		return {
+			type: types.ADD_ADDRESS,
+			address: address
+		};
+	};
+
+	var addAddress = exports.addAddress = function addAddress(name, tel, address) {
+		return function (dispatch) {
+			if (!name || !tel || !address) {
+				$.alert('请完善信息');
+				return;
+			}
+			_shop2.default.addAddress(function (address) {
+				dispatch(addAddressDip(address));
+			}, name, tel, address, function () {
+				_reactRouter.hashHistory.push({ pathname: '/AddressList' });
+			});
+		};
+	};
+
+/***/ },
+/* 106 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -12992,7 +13117,7 @@
 	exports.default = CartItem;
 
 /***/ },
-/* 106 */
+/* 107 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13037,10 +13162,17 @@
 	};
 
 	var CommonHeader = exports.CommonHeader = function CommonHeader(_ref2) {
-		var value = _ref2.value;
+		var value = _ref2.value,
+		    back = _ref2.back,
+		    pathname = _ref2.pathname;
 		return _react2.default.createElement(
 			'div',
 			{ className: 'header' },
+			_react2.default.createElement(
+				_reactRouter.Link,
+				{ to: { pathname: pathname } },
+				_react2.default.createElement('span', { className: back ? "back" : "" })
+			),
 			_react2.default.createElement(
 				'span',
 				null,
@@ -13050,14 +13182,14 @@
 	};
 
 /***/ },
-/* 107 */
+/* 108 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 108 */,
-/* 109 */
+/* 109 */,
+/* 110 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13070,7 +13202,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _weui = __webpack_require__(106);
+	var _weui = __webpack_require__(107);
 
 	var _reactRouter = __webpack_require__(4);
 
@@ -13080,17 +13212,18 @@
 		var children = _ref.children,
 		    refs = _ref.refs,
 		    handleSubmitOrder = _ref.handleSubmitOrder,
-		    carts = _ref.carts;
+		    carts = _ref.carts,
+		    address = _ref.address;
 		return _react2.default.createElement(
 			'div',
 			{ className: 'confirm-order-wrapper' },
-			_react2.default.createElement(_weui.CommonHeader, { value: '\u4E0B\u5355\u7ED3\u7B97' }),
+			_react2.default.createElement(_weui.CommonHeader, { value: '\u4E0B\u5355\u7ED3\u7B97', back: true, pathname: '/Cart' }),
 			_react2.default.createElement(
 				'div',
 				{ className: 'order-address weui_cells weui_cells_access' },
 				_react2.default.createElement(
 					_reactRouter.Link,
-					{ className: 'weui_cell', to: { pathname: '/' } },
+					{ className: 'weui_cell', to: { pathname: '/AddressList' } },
 					_react2.default.createElement(
 						'div',
 						{ className: 'weui_cell_hd' },
@@ -13106,9 +13239,17 @@
 						_react2.default.createElement(
 							'p',
 							null,
-							'\u6536\u8D27\u4EBA:'
+							'\u6536\u8D27\u4EBA:',
+							address.consignee,
+							'(',
+							address.tel,
+							')'
 						),
-						_react2.default.createElement('p', null)
+						_react2.default.createElement(
+							'p',
+							null,
+							address.address
+						)
 					),
 					_react2.default.createElement('div', { className: 'weui_cell_ft' })
 				)
@@ -13214,163 +13355,6 @@
 	exports.default = Settle;
 
 /***/ },
-/* 110 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactRouter = __webpack_require__(4);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = _react2.default.createClass({
-		displayName: 'list',
-		getInitialState: function getInitialState() {
-			return {
-				list: []
-			};
-		},
-
-		//选择默认
-		handleChoose: function handleChoose(data) {
-			var _self = this;
-			var list = this.state.list;
-			var cart_id = this.props.location.query.cart_id;
-			list.map(function (elem, index) {
-				list[index]['choose'] = 0;
-			});
-			list[data]['choose'] = 1;
-			$.get(ADDRESSSERVER + 'choose', { id: list[data]['id'] }, function (data) {
-				if (data.status == 1) {
-					_self.setState({
-						list: list
-					});
-					setTimeout(function () {
-						_reactRouter.hashHistory.push({ pathname: '/confirmOrderWap', query: { cart_id: cart_id } });
-					}, 100);
-				} else {
-					$.alert('修改失败');
-				}
-			});
-		},
-		componentWillMount: function componentWillMount() {
-			var _self = this;
-			$.ajax({
-				url: ADDRESSSERVER + 'showList',
-				dataType: 'json',
-				success: function success(data) {
-					_self.setState({
-						list: data.data
-					});
-				}
-			});
-		},
-		render: function render() {
-			var list = this.state.list;
-			var addList = [];
-			list.map(function (elem, index) {
-				addList.push(_react2.default.createElement(
-					'li',
-					{ key: index, className: (elem.choose == 1 ? "active" : "") + " address-row", onClick: this.handleChoose.bind(this, index) },
-					_react2.default.createElement(
-						'div',
-						{ className: 'font0-75' },
-						_react2.default.createElement(
-							'label',
-							null,
-							'\u6536\u8D27\u4EBA:'
-						),
-						_react2.default.createElement(
-							'label',
-							null,
-							elem.consignee
-						),
-						_react2.default.createElement(
-							'label',
-							{ className: 'address-tel' },
-							elem.tel
-						)
-					),
-					_react2.default.createElement(
-						'div',
-						null,
-						_react2.default.createElement(
-							'label',
-							null,
-							'\u6536\u8D27\u5730\u5740:'
-						),
-						_react2.default.createElement(
-							'label',
-							null,
-							elem.address
-						)
-					),
-					_react2.default.createElement(
-						'span',
-						{ className: 'right-icons' },
-						_react2.default.createElement('i', { className: 'iconfont icon-check' }),
-						_react2.default.createElement('i', { className: 'iconfont icon-right' })
-					)
-				));
-			}.bind(this));
-			return _react2.default.createElement(
-				'div',
-				{ className: 'my-order-list' },
-				_react2.default.createElement(
-					'div',
-					{ className: 'header' },
-					_react2.default.createElement('span', { className: 'back' }),
-					_react2.default.createElement(
-						'span',
-						null,
-						'\u7BA1\u7406\u6536\u8D27\u5730\u5740'
-					)
-				),
-				_react2.default.createElement(
-					'div',
-					{ className: 'weui_cells weui_cells_access', style: { "marginTop": 0 } },
-					_react2.default.createElement(
-						'a',
-						{ className: 'weui_cell choose-address-item', href: 'javascript:;' },
-						_react2.default.createElement(
-							'div',
-							{ className: 'weui_cell_bd weui_cell_primary' },
-							_react2.default.createElement(
-								'p',
-								null,
-								'\u9009\u62E9\u4EE3\u6536\u8D27\u5730\u5740'
-							)
-						),
-						_react2.default.createElement('div', { className: 'weui_cell_ft' })
-					)
-				),
-				_react2.default.createElement(
-					'ul',
-					{ id: 'addressList' },
-					addList
-				),
-				_react2.default.createElement(
-					_reactRouter.Link,
-					{ to: '/AddAddress' },
-					_react2.default.createElement(
-						'button',
-						{ id: 'actionBtn' },
-						'\u65B0\u589E\u6536\u8D27\u5730\u5740'
-					)
-				)
-			);
-		}
-	});
-
-/***/ },
 /* 111 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -13384,119 +13368,140 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(3);
-
-	var _reactDom2 = _interopRequireDefault(_reactDom);
-
 	var _reactRouter = __webpack_require__(4);
+
+	var _weui = __webpack_require__(107);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	exports.default = _react2.default.createClass({
-		displayName: 'add',
-		handleInfo: function handleInfo(data) {
-			console.log(data);
-		},
-		handleAddAddress: function handleAddAddress() {
-			var consignee = _reactDom2.default.findDOMNode(this.refs.consignee).value;
-			var tel = _reactDom2.default.findDOMNode(this.refs.tel).value;
-			var address = _reactDom2.default.findDOMNode(this.refs.address).value;
-			if (consignee == '') {
-				$.alert('请输入姓名');
-			}
-			if (tel == '') {
-				$.alert('请输入电话');
-			}
-			if (address == '') {
-				$.alert('请输入详细地址');
-			}
-			//写入数据库
-			$.ajax({
-				url: ADDRESSSERVER + "add",
-				data: { consignee: consignee, tel: tel, address: address },
-				type: 'post',
-				dataType: 'json',
-				success: function success(data) {
-					if (data.status != 1) {
-						$.alert(data.info);
-					}
-					if (data.status == 1) {
-						_reactRouter.hashHistory.push('/AddressList');
-					}
-				}
-			});
-		},
-		render: function render() {
-			return _react2.default.createElement(
+	var AddList = function AddList(_ref) {
+		var children = _ref.children;
+		return _react2.default.createElement(
+			'div',
+			{ className: 'my-order-list' },
+			_react2.default.createElement(_weui.CommonHeader, { value: '\u7BA1\u7406\u6536\u8D27\u5730\u5740', back: true, pathname: '/confirmOrderWap' }),
+			_react2.default.createElement(
 				'div',
-				{ className: 'my-address-add-wrap' },
+				{ className: 'weui_cells weui_cells_access', style: { "marginTop": 0 } },
 				_react2.default.createElement(
-					'div',
-					{ className: 'header' },
-					_react2.default.createElement('span', { className: 'back' }),
+					'a',
+					{ className: 'weui_cell choose-address-item', href: 'javascript:;' },
 					_react2.default.createElement(
-						'span',
-						null,
-						'\u7BA1\u7406\u6536\u8D27\u5730\u5740'
-					)
-				),
-				_react2.default.createElement(
-					'div',
-					{ className: 'weui_cells weui_cells_access' },
-					_react2.default.createElement(
-						'a',
-						{ className: 'weui_cell', href: 'javascript:;' },
+						'div',
+						{ className: 'weui_cell_bd weui_cell_primary' },
 						_react2.default.createElement(
-							'div',
-							{ className: 'weui_cell_bd weui_cell_primary' },
-							_react2.default.createElement(
-								'p',
-								null,
-								_react2.default.createElement('input', { className: 'weui_input', ref: 'consignee', type: 'text', placeholder: '\u59D3\u540D' })
-							)
-						),
-						_react2.default.createElement('div', { className: 'weui_cell_ft' })
+							'p',
+							null,
+							'\u9009\u62E9\u4EE3\u6536\u8D27\u5730\u5740'
+						)
 					),
-					_react2.default.createElement(
-						'a',
-						{ className: 'weui_cell', href: 'javascript:;' },
-						_react2.default.createElement(
-							'div',
-							{ className: 'weui_cell_bd weui_cell_primary' },
-							_react2.default.createElement(
-								'p',
-								null,
-								_react2.default.createElement('input', { className: 'weui_input', ref: 'tel', type: 'tel', placeholder: '\u7535\u8BDD' })
-							)
-						),
-						_react2.default.createElement('div', { className: 'weui_cell_ft' })
-					),
-					_react2.default.createElement(
-						'a',
-						{ className: 'weui_cell', href: 'javascript:;' },
-						_react2.default.createElement(
-							'div',
-							{ className: 'weui_cell_bd weui_cell_primary' },
-							_react2.default.createElement(
-								'p',
-								null,
-								_react2.default.createElement('input', { className: 'weui_input', ref: 'address', type: 'text', placeholder: '\u8BE6\u7EC6\u5730\u5740' })
-							)
-						),
-						_react2.default.createElement('div', { className: 'weui_cell_ft' })
-					)
-				),
+					_react2.default.createElement('div', { className: 'weui_cell_ft' })
+				)
+			),
+			_react2.default.createElement(
+				'ul',
+				{ id: 'addressList' },
+				children
+			),
+			_react2.default.createElement(
+				_reactRouter.Link,
+				{ to: '/AddAddress' },
 				_react2.default.createElement(
 					'button',
-					{ id: 'actionBtn', onClick: this.handleAddAddress },
-					'\u4FDD\u5B58\u5730\u5740'
+					{ id: 'actionBtn' },
+					'\u65B0\u589E\u6536\u8D27\u5730\u5740'
 				)
-			);
-		}
-	});
+			)
+		);
+	};
+
+	exports.default = AddList;
 
 /***/ },
 /* 112 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _weui = __webpack_require__(107);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var AddAddress = function AddAddress(_ref) {
+		var handleAddAddress = _ref.handleAddAddress,
+		    name = _ref.name,
+		    tel = _ref.tel,
+		    address = _ref.address;
+		return _react2.default.createElement(
+			'div',
+			{ className: 'my-address-add-wrap' },
+			_react2.default.createElement(_weui.CommonHeader, { value: '\u7BA1\u7406\u6536\u8D27\u5730\u5740' }),
+			_react2.default.createElement(
+				'div',
+				{ className: 'weui_cells weui_cells_access' },
+				_react2.default.createElement(
+					'a',
+					{ className: 'weui_cell', href: 'javascript:;' },
+					_react2.default.createElement(
+						'div',
+						{ className: 'weui_cell_bd weui_cell_primary' },
+						_react2.default.createElement(
+							'p',
+							null,
+							_react2.default.createElement('input', { className: 'weui_input', ref: name, type: 'text', placeholder: '\u59D3\u540D' })
+						)
+					),
+					_react2.default.createElement('div', { className: 'weui_cell_ft' })
+				),
+				_react2.default.createElement(
+					'a',
+					{ className: 'weui_cell', href: 'javascript:;' },
+					_react2.default.createElement(
+						'div',
+						{ className: 'weui_cell_bd weui_cell_primary' },
+						_react2.default.createElement(
+							'p',
+							null,
+							_react2.default.createElement('input', { className: 'weui_input', ref: tel, type: 'tel', placeholder: '\u7535\u8BDD' })
+						)
+					),
+					_react2.default.createElement('div', { className: 'weui_cell_ft' })
+				),
+				_react2.default.createElement(
+					'a',
+					{ className: 'weui_cell', href: 'javascript:;' },
+					_react2.default.createElement(
+						'div',
+						{ className: 'weui_cell_bd weui_cell_primary' },
+						_react2.default.createElement(
+							'p',
+							null,
+							_react2.default.createElement('input', { className: 'weui_input', ref: address, type: 'text', placeholder: '\u8BE6\u7EC6\u5730\u5740' })
+						)
+					),
+					_react2.default.createElement('div', { className: 'weui_cell_ft' })
+				)
+			),
+			_react2.default.createElement(
+				'button',
+				{ id: 'actionBtn', onClick: handleAddAddress },
+				'\u4FDD\u5B58\u5730\u5740'
+			)
+		);
+	};
+
+	exports.default = AddAddress;
+
+/***/ },
+/* 113 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13654,7 +13659,7 @@
 	});
 
 /***/ },
-/* 113 */
+/* 114 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13667,7 +13672,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _fastclick = __webpack_require__(114);
+	var _fastclick = __webpack_require__(115);
 
 	var _fastclick2 = _interopRequireDefault(_fastclick);
 
@@ -13897,7 +13902,7 @@
 	});
 
 /***/ },
-/* 114 */
+/* 115 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;;(function () {
@@ -14744,7 +14749,7 @@
 
 
 /***/ },
-/* 115 */
+/* 116 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14759,23 +14764,21 @@
 
 	var _reactRedux = __webpack_require__(69);
 
-	var _cartItem = __webpack_require__(116);
+	var _cartItem = __webpack_require__(117);
 
 	var _cartItem2 = _interopRequireDefault(_cartItem);
-
-	var _footer = __webpack_require__(117);
-
-	var _footer2 = _interopRequireDefault(_footer);
 
 	var _carts = __webpack_require__(73);
 
 	var cartsActions = _interopRequireWildcard(_carts);
 
-	var _weui = __webpack_require__(106);
-
 	var _reactRouter = __webpack_require__(4);
 
-	__webpack_require__(118);
+	__webpack_require__(119);
+
+	var _index = __webpack_require__(145);
+
+	var _index2 = _interopRequireDefault(_index);
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -14794,53 +14797,43 @@
 		    _delCartProductById = _ref.delCartProductById,
 		    _removeCartProById = _ref.removeCartProById;
 
-		componentWillMount: {
-			if (products.length == 0) {
-				init();
-			}
+		if (products.length == 0) {
+			init();
 		}
-		render: return _react2.default.createElement(
-			'div',
-			{ className: 'cart-wrap' },
-			_react2.default.createElement(_weui.CommonHeader, {
-				value: '购物车(' + carts.chooseNum + ')'
-			}),
-			_react2.default.createElement(
-				'div',
-				{ className: 'cartbuy' },
-				products.map(function (product) {
-					if (product.delete == 0) {
-						return _react2.default.createElement(_cartItem2.default, {
-							key: product.id,
-							elem: product,
-							editId: editId,
-							edit: function edit() {
-								return _edit(product.id);
-							},
-							chooseById: function chooseById() {
-								return _chooseById(product.id);
-							},
-							addCartProductById: function addCartProductById() {
-								return _addCartProductById(product.id);
-							},
-							delCartProductById: function delCartProductById() {
-								return _delCartProductById(product.id, product.number);
-							},
-							removeCartProById: function removeCartProById() {
-								return _removeCartProById(product.id);
-							},
-							carts: carts
-						});
-					}
-				}),
-				_react2.default.createElement(_footer2.default, {
-					carts: carts,
-					chooseAll: chooseAll,
-					settle: function settle() {
-						return _settle(carts.chooseId);
-					}
-				})
-			)
+		return _react2.default.createElement(
+			_index2.default,
+			{
+				carts: carts,
+				chooseAll: chooseAll,
+				settle: function settle() {
+					return _settle(carts.chooseId);
+				}
+			},
+			products.map(function (product) {
+				if (product.delete == 0) {
+					return _react2.default.createElement(_cartItem2.default, {
+						key: product.id,
+						elem: product,
+						editId: editId,
+						edit: function edit() {
+							return _edit(product.id);
+						},
+						chooseById: function chooseById() {
+							return _chooseById(product.id);
+						},
+						addCartProductById: function addCartProductById() {
+							return _addCartProductById(product.id);
+						},
+						delCartProductById: function delCartProductById() {
+							return _delCartProductById(product.id, product.number);
+						},
+						removeCartProById: function removeCartProById() {
+							return _removeCartProById(product.id);
+						},
+						carts: carts
+					});
+				}
+			})
 		);
 	};
 
@@ -14892,7 +14885,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(CartContainer);
 
 /***/ },
-/* 116 */
+/* 117 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -15101,7 +15094,7 @@
 	exports.default = CartItem;
 
 /***/ },
-/* 117 */
+/* 118 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -15197,14 +15190,14 @@
 	exports.default = Footer;
 
 /***/ },
-/* 118 */
+/* 119 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 119 */,
-/* 120 */
+/* 120 */,
+/* 121 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15221,17 +15214,17 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _ajaxfileupload = __webpack_require__(121);
+	var _ajaxfileupload = __webpack_require__(122);
 
 	var _ajaxfileupload2 = _interopRequireDefault(_ajaxfileupload);
 
-	var _fileInput = __webpack_require__(122);
+	var _fileInput = __webpack_require__(123);
 
 	var _fileInput2 = _interopRequireDefault(_fileInput);
 
-	var _weui = __webpack_require__(106);
+	var _weui = __webpack_require__(107);
 
-	var _myqrcode = __webpack_require__(123);
+	var _myqrcode = __webpack_require__(124);
 
 	var _myqrcode2 = _interopRequireDefault(_myqrcode);
 
@@ -15488,7 +15481,7 @@
 	});
 
 /***/ },
-/* 121 */
+/* 122 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -15669,7 +15662,7 @@
 	module.exports = $;
 
 /***/ },
-/* 122 */
+/* 123 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15729,7 +15722,7 @@
 	});
 
 /***/ },
-/* 123 */
+/* 124 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15758,13 +15751,13 @@
 	});
 
 /***/ },
-/* 124 */
+/* 125 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = (__webpack_require__(2))(190);
 
 /***/ },
-/* 125 */
+/* 126 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -15792,7 +15785,7 @@
 	exports['default'] = thunk;
 
 /***/ },
-/* 126 */
+/* 127 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15803,11 +15796,11 @@
 	  value: true
 	});
 
-	var _core = __webpack_require__(127);
+	var _core = __webpack_require__(128);
 
-	var _helpers = __webpack_require__(128);
+	var _helpers = __webpack_require__(129);
 
-	var _defaults = __webpack_require__(131);
+	var _defaults = __webpack_require__(132);
 
 	var _defaults2 = _interopRequireDefault(_defaults);
 
@@ -15910,7 +15903,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 127 */
+/* 128 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15920,9 +15913,9 @@
 	});
 	exports.printBuffer = printBuffer;
 
-	var _helpers = __webpack_require__(128);
+	var _helpers = __webpack_require__(129);
 
-	var _diff = __webpack_require__(129);
+	var _diff = __webpack_require__(130);
 
 	var _diff2 = _interopRequireDefault(_diff);
 
@@ -16051,7 +16044,7 @@
 	}
 
 /***/ },
-/* 128 */
+/* 129 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -16075,7 +16068,7 @@
 	var timer = exports.timer = typeof performance !== "undefined" && performance !== null && typeof performance.now === "function" ? performance : Date;
 
 /***/ },
-/* 129 */
+/* 130 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16085,7 +16078,7 @@
 	});
 	exports.default = diffLogger;
 
-	var _deepDiff = __webpack_require__(130);
+	var _deepDiff = __webpack_require__(131);
 
 	var _deepDiff2 = _interopRequireDefault(_deepDiff);
 
@@ -16171,7 +16164,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 130 */
+/* 131 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global) {/*!
@@ -16600,7 +16593,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 131 */
+/* 132 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -16651,7 +16644,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 132 */
+/* 133 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16660,9 +16653,9 @@
 		value: true
 	});
 
-	var _redux = __webpack_require__(124);
+	var _redux = __webpack_require__(125);
 
-	var _carts = __webpack_require__(133);
+	var _carts = __webpack_require__(134);
 
 	var _carts2 = _interopRequireDefault(_carts);
 
@@ -16670,7 +16663,7 @@
 
 	var _pdetails2 = _interopRequireDefault(_pdetails);
 
-	var _address = __webpack_require__(138);
+	var _address = __webpack_require__(136);
 
 	var _address2 = _interopRequireDefault(_address);
 
@@ -16683,7 +16676,7 @@
 	});
 
 /***/ },
-/* 133 */
+/* 134 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16727,7 +16720,6 @@
 	var totalNum = function totalNum(products) {
 	  var total_num = 0;
 	  for (var i in products) {
-	    console.log(products[i]);
 	    if (products[i].choose == 1) {
 	      total_num += products[i].number;
 	    }
@@ -16837,7 +16829,6 @@
 	exports.default = carts;
 
 /***/ },
-/* 134 */,
 /* 135 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -16909,9 +16900,9 @@
 					var sid = action.sid; //传入的是数组的键值，不是ID
 					var aid = action.aid; //传入的是数组的键值，不是ID
 					state.chooseId[sid] = aid;
-					var spec = state.spec;
-					var str = '';
-					var attr = '';
+					var spec = state.spec; //商品规格
+					var str = ''; //选择的属性ID串(用逗号隔开)(作为键值查询商品价格)
+					var attr = ''; //已选的属性名
 					state.chooseId.map(function (elem, index) {
 						str += spec[index]['attr'][elem]['id'] + ',';
 						attr += spec[index]['value'] + ':' + spec[index]['attr'][elem]['value'] + ' ';
@@ -16952,13 +16943,6 @@
 
 /***/ },
 /* 136 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 137 */,
-/* 138 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16975,8 +16959,11 @@
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 	var initialState = {
-		defaultAdd: []
+		defaultAdd: [],
+		list: []
 	};
 
 	var address = function address() {
@@ -16984,9 +16971,35 @@
 		var action = arguments[1];
 
 		switch (action.type) {
+			//获取默认地址
 			case types.GET_DEFAULT_ADDRESS:
 				return _extends({}, state, {
 					defaultAdd: action.address
+				});
+			//获取地址列表
+			case types.GET_MY_ADDRESSES:
+				return _extends({}, state, {
+					list: action.addresses
+				});
+			//设置默认地址
+			case types.SET_DEFAULT_ADDRESS:
+				var default_add = {};
+				state.list.map(function (item, index) {
+					if (item.id == action.aid) {
+						state.list[index].choose = 1;
+						default_add = state.list[index];
+					} else {
+						state.list[index].choose = 0;
+					}
+				});
+				return _extends({}, state, {
+					list: [].concat(_toConsumableArray(state.list)),
+					defaultAdd: default_add
+				});
+			//添加地址
+			case types.ADD_ADDRESS:
+				return _extends({}, state, {
+					list: [].concat(_toConsumableArray(state.list), [action.address])
 				});
 			default:
 				return state;
@@ -16996,7 +17009,81 @@
 	exports.default = address;
 
 /***/ },
-/* 139 */
+/* 137 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 138 */,
+/* 139 */,
+/* 140 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var AddItem = function AddItem(_ref) {
+		var elem = _ref.elem,
+		    handleChoose = _ref.handleChoose;
+		return _react2.default.createElement(
+			"li",
+			{ className: (elem.choose == 1 ? "active" : "") + " address-row", onClick: handleChoose },
+			_react2.default.createElement(
+				"div",
+				{ className: "font0-75" },
+				_react2.default.createElement(
+					"label",
+					null,
+					"\u6536\u8D27\u4EBA:"
+				),
+				_react2.default.createElement(
+					"label",
+					null,
+					elem.consignee
+				),
+				_react2.default.createElement(
+					"label",
+					{ className: "address-tel" },
+					elem.tel
+				)
+			),
+			_react2.default.createElement(
+				"div",
+				null,
+				_react2.default.createElement(
+					"label",
+					null,
+					"\u6536\u8D27\u5730\u5740:"
+				),
+				_react2.default.createElement(
+					"label",
+					null,
+					elem.address
+				)
+			),
+			_react2.default.createElement(
+				"span",
+				{ className: "right-icons" },
+				_react2.default.createElement("i", { className: "iconfont icon-check" }),
+				_react2.default.createElement("i", { className: "iconfont icon-right" })
+			)
+		);
+	};
+
+	exports.default = AddItem;
+
+/***/ },
+/* 141 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -17004,34 +17091,214 @@
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
-	exports.getDefaultAddress = undefined;
 
-	var _ActionTypes = __webpack_require__(72);
+	var _react = __webpack_require__(1);
 
-	var types = _interopRequireWildcard(_ActionTypes);
+	var _react2 = _interopRequireDefault(_react);
 
-	var _shop = __webpack_require__(71);
+	var _reactRedux = __webpack_require__(69);
 
-	var _shop2 = _interopRequireDefault(_shop);
+	var _list = __webpack_require__(111);
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	var _list2 = _interopRequireDefault(_list);
+
+	var _additem = __webpack_require__(140);
+
+	var _additem2 = _interopRequireDefault(_additem);
+
+	var _address = __webpack_require__(105);
+
+	var actions = _interopRequireWildcard(_address);
+
+	__webpack_require__(143);
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-	var getDefaultAddressDip = function getDefaultAddressDip(address) {
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var ListContainer = _react2.default.createClass({
+		displayName: 'ListContainer',
+		componentWillMount: function componentWillMount() {
+			var _props = this.props,
+			    list = _props.list,
+			    init = _props.init;
+
+			if (list.length == 0) {
+				init();
+			}
+		},
+		render: function render() {
+			var _props2 = this.props,
+			    list = _props2.list,
+			    _handleChoose = _props2.handleChoose;
+
+			return _react2.default.createElement(
+				_list2.default,
+				null,
+				list.map(function (item, index) {
+					return _react2.default.createElement(_additem2.default, {
+						key: index,
+						elem: item,
+						handleChoose: function handleChoose() {
+							_handleChoose(item.id);
+						}
+					});
+				})
+			);
+		}
+	});
+
+	var mapStateToProps = function mapStateToProps(state) {
 		return {
-			type: types.GET_DEFAULT_ADDRESS,
-			address: address
+			list: state.address.list
 		};
 	};
 
-	var getDefaultAddress = exports.getDefaultAddress = function getDefaultAddress() {
-		return function (dispatch) {
-			_shop2.default.getDefaultAddress(function (address) {
-				dispatch(getDefaultAddressDip(address));
-			});
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+		return {
+			init: function init() {
+				dispatch(actions.getMyAddresses());
+			},
+			handleChoose: function handleChoose(aid) {
+				dispatch(actions.setDefaultAddress(aid));
+			}
 		};
 	};
+
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(ListContainer);
+
+/***/ },
+/* 142 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRedux = __webpack_require__(69);
+
+	var _add = __webpack_require__(112);
+
+	var _add2 = _interopRequireDefault(_add);
+
+	var _address2 = __webpack_require__(105);
+
+	var actions = _interopRequireWildcard(_address2);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var _name = void 0,
+	    _tel = void 0,
+	    _address = void 0;
+
+	var AddContainer = function AddContainer(_ref) {
+		var _handleAddAddress = _ref.handleAddAddress,
+		    list = _ref.list,
+		    init = _ref.init;
+
+		if (list.length == 0) {
+			init();
+		}
+		return _react2.default.createElement(_add2.default, {
+			name: function name(node) {
+				_name = node;
+			},
+			tel: function tel(node) {
+				_tel = node;
+			},
+			address: function address(node) {
+				_address = node;
+			},
+			handleAddAddress: function handleAddAddress() {
+				_handleAddAddress();
+			}
+		});
+	};
+
+	var mapStateToProps = function mapStateToProps(state) {
+		return {
+			list: state.address.list
+		};
+	};
+
+	var mapDispatchTpProps = function mapDispatchTpProps(dispatch) {
+		return {
+			init: function init() {
+				dispatch(actions.getMyAddresses());
+			},
+			handleAddAddress: function handleAddAddress() {
+				dispatch(actions.addAddress(_name.value, _tel.value, _address.value));
+			}
+		};
+	};
+
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchTpProps)(AddContainer);
+
+/***/ },
+/* 143 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 144 */,
+/* 145 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _weui = __webpack_require__(107);
+
+	var _footer = __webpack_require__(118);
+
+	var _footer2 = _interopRequireDefault(_footer);
+
+	var _reactRouter = __webpack_require__(4);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Cart = function Cart(_ref) {
+		var children = _ref.children,
+		    carts = _ref.carts,
+		    chooseAll = _ref.chooseAll,
+		    settle = _ref.settle;
+		return _react2.default.createElement(
+			'div',
+			{ className: 'cart-wrap' },
+			_react2.default.createElement(_weui.CommonHeader, {
+				value: '购物车(' + carts.chooseNum + ')',
+				back: true,
+				pathname: '/' }),
+			_react2.default.createElement(
+				'div',
+				{ className: 'cartbuy' },
+				children,
+				_react2.default.createElement(_footer2.default, {
+					carts: carts,
+					chooseAll: chooseAll,
+					settle: settle
+				})
+			)
+		);
+	};
+
+	exports.default = Cart;
 
 /***/ }
 /******/ ]);
