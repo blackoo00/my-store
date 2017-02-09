@@ -7,31 +7,31 @@ import {CommonHeader} from '../../components/common/weui';
 import '../../components/confirmOrder/_confirmOrder.scss';
 import Settle from '../../components/confirmOrder/index';
 let input
-const SettleController = ({getDefaultAddress,address,carts,getCartsInfo,addCartProductById,delCartProductById,handleSubmitOrder}) => {
+const SettleController = ({...rest}) => {
 	componentWillMount:{
-		if(carts.products.length == 0){
-			getCartsInfo();
+		if(rest.carts.products.length == 0){
+			rest.getCartsInfo();
 		}
-		if(address.length == 0){
-			 getDefaultAddress();
+		if(rest.address.length == 0){
+			 rest.getDefaultAddress();
 		}
 	}
 	render:{
 		return(
 			<Settle
 				refs = {node => {input = node}}
-				handleSubmitOrder = {handleSubmitOrder}
-				carts = {carts}
-				address={address}
+				handleSubmitOrder = {rest.handleSubmitOrder}
+				carts = {rest.carts}
+				address={rest.address}
 			>
-				{carts.products.map(cart =>{
+				{rest.carts.products.map(cart =>{
 					if(cart.choose == 1){
 						return(
 							<CartItem
 								key = {cart.id}
 								cart = {cart}
-								addCartProductById = {() => addCartProductById(cart.id)}
-								delCartProductById = {() => delCartProductById(cart.id,cart.number)}
+								addCartProductById = {() => rest.addCartProductById(cart.id)}
+								delCartProductById = {() => rest.delCartProductById(cart.id,cart.number)}
 							/>
 						)
 					}

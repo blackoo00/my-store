@@ -7,30 +7,30 @@ import '../../components/cart/_cart.scss';
 import Cart from '../../components/cart/index';
 
 
-const CartContainer = ({init,settle,products,editId,edit,chooseById,carts,chooseAll,addCartProductById,delCartProductById,removeCartProById}) => 
+const CartContainer = ({...rest}) => 
 {
-	if(products.length == 0){
-		init();
+	if(rest.products.length == 0){
+		rest.init();
 	}
 	return(
 		<Cart
-			carts = {carts}
-			chooseAll = {chooseAll}
-			settle = {() => settle(carts.chooseId)}
+			carts = {rest.carts}
+			chooseAll = {rest.chooseAll}
+			settle = {() => rest.settle(rest.carts.chooseId)}
 		>
-		{products.map(product =>{
+		{rest.products.map(product =>{
 			if(product.delete == 0){
 				return(
 					<CartItem
 						key = {product.id}
 						elem = {product}
-						editId = {editId}
-						edit = {() => edit(product.id)}
-						chooseById = {() => chooseById(product.id)}
-						addCartProductById = {() => addCartProductById(product.id)}
-						delCartProductById = {() => delCartProductById(product.id,product.number)}
-						removeCartProById = {() => removeCartProById(product.id)}
-						carts = {carts}
+						editId = {rest.editId}
+						edit = {() => rest.edit(product.id)}
+						chooseById = {() => rest.chooseById(product.id)}
+						addCartProductById = {() => rest.addCartProductById(product.id)}
+						delCartProductById = {() => rest.delCartProductById(product.id,product.number)}
+						removeCartProById = {() => rest.removeCartProById(product.id)}
+						carts = {rest.carts}
 					/>
 				)
 			}

@@ -24,7 +24,7 @@ var StoreIndex = React.createClass({
 		//获取分类信息
 		var _self = this;
 		$.ajax({
-			url:"http://127.0.0.1/my-store/index.php/Home/Store/index",
+			url:STORESERVER+"index",
 			success:function(data){
 				_self.setState({
 					cat:data.cat,
@@ -48,7 +48,7 @@ var StoreIndex = React.createClass({
 				if(loading) return false;
 				loading = true;
 				$.ajax({
-					url:"http://127.0.0.1/my-store/index.php/Home/Store/scrollLoadPro",
+					url:STORESERVER+"scrollLoadPro",
 					data:{count:count},
 					success:function(data){
 						loading = false;

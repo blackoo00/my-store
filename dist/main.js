@@ -72,35 +72,35 @@
 
 	var _SettleController2 = _interopRequireDefault(_SettleController);
 
-	var _ListController = __webpack_require__(141);
+	var _ListController = __webpack_require__(111);
 
 	var _ListController2 = _interopRequireDefault(_ListController);
 
-	var _AddController = __webpack_require__(142);
+	var _AddController = __webpack_require__(116);
 
 	var _AddController2 = _interopRequireDefault(_AddController);
 
-	var _wxpay = __webpack_require__(113);
+	var _wxpay = __webpack_require__(118);
 
 	var _wxpay2 = _interopRequireDefault(_wxpay);
 
-	var _search = __webpack_require__(114);
+	var _search = __webpack_require__(119);
 
 	var _search2 = _interopRequireDefault(_search);
 
-	var _CartContainer = __webpack_require__(116);
+	var _CartContainer = __webpack_require__(121);
 
 	var _CartContainer2 = _interopRequireDefault(_CartContainer);
 
-	var _my = __webpack_require__(121);
+	var _my = __webpack_require__(127);
 
 	var _my2 = _interopRequireDefault(_my);
 
-	var _myqrcode = __webpack_require__(124);
+	var _myqrcode = __webpack_require__(130);
 
 	var _myqrcode2 = _interopRequireDefault(_myqrcode);
 
-	var _fastclick = __webpack_require__(115);
+	var _fastclick = __webpack_require__(120);
 
 	var _fastclick2 = _interopRequireDefault(_fastclick);
 
@@ -108,25 +108,25 @@
 
 	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 
-	var _redux = __webpack_require__(125);
+	var _redux = __webpack_require__(131);
 
 	var _reactRedux = __webpack_require__(69);
 
-	var _reduxThunk = __webpack_require__(126);
+	var _reduxThunk = __webpack_require__(132);
 
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
-	var _reduxLogger = __webpack_require__(127);
+	var _reduxLogger = __webpack_require__(133);
 
 	var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
 
-	var _index = __webpack_require__(133);
+	var _index = __webpack_require__(139);
 
 	var _index2 = _interopRequireDefault(_index);
 
 	var _carts = __webpack_require__(73);
 
-	__webpack_require__(137);
+	__webpack_require__(143);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -135,14 +135,6 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	// import Pdetail from './components/pdetail/index';
-
-	// import AddressList from './components/address/list';
-
-	// import AddAddress from './components/address/add';
-
-
-	// const STORESERVER="http://127.0.0.1/my-store/index.php/Home/Store/",ADDRESSSERVER="http://127.0.0.1/my-store/index.php/Home/Address/",MYSERVER="http://127.0.0.1/my-store/index.php/Home/My/";
 
 	var Container = function (_React$Component) {
 	    _inherits(Container, _React$Component);
@@ -5220,7 +5212,7 @@
 			//获取分类信息
 			var _self = this;
 			$.ajax({
-				url: "http://127.0.0.1/my-store/index.php/Home/Store/index",
+				url: STORESERVER + "index",
 				success: function success(data) {
 					_self.setState({
 						cat: data.cat,
@@ -5245,7 +5237,7 @@
 					if (loading) return false;
 					loading = true;
 					$.ajax({
-						url: "http://127.0.0.1/my-store/index.php/Home/Store/scrollLoadPro",
+						url: STORESERVER + "scrollLoadPro",
 						data: { count: count },
 						success: function success(data) {
 							loading = false;
@@ -10736,28 +10728,28 @@
 
 	var YourLike = React.createClass({
 		displayName: 'YourLike',
+		LinkTo: function LinkTo() {
+			_reactRouter.hashHistory.push({ pathname: '/pdetail', query: { id: 1 } });
+		},
 
 		render: function render() {
 			var prolist = [];
+			var _self = this;
 			this.props.ProList.map(function (item, index) {
 				prolist.push(React.createElement(
-					_reactRouter.Link,
-					{ key: index, to: { pathname: '/pdetail', query: { id: item.id } } },
+					'div',
+					{ key: index, className: 'u-lk-pro-item', onClick: _self.LinkTo },
+					React.createElement('img', { src: item.logo }),
 					React.createElement(
-						'div',
-						{ key: index, className: 'u-lk-pro-item' },
-						React.createElement('img', { src: item.logo }),
-						React.createElement(
-							'p',
-							{ className: 'pro-name' },
-							item.name
-						),
-						React.createElement(
-							'p',
-							{ className: 'pro-price' },
-							'\uFFE5',
-							item.price
-						)
+						'p',
+						{ className: 'pro-name' },
+						item.name
+					),
+					React.createElement(
+						'p',
+						{ className: 'pro-price' },
+						'\uFFE5',
+						item.price
 					)
 				));
 			});
@@ -10895,11 +10887,15 @@
 
 	var PdetailsContainer = _react2.default.createClass({
 		displayName: 'PdetailsContainer',
-		componentWillMount: function componentWillMount() {
+		componentDidMount: function componentDidMount() {
 			var init = this.props.init;
 
 			var pid = this.props.location.query.id;
-			init(pid);
+			var h = document.body.clientHeight - $('.bottom_bar').height();
+			$('.pro-detail').height(h);
+			setTimeout(function () {
+				init(pid);
+			}, 200);
 		},
 		componentWillUnmount: function componentWillUnmount() {
 			var handleHidePra = this.props.handleHidePra;
@@ -10915,6 +10911,7 @@
 
 			var pro = pdetails.pro;
 			return _react2.default.createElement(_index2.default, {
+				test: pdetails.ban.length,
 				pdetails: pdetails,
 				handleCollection: function handleCollection() {
 					_handleCollection(pro.id);
@@ -11425,18 +11422,19 @@
 		var pdetails = _ref.pdetails,
 		    handleCollection = _ref.handleCollection,
 		    addToCart = _ref.addToCart,
-		    buyNow = _ref.buyNow;
+		    buyNow = _ref.buyNow,
+		    test = _ref.test;
 		return _react2.default.createElement(
 			'div',
 			{ className: 'pro-detail-wrapper' },
 			_react2.default.createElement(
 				'div',
-				{ className: 'pro-banner' },
-				_react2.default.createElement(_SwiperDom2.default, { BanList: pdetails.ban })
-			),
-			_react2.default.createElement(
-				'div',
 				{ className: 'pro-detail' },
+				_react2.default.createElement(
+					'div',
+					{ className: 'pro-banner' },
+					_react2.default.createElement(_SwiperDom2.default, { BanList: pdetails.ban })
+				),
 				_react2.default.createElement(
 					'div',
 					{ className: 'page-module-item' },
@@ -11482,7 +11480,7 @@
 					'\u7ACB\u5373\u8D2D\u4E70'
 				)
 			),
-			_react2.default.createElement(_SpectController2.default, null)
+			pdetails.paranimate == "show" ? _react2.default.createElement(_SpectController2.default, null) : ''
 		);
 	};
 
@@ -11520,34 +11518,32 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
 	var SpectContainer = function SpectContainer(_ref) {
-		var pdetails = _ref.pdetails,
-		    handleHidePra = _ref.handleHidePra,
-		    chooseAttr = _ref.chooseAttr,
-		    addNumber = _ref.addNumber,
-		    delNumber = _ref.delNumber,
-		    _clickSubmit = _ref.clickSubmit;
+		var rest = _objectWithoutProperties(_ref, []);
+
 		return _react2.default.createElement(
 			_reactAddonsCssTransitionGroup2.default,
 			{
 				component: 'div',
 				transitionName: 'mui',
-				className: pdetails.paranimate,
+				className: rest.pdetails.paranimate,
 				transitionEnterTimeout: 300,
 				transitionLeaveTimeout: 300
 			},
 			_react2.default.createElement(
 				_parameter2.default,
 				{
-					pdetails: pdetails,
+					pdetails: rest.pdetails,
 					clickSubmit: function clickSubmit() {
-						_clickSubmit(pdetails.buy, pdetails.pro.id, pdetails.chooseDid, pdetails.number, pdetails.dprice);
+						rest.clickSubmit(rest.pdetails.buy, rest.pdetails.pro.id, rest.pdetails.chooseDid, rest.pdetails.number, rest.pdetails.dprice);
 					},
-					handleHidePra: handleHidePra,
-					addNumber: addNumber,
-					delNumber: delNumber
+					handleHidePra: rest.handleHidePra,
+					addNumber: rest.addNumber,
+					delNumber: rest.delNumber
 				},
-				pdetails.spec.map(function (item, index) {
+				rest.pdetails.spec.map(function (item, index) {
 					if (item.attr.length != 0) {
 						return _react2.default.createElement(
 							'li',
@@ -11563,8 +11559,8 @@
 								item.attr.map(function (item2, index2) {
 									return _react2.default.createElement(
 										'label',
-										{ className: pdetails.chooseId[index] == index2 ? "checked" : "", onClick: function onClick() {
-												chooseAttr(index, index2);
+										{ className: rest.pdetails.chooseId[index] == index2 ? "checked" : "", onClick: function onClick() {
+												rest.chooseAttr(index, index2);
 											}, key: item2.id },
 										item2.value
 									);
@@ -11672,10 +11668,10 @@
 							_react2.default.createElement(
 								"label",
 								{ className: "label" },
-								"\u5E93\u5B58"
-							),
-							pdetails.pro.number,
-							"\u4EF6"
+								"\u5E93\u5B58:",
+								pdetails.pro.number,
+								"\u4EF6"
+							)
 						),
 						_react2.default.createElement("span", { className: "limitTip" })
 					),
@@ -12855,22 +12851,18 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
 	var input = void 0;
 	var SettleController = function SettleController(_ref) {
-		var getDefaultAddress = _ref.getDefaultAddress,
-		    address = _ref.address,
-		    carts = _ref.carts,
-		    getCartsInfo = _ref.getCartsInfo,
-		    _addCartProductById = _ref.addCartProductById,
-		    _delCartProductById = _ref.delCartProductById,
-		    handleSubmitOrder = _ref.handleSubmitOrder;
+		var rest = _objectWithoutProperties(_ref, []);
 
 		componentWillMount: {
-			if (carts.products.length == 0) {
-				getCartsInfo();
+			if (rest.carts.products.length == 0) {
+				rest.getCartsInfo();
 			}
-			if (address.length == 0) {
-				getDefaultAddress();
+			if (rest.address.length == 0) {
+				rest.getDefaultAddress();
 			}
 		}
 		render: {
@@ -12880,20 +12872,20 @@
 					refs: function refs(node) {
 						input = node;
 					},
-					handleSubmitOrder: handleSubmitOrder,
-					carts: carts,
-					address: address
+					handleSubmitOrder: rest.handleSubmitOrder,
+					carts: rest.carts,
+					address: rest.address
 				},
-				carts.products.map(function (cart) {
+				rest.carts.products.map(function (cart) {
 					if (cart.choose == 1) {
 						return _react2.default.createElement(_cartitem2.default, {
 							key: cart.id,
 							cart: cart,
 							addCartProductById: function addCartProductById() {
-								return _addCartProductById(cart.id);
+								return rest.addCartProductById(cart.id);
 							},
 							delCartProductById: function delCartProductById() {
-								return _delCartProductById(cart.id, cart.number);
+								return rest.delCartProductById(cart.id, cart.number);
 							}
 						});
 					}
@@ -13368,6 +13360,91 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _reactRedux = __webpack_require__(69);
+
+	var _list = __webpack_require__(112);
+
+	var _list2 = _interopRequireDefault(_list);
+
+	var _additem = __webpack_require__(113);
+
+	var _additem2 = _interopRequireDefault(_additem);
+
+	var _address = __webpack_require__(105);
+
+	var actions = _interopRequireWildcard(_address);
+
+	__webpack_require__(114);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var ListContainer = _react2.default.createClass({
+		displayName: 'ListContainer',
+		componentWillMount: function componentWillMount() {
+			var _props = this.props,
+			    list = _props.list,
+			    init = _props.init;
+
+			if (list.length == 0) {
+				init();
+			}
+		},
+		render: function render() {
+			var _props2 = this.props,
+			    list = _props2.list,
+			    _handleChoose = _props2.handleChoose;
+
+			return _react2.default.createElement(
+				_list2.default,
+				null,
+				list.map(function (item, index) {
+					return _react2.default.createElement(_additem2.default, {
+						key: index,
+						elem: item,
+						handleChoose: function handleChoose() {
+							_handleChoose(item.id);
+						}
+					});
+				})
+			);
+		}
+	});
+
+	var mapStateToProps = function mapStateToProps(state) {
+		return {
+			list: state.address.list
+		};
+	};
+
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+		return {
+			init: function init() {
+				dispatch(actions.getMyAddresses());
+			},
+			handleChoose: function handleChoose(aid) {
+				dispatch(actions.setDefaultAddress(aid));
+			}
+		};
+	};
+
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(ListContainer);
+
+/***/ },
+/* 112 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
 	var _reactRouter = __webpack_require__(4);
 
 	var _weui = __webpack_require__(107);
@@ -13418,7 +13495,155 @@
 	exports.default = AddList;
 
 /***/ },
-/* 112 */
+/* 113 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var AddItem = function AddItem(_ref) {
+		var elem = _ref.elem,
+		    handleChoose = _ref.handleChoose;
+		return _react2.default.createElement(
+			"li",
+			{ className: (elem.choose == 1 ? "active" : "") + " address-row", onClick: handleChoose },
+			_react2.default.createElement(
+				"div",
+				{ className: "font0-75" },
+				_react2.default.createElement(
+					"label",
+					null,
+					"\u6536\u8D27\u4EBA:"
+				),
+				_react2.default.createElement(
+					"label",
+					null,
+					elem.consignee
+				),
+				_react2.default.createElement(
+					"label",
+					{ className: "address-tel" },
+					elem.tel
+				)
+			),
+			_react2.default.createElement(
+				"div",
+				null,
+				_react2.default.createElement(
+					"label",
+					null,
+					"\u6536\u8D27\u5730\u5740:"
+				),
+				_react2.default.createElement(
+					"label",
+					null,
+					elem.address
+				)
+			),
+			_react2.default.createElement(
+				"span",
+				{ className: "right-icons" },
+				_react2.default.createElement("i", { className: "iconfont icon-check" }),
+				_react2.default.createElement("i", { className: "iconfont icon-right" })
+			)
+		);
+	};
+
+	exports.default = AddItem;
+
+/***/ },
+/* 114 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 115 */,
+/* 116 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRedux = __webpack_require__(69);
+
+	var _add = __webpack_require__(117);
+
+	var _add2 = _interopRequireDefault(_add);
+
+	var _address2 = __webpack_require__(105);
+
+	var actions = _interopRequireWildcard(_address2);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var _name = void 0,
+	    _tel = void 0,
+	    _address = void 0;
+
+	var AddContainer = function AddContainer(_ref) {
+		var _handleAddAddress = _ref.handleAddAddress,
+		    list = _ref.list,
+		    init = _ref.init;
+
+		if (list.length == 0) {
+			init();
+		}
+		return _react2.default.createElement(_add2.default, {
+			name: function name(node) {
+				_name = node;
+			},
+			tel: function tel(node) {
+				_tel = node;
+			},
+			address: function address(node) {
+				_address = node;
+			},
+			handleAddAddress: function handleAddAddress() {
+				_handleAddAddress();
+			}
+		});
+	};
+
+	var mapStateToProps = function mapStateToProps(state) {
+		return {
+			list: state.address.list
+		};
+	};
+
+	var mapDispatchTpProps = function mapDispatchTpProps(dispatch) {
+		return {
+			init: function init() {
+				dispatch(actions.getMyAddresses());
+			},
+			handleAddAddress: function handleAddAddress() {
+				dispatch(actions.addAddress(_name.value, _tel.value, _address.value));
+			}
+		};
+	};
+
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchTpProps)(AddContainer);
+
+/***/ },
+/* 117 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13501,7 +13726,7 @@
 	exports.default = AddAddress;
 
 /***/ },
-/* 113 */
+/* 118 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13659,7 +13884,7 @@
 	});
 
 /***/ },
-/* 114 */
+/* 119 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13672,7 +13897,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _fastclick = __webpack_require__(115);
+	var _fastclick = __webpack_require__(120);
 
 	var _fastclick2 = _interopRequireDefault(_fastclick);
 
@@ -13710,7 +13935,7 @@
 				loading = true;
 				setTimeout(function () {
 					$.ajax({
-						url: "http://127.0.0.1/my-store/index.php/Home/Store/scrollLoadPro",
+						url: STORESERVER + "scrollLoadPro",
 						data: { count: pro_quantity, type: 'normal' },
 						async: false,
 						success: function success(data) {
@@ -13902,7 +14127,7 @@
 	});
 
 /***/ },
-/* 115 */
+/* 120 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;;(function () {
@@ -14749,7 +14974,7 @@
 
 
 /***/ },
-/* 116 */
+/* 121 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14764,7 +14989,7 @@
 
 	var _reactRedux = __webpack_require__(69);
 
-	var _cartItem = __webpack_require__(117);
+	var _cartItem = __webpack_require__(122);
 
 	var _cartItem2 = _interopRequireDefault(_cartItem);
 
@@ -14774,9 +14999,9 @@
 
 	var _reactRouter = __webpack_require__(4);
 
-	__webpack_require__(119);
+	__webpack_require__(123);
 
-	var _index = __webpack_require__(145);
+	var _index = __webpack_require__(125);
 
 	var _index2 = _interopRequireDefault(_index);
 
@@ -14784,53 +15009,45 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var CartContainer = function CartContainer(_ref) {
-		var init = _ref.init,
-		    _settle = _ref.settle,
-		    products = _ref.products,
-		    editId = _ref.editId,
-		    _edit = _ref.edit,
-		    _chooseById = _ref.chooseById,
-		    carts = _ref.carts,
-		    chooseAll = _ref.chooseAll,
-		    _addCartProductById = _ref.addCartProductById,
-		    _delCartProductById = _ref.delCartProductById,
-		    _removeCartProById = _ref.removeCartProById;
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
-		if (products.length == 0) {
-			init();
+	var CartContainer = function CartContainer(_ref) {
+		var rest = _objectWithoutProperties(_ref, []);
+
+		if (rest.products.length == 0) {
+			rest.init();
 		}
 		return _react2.default.createElement(
 			_index2.default,
 			{
-				carts: carts,
-				chooseAll: chooseAll,
+				carts: rest.carts,
+				chooseAll: rest.chooseAll,
 				settle: function settle() {
-					return _settle(carts.chooseId);
+					return rest.settle(rest.carts.chooseId);
 				}
 			},
-			products.map(function (product) {
+			rest.products.map(function (product) {
 				if (product.delete == 0) {
 					return _react2.default.createElement(_cartItem2.default, {
 						key: product.id,
 						elem: product,
-						editId: editId,
+						editId: rest.editId,
 						edit: function edit() {
-							return _edit(product.id);
+							return rest.edit(product.id);
 						},
 						chooseById: function chooseById() {
-							return _chooseById(product.id);
+							return rest.chooseById(product.id);
 						},
 						addCartProductById: function addCartProductById() {
-							return _addCartProductById(product.id);
+							return rest.addCartProductById(product.id);
 						},
 						delCartProductById: function delCartProductById() {
-							return _delCartProductById(product.id, product.number);
+							return rest.delCartProductById(product.id, product.number);
 						},
 						removeCartProById: function removeCartProById() {
-							return _removeCartProById(product.id);
+							return rest.removeCartProById(product.id);
 						},
-						carts: carts
+						carts: rest.carts
 					});
 				}
 			})
@@ -14885,7 +15102,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(CartContainer);
 
 /***/ },
-/* 117 */
+/* 122 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -15094,7 +15311,65 @@
 	exports.default = CartItem;
 
 /***/ },
-/* 118 */
+/* 123 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 124 */,
+/* 125 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _weui = __webpack_require__(107);
+
+	var _footer = __webpack_require__(126);
+
+	var _footer2 = _interopRequireDefault(_footer);
+
+	var _reactRouter = __webpack_require__(4);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Cart = function Cart(_ref) {
+		var children = _ref.children,
+		    carts = _ref.carts,
+		    chooseAll = _ref.chooseAll,
+		    settle = _ref.settle;
+		return _react2.default.createElement(
+			'div',
+			{ className: 'cart-wrap' },
+			_react2.default.createElement(_weui.CommonHeader, {
+				value: '购物车(' + carts.chooseNum + ')',
+				back: true,
+				pathname: '/' }),
+			_react2.default.createElement(
+				'div',
+				{ className: 'cartbuy' },
+				children,
+				_react2.default.createElement(_footer2.default, {
+					carts: carts,
+					chooseAll: chooseAll,
+					settle: settle
+				})
+			)
+		);
+	};
+
+	exports.default = Cart;
+
+/***/ },
+/* 126 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -15190,14 +15465,7 @@
 	exports.default = Footer;
 
 /***/ },
-/* 119 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 120 */,
-/* 121 */
+/* 127 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15214,17 +15482,17 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _ajaxfileupload = __webpack_require__(122);
+	var _ajaxfileupload = __webpack_require__(128);
 
 	var _ajaxfileupload2 = _interopRequireDefault(_ajaxfileupload);
 
-	var _fileInput = __webpack_require__(123);
+	var _fileInput = __webpack_require__(129);
 
 	var _fileInput2 = _interopRequireDefault(_fileInput);
 
 	var _weui = __webpack_require__(107);
 
-	var _myqrcode = __webpack_require__(124);
+	var _myqrcode = __webpack_require__(130);
 
 	var _myqrcode2 = _interopRequireDefault(_myqrcode);
 
@@ -15481,7 +15749,7 @@
 	});
 
 /***/ },
-/* 122 */
+/* 128 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -15662,7 +15930,7 @@
 	module.exports = $;
 
 /***/ },
-/* 123 */
+/* 129 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15722,7 +15990,7 @@
 	});
 
 /***/ },
-/* 124 */
+/* 130 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15751,13 +16019,13 @@
 	});
 
 /***/ },
-/* 125 */
+/* 131 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = (__webpack_require__(2))(190);
 
 /***/ },
-/* 126 */
+/* 132 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -15785,7 +16053,7 @@
 	exports['default'] = thunk;
 
 /***/ },
-/* 127 */
+/* 133 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15796,11 +16064,11 @@
 	  value: true
 	});
 
-	var _core = __webpack_require__(128);
+	var _core = __webpack_require__(134);
 
-	var _helpers = __webpack_require__(129);
+	var _helpers = __webpack_require__(135);
 
-	var _defaults = __webpack_require__(132);
+	var _defaults = __webpack_require__(138);
 
 	var _defaults2 = _interopRequireDefault(_defaults);
 
@@ -15903,7 +16171,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 128 */
+/* 134 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15913,9 +16181,9 @@
 	});
 	exports.printBuffer = printBuffer;
 
-	var _helpers = __webpack_require__(129);
+	var _helpers = __webpack_require__(135);
 
-	var _diff = __webpack_require__(130);
+	var _diff = __webpack_require__(136);
 
 	var _diff2 = _interopRequireDefault(_diff);
 
@@ -16044,7 +16312,7 @@
 	}
 
 /***/ },
-/* 129 */
+/* 135 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -16068,7 +16336,7 @@
 	var timer = exports.timer = typeof performance !== "undefined" && performance !== null && typeof performance.now === "function" ? performance : Date;
 
 /***/ },
-/* 130 */
+/* 136 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16078,7 +16346,7 @@
 	});
 	exports.default = diffLogger;
 
-	var _deepDiff = __webpack_require__(131);
+	var _deepDiff = __webpack_require__(137);
 
 	var _deepDiff2 = _interopRequireDefault(_deepDiff);
 
@@ -16164,7 +16432,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 131 */
+/* 137 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global) {/*!
@@ -16593,7 +16861,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 132 */
+/* 138 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -16644,7 +16912,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 133 */
+/* 139 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16653,17 +16921,17 @@
 		value: true
 	});
 
-	var _redux = __webpack_require__(125);
+	var _redux = __webpack_require__(131);
 
-	var _carts = __webpack_require__(134);
+	var _carts = __webpack_require__(140);
 
 	var _carts2 = _interopRequireDefault(_carts);
 
-	var _pdetails = __webpack_require__(135);
+	var _pdetails = __webpack_require__(141);
 
 	var _pdetails2 = _interopRequireDefault(_pdetails);
 
-	var _address = __webpack_require__(136);
+	var _address = __webpack_require__(142);
 
 	var _address2 = _interopRequireDefault(_address);
 
@@ -16676,7 +16944,7 @@
 	});
 
 /***/ },
-/* 134 */
+/* 140 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16829,7 +17097,7 @@
 	exports.default = carts;
 
 /***/ },
-/* 135 */
+/* 141 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16942,7 +17210,7 @@
 	exports.default = pdetails;
 
 /***/ },
-/* 136 */
+/* 142 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -17009,296 +17277,10 @@
 	exports.default = address;
 
 /***/ },
-/* 137 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 138 */,
-/* 139 */,
-/* 140 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var AddItem = function AddItem(_ref) {
-		var elem = _ref.elem,
-		    handleChoose = _ref.handleChoose;
-		return _react2.default.createElement(
-			"li",
-			{ className: (elem.choose == 1 ? "active" : "") + " address-row", onClick: handleChoose },
-			_react2.default.createElement(
-				"div",
-				{ className: "font0-75" },
-				_react2.default.createElement(
-					"label",
-					null,
-					"\u6536\u8D27\u4EBA:"
-				),
-				_react2.default.createElement(
-					"label",
-					null,
-					elem.consignee
-				),
-				_react2.default.createElement(
-					"label",
-					{ className: "address-tel" },
-					elem.tel
-				)
-			),
-			_react2.default.createElement(
-				"div",
-				null,
-				_react2.default.createElement(
-					"label",
-					null,
-					"\u6536\u8D27\u5730\u5740:"
-				),
-				_react2.default.createElement(
-					"label",
-					null,
-					elem.address
-				)
-			),
-			_react2.default.createElement(
-				"span",
-				{ className: "right-icons" },
-				_react2.default.createElement("i", { className: "iconfont icon-check" }),
-				_react2.default.createElement("i", { className: "iconfont icon-right" })
-			)
-		);
-	};
-
-	exports.default = AddItem;
-
-/***/ },
-/* 141 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactRedux = __webpack_require__(69);
-
-	var _list = __webpack_require__(111);
-
-	var _list2 = _interopRequireDefault(_list);
-
-	var _additem = __webpack_require__(140);
-
-	var _additem2 = _interopRequireDefault(_additem);
-
-	var _address = __webpack_require__(105);
-
-	var actions = _interopRequireWildcard(_address);
-
-	__webpack_require__(143);
-
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var ListContainer = _react2.default.createClass({
-		displayName: 'ListContainer',
-		componentWillMount: function componentWillMount() {
-			var _props = this.props,
-			    list = _props.list,
-			    init = _props.init;
-
-			if (list.length == 0) {
-				init();
-			}
-		},
-		render: function render() {
-			var _props2 = this.props,
-			    list = _props2.list,
-			    _handleChoose = _props2.handleChoose;
-
-			return _react2.default.createElement(
-				_list2.default,
-				null,
-				list.map(function (item, index) {
-					return _react2.default.createElement(_additem2.default, {
-						key: index,
-						elem: item,
-						handleChoose: function handleChoose() {
-							_handleChoose(item.id);
-						}
-					});
-				})
-			);
-		}
-	});
-
-	var mapStateToProps = function mapStateToProps(state) {
-		return {
-			list: state.address.list
-		};
-	};
-
-	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-		return {
-			init: function init() {
-				dispatch(actions.getMyAddresses());
-			},
-			handleChoose: function handleChoose(aid) {
-				dispatch(actions.setDefaultAddress(aid));
-			}
-		};
-	};
-
-	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(ListContainer);
-
-/***/ },
-/* 142 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactRedux = __webpack_require__(69);
-
-	var _add = __webpack_require__(112);
-
-	var _add2 = _interopRequireDefault(_add);
-
-	var _address2 = __webpack_require__(105);
-
-	var actions = _interopRequireWildcard(_address2);
-
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var _name = void 0,
-	    _tel = void 0,
-	    _address = void 0;
-
-	var AddContainer = function AddContainer(_ref) {
-		var _handleAddAddress = _ref.handleAddAddress,
-		    list = _ref.list,
-		    init = _ref.init;
-
-		if (list.length == 0) {
-			init();
-		}
-		return _react2.default.createElement(_add2.default, {
-			name: function name(node) {
-				_name = node;
-			},
-			tel: function tel(node) {
-				_tel = node;
-			},
-			address: function address(node) {
-				_address = node;
-			},
-			handleAddAddress: function handleAddAddress() {
-				_handleAddAddress();
-			}
-		});
-	};
-
-	var mapStateToProps = function mapStateToProps(state) {
-		return {
-			list: state.address.list
-		};
-	};
-
-	var mapDispatchTpProps = function mapDispatchTpProps(dispatch) {
-		return {
-			init: function init() {
-				dispatch(actions.getMyAddresses());
-			},
-			handleAddAddress: function handleAddAddress() {
-				dispatch(actions.addAddress(_name.value, _tel.value, _address.value));
-			}
-		};
-	};
-
-	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchTpProps)(AddContainer);
-
-/***/ },
 /* 143 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 144 */,
-/* 145 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _weui = __webpack_require__(107);
-
-	var _footer = __webpack_require__(118);
-
-	var _footer2 = _interopRequireDefault(_footer);
-
-	var _reactRouter = __webpack_require__(4);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var Cart = function Cart(_ref) {
-		var children = _ref.children,
-		    carts = _ref.carts,
-		    chooseAll = _ref.chooseAll,
-		    settle = _ref.settle;
-		return _react2.default.createElement(
-			'div',
-			{ className: 'cart-wrap' },
-			_react2.default.createElement(_weui.CommonHeader, {
-				value: '购物车(' + carts.chooseNum + ')',
-				back: true,
-				pathname: '/' }),
-			_react2.default.createElement(
-				'div',
-				{ className: 'cartbuy' },
-				children,
-				_react2.default.createElement(_footer2.default, {
-					carts: carts,
-					chooseAll: chooseAll,
-					settle: settle
-				})
-			)
-		);
-	};
-
-	exports.default = Cart;
 
 /***/ }
 /******/ ]);

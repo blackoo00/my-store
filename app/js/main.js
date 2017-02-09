@@ -3,13 +3,10 @@ import { render } from 'react-dom';
 import { Router, Route, hashHistory , IndexRoute} from 'react-router';
 import Example from './components/Example';
 import StoreApp from './components/StoreApp';
-// import Pdetail from './components/pdetail/index';
 import Pdetail from './containers/pdetailS/PdetailsController';
 import confirmOrderWap from './containers/confirmOrder/SettleController';
-// import AddressList from './components/address/list';
 import AddressList from './containers/address/ListController';
 import AddAddress from './containers/address/AddController';
-// import AddAddress from './components/address/add';
 import Wxpay from './components/wxpay/wxpay';
 import Search from './components/search/search';
 import Cart from './containers/cart/CartContainer';
@@ -22,11 +19,9 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import createLogger from 'redux-logger'
 import reducer from './reducers/index';
-import { getAllProducts } from './actions/carts'
+import { getAllProducts } from './actions/carts';
 
 import '../css/style.scss';
-
-// const STORESERVER="http://127.0.0.1/my-store/index.php/Home/Store/",ADDRESSSERVER="http://127.0.0.1/my-store/index.php/Home/Address/",MYSERVER="http://127.0.0.1/my-store/index.php/Home/My/";
 
  class Container extends React.Component {
 

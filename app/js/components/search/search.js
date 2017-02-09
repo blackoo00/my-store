@@ -32,7 +32,7 @@ export default React.createClass({
 		  	loading = true;
 		  	setTimeout(function(){
 		  		$.ajax({
-		  			url:"http://127.0.0.1/my-store/index.php/Home/Store/scrollLoadPro",
+		  			url:STORESERVER + "scrollLoadPro",
 		  			data:{count:pro_quantity,type:'normal'},
 		  			async:false,
 		  			success:function(data){

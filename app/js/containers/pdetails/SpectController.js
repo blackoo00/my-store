@@ -4,29 +4,29 @@ import {connect} from 'react-redux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import * as actions from '../../actions/pdetails';
 
-const SpectContainer = ({pdetails,handleHidePra,chooseAttr,addNumber,delNumber,clickSubmit}) => (
+const SpectContainer = ({...rest}) => (
 	<ReactCSSTransitionGroup
 	  component="div"
       transitionName="mui"
-      className={pdetails.paranimate}
+      className={rest.pdetails.paranimate}
       transitionEnterTimeout={300}
       transitionLeaveTimeout={300}
     >
 	    <Paramenter 
-	    	pdetails={pdetails} 
-	    	clickSubmit={()=>{clickSubmit(pdetails.buy,pdetails.pro.id,pdetails.chooseDid,pdetails.number,pdetails.dprice)}} 
-	    	handleHidePra={handleHidePra} 
-	    	addNumber={addNumber} 
-	    	delNumber={delNumber}
+	    	pdetails={rest.pdetails} 
+	    	clickSubmit={()=>{rest.clickSubmit(rest.pdetails.buy,rest.pdetails.pro.id,rest.pdetails.chooseDid,rest.pdetails.number,rest.pdetails.dprice)}} 
+	    	handleHidePra={rest.handleHidePra} 
+	    	addNumber={rest.addNumber} 
+	    	delNumber={rest.delNumber}
 	    >
-	    	{pdetails.spec.map((item,index)=>{
+	    	{rest.pdetails.spec.map((item,index)=>{
 	    		if(item.attr.length != 0){
 			    	return(
 			      		<li key={item.id} id="J_SkuGroup_-1" className="J_SkuGroup mui-sku-group">
 			      			<h2>{item.value}</h2>
 			      				<div className="items">
 			      					{item.attr.map((item2,index2) =>(
-			      						<label className={pdetails.chooseId[index] == index2 ? "checked" : ""} onClick={()=>{chooseAttr(index,index2)}} key={item2.id}>{item2.value}</label>
+			      						<label className={rest.pdetails.chooseId[index] == index2 ? "checked" : ""} onClick={()=>{rest.chooseAttr(index,index2)}} key={item2.id}>{item2.value}</label>
 			      					))}
 			      				</div>
 			      		</li>

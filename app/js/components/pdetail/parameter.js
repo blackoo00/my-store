@@ -12,8 +12,7 @@ const Paramenter = ({pdetails,children,handleHidePra,addNumber,delNumber,clickSu
 				</div>
 				<div className="stock-control">
 					<span className="stock">
-						<label className="label">库存</label>
-						{pdetails.pro.number}件
+						<label className="label">库存:{pdetails.pro.number}件</label>
 					</span>
 					<span className="limitTip"></span>
 				</div>

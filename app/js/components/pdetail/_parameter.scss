@@ -1,5 +1,5 @@
 #product-parameter-wrapper{
-	font-size: .3rem;
+	font-size: .6rem;
 	h2{
 		color: #666;
 		margin-bottom: .5em;
@@ -12,6 +12,10 @@
 	    right: 0;
 	    height: 15.3rem;
 	    overflow-y: auto;
+	    #s-decision{
+	    	height: 13rem;
+	    	overflow: auto;
+	    }
 	    .sku-control{
 	    	border-bottom: 1px solid #e5e5e5;
 	    	-webkit-tap-highlight-color: transparent;
@@ -22,7 +26,8 @@
 	    		li{
 	    			display: list-item;
 	    			text-align: -webkit-match-parent;
-	    			padding: 1em 0 .5em;	 
+	    			padding: 1em 0 .5em;
+	    			font-size: 0.6rem;	 
 	    		}
 	    		label{
 	    			display: inline-block;
@@ -87,6 +92,7 @@
 			.sku-dtips {
 			    margin-right: .38rem;
 			    display: -webkit-box;
+			    font-size:0.71rem;
 			    span{
 			    	padding-left: 5px;
 			    }
@@ -167,7 +173,7 @@
 	}
 	.option {
 		position: absolute;
-		bottom: 5.7rem;
+		bottom: 5rem;
 		left: 0;
 	    border-top: 1px solid #e5e5e5;
 	    text-align: center;

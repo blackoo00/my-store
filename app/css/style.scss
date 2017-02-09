@@ -1,4 +1,7 @@
 @import "_iconfont";
+@import './weui.min.css';
+@import './jquery-weui.min.css';
+/*@import './swiper-3.4.0.min.css';*/
 html,body{
 	background-color: #eee;
 	height: 100%;
@@ -24,6 +27,9 @@ a{
 	width: 100px;
 	background-color: red;
 }
+*{
+	-webkit-tap-highlight-color: transparent;
+}
 /**{
 	color: rgb(102, 102, 102);
 }*/
@@ -37,7 +43,6 @@ a{
 	background-color: #fff;
 }
 .bottom_bar{
-	position: fixed;
 	left: 0;
 	bottom: 0;
 	z-index: 1;
@@ -103,6 +108,7 @@ a{
 }
 .pro-detail-wrapper{
 	.pro-detail{
+		overflow: auto;
 		.pro-name{
 			overflow: hidden;
 		    text-overflow: ellipsis;

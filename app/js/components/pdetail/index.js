@@ -2,12 +2,12 @@ import React from 'react';
 import SwiperDom from '../../components/common/SwiperDom';
 import Spec from '../../containers/pdetails/SpectController';
 
-const Pdetail = ({pdetails,handleCollection,addToCart,buyNow}) => (
+const Pdetail = ({pdetails,handleCollection,addToCart,buyNow,test}) => (
 	<div className="pro-detail-wrapper">
-		<div className="pro-banner">
-			<SwiperDom BanList = {pdetails.ban}/>
-		</div>
 		<div className="pro-detail">
+			<div className="pro-banner">
+				<SwiperDom BanList = {pdetails.ban}/>
+			</div>
 			<div className="page-module-item">
 				<div className="pro-name">{pdetails.pro.name}</div>
 				<div className="pro-price">￥{pdetails.pro.price}</div>
@@ -24,7 +24,7 @@ const Pdetail = ({pdetails,handleCollection,addToCart,buyNow}) => (
 			<div className="sys_button cart" onClick={addToCart}>加入购物车</div>
 			<div className="sys_button buy" onClick={buyNow}>立即购买</div>
 		</div>
-		<Spec/>
+		{pdetails.paranimate == "show" ? <Spec/> : ''}
 	</div>
 )
 
