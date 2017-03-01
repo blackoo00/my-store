@@ -87,6 +87,7 @@ const carts = (state = initialState, action) => {
                 ])),
               totalFee:totalFee(state.products),
               totalNum:totalNum(state.products),
+              chooseNum:chooseNum(state.products)
             }
         case types.CHOOSE_ALL://全选
             let choose_id = [];

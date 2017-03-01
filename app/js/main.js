@@ -1,73 +1,16 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Router, Route, hashHistory , IndexRoute} from 'react-router';
-import Example from './components/Example';
-import StoreApp from './components/StoreApp';
-import Pdetail from './containers/pdetailS/PdetailsController';
-import confirmOrderWap from './containers/confirmOrder/SettleController';
-import AddressList from './containers/address/ListController';
-import AddAddress from './containers/address/AddController';
-import Wxpay from './components/wxpay/wxpay';
-import Search from './components/search/search';
-import Cart from './containers/cart/CartContainer';
-import My from './components/my/my';
-import MyQrcode from './components/my/myqrcode';
-import FastClick from 'fastclick';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import { useScroll } from 'react-router-scroll';
 import { createStore,applyMiddleware } from 'redux'
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import createLogger from 'redux-logger'
 import reducer from './reducers/index';
 import { getAllProducts } from './actions/carts';
-
+import Routes from './routes';
 import '../css/style.scss';
+import {scrollPosition} from './actions/scroll';
 
- class Container extends React.Component {
-
-    constructor(props) {
-        super(props)
-        this.state = {
-            showContent: true,
-        }
-    }
-    componentWillEnter(){
-        // let options = render.findDOMNode(this.refs.options)
-        // options.style.display = 'block'
-        // setTimeout(() => {
-        //     this.setState({ filter: '', active: true })
-        // }, 0)
-    }
- 
-    componentWillMount() {
-        // document.body.style.margin = "0px";
-        // // 这是防止页面被拖拽
-        // document.body.addEventListener('touchmove', (ev) => {
-        //     ev.preventDefault();
-        // });
-    }
- 
-    render() {
-        const { children } = this.props;
-        let content = this.state.showContent ? children : false;
-        return (
-            <ReactCSSTransitionGroup
-              component="div"
-              transitionName="page"
-              // transitionAppear={true}
-              // transitionAppearTimeout={500}
-              transitionEnterTimeout={300}
-              transitionLeaveTimeout={300}
-              >
-                <div key={this.props.location.pathname} className="page">
-                    {
-                        content
-                    }
-                </div>
-            </ReactCSSTransitionGroup>
-        );
-    }
-}
 
 const middleware = [ thunk ];
 
@@ -79,23 +22,26 @@ const store = createStore(
   applyMiddleware(thunk,createLogger())
 )
 
+const saveScroll = (hash) => {
+  let scrollY = document.body.scrollTop;
+  store.dispatch(scrollPosition(0,scrollY,hash));
+}
+
+const getScroll = (hash) => {
+  let scroll = store.getState().scroll;
+  if(scroll.length !=0 && $.type(scroll[hash]) != 'undefined'){
+    window.scrollTo(0,scroll[hash]['scrollY'])
+  }else{
+    //加延迟为了滚动位置显示
+    setTimeout(()=>{window.scrollTo(0,0)},200);
+  }
+}
 render(
   <Provider store={store}>
-    <Router history={hashHistory}>
-      <Route path="/" component={Container}>
-        <IndexRoute component={StoreApp} />
-        <Route path="example" component={Example}/>
-        <Route path="pdetail" component={Pdetail}/>
-        <Route path="confirmOrderWap" component={confirmOrderWap}/>
-        <Route path="AddressList" component={AddressList}/>
-        <Route path="AddAddress" component={AddAddress}/>
-        <Route path="Wxpay" component={Wxpay}/>
-        <Route path="Search" component={Search}/>
-        <Route path="Cart" component={Cart}/>
-        <Route path="My" component={My}/>
-        <Route path="MyQrcode" component={MyQrcode}/>
-      </Route>
-    </Router>
+    <Routes 
+      saveScroll = {saveScroll}
+      getScroll = {getScroll}
+    />
   </Provider>,
   document.getElementById('wrapper')
 )

@@ -1,23 +1,16 @@
 var React = require('react');
+import styles from './style.css';
+import CSSModules from 'react-css-modules';
 
-var Cat = React.createClass({
-	render:function(){
-		var cat = [];
-		//分类信息
-		this.props.CatList.map(function(item,index){
-			cat.push(
-				<div key={index} className="index-cat-item">
-					<img src={item.icon}/>
-					<p className="text-center">{item.name}</p>
-				</div>
-			)
-		});
-		return(
-			<div className="flex-box index-cat-wrap">
-				{cat}
+const Cat = ({CatList}) => (
+	<div styleName="catWrap">
+		{CatList.map(item => (
+			<div key={item.id} styleName="catItem">
+				<img src={item.icon}/>
+				<p styleName="catName">{item.name}</p>
 			</div>
-		);
-	}
-});
+		))}
+	</div>
+)
 
-module.exports = Cat;
+export default CSSModules(Cat, styles)

@@ -1,0 +1,15 @@
+/* 首页颜色设置 */
+@value COLOR_INDEX_WRAP: rgb(238, 238, 238);  /* 首页背景 */
+@value COLOR_INDEX_ITEM: #fff;			      /* 首页栏目背景 */
+@value COLOR_INDEX_PRO_NAME: #000;			  /* 首页产品名 */
+@value COLOR_INDEX_PRO_PRICE: rgb(255, 80, 0; /* 首页产品价格 */
+
+/* 购物车颜色设置 */
+@value COLOR_CART_CHECKBOX: #b3b3b3; /* 购物车checkbox */
+@value COLOR_CART_CHECKBOX_CHECKED: #f50; /* 购物车checkbox选中之后 */
+@value COLOR_CART_SKU: #999; /* 购物车规格 */
+@value COLOR_CART_PRICE: #f60; /* 购物车商品价格 */
+@value COLOR_CART_ORIGIN_PRICE: #999; /* 购物车商品原价 */
+@value COLOR_CART_DEL: #fff; /* 购物车删除按钮字体 */
+@value COLOR_CART_TOTAL_FEE: #f60; /* 购物车合计价格 */
+@value COLOR_CART_SETTLE_BTN: #fff; /* 购物车合计价格 */

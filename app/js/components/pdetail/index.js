@@ -2,7 +2,7 @@ import React from 'react';
 import SwiperDom from '../../components/common/SwiperDom';
 import Spec from '../../containers/pdetails/SpectController';
 
-const Pdetail = ({pdetails,handleCollection,addToCart,buyNow,test}) => (
+const Pdetail = ({pdetails,handleCollection,addToCart,buyNow}) => (
 	<div className="pro-detail-wrapper">
 		<div className="pro-detail">
 			<div className="pro-banner">

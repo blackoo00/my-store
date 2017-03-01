@@ -1,3 +1,6 @@
+const STORESERVER="http://127.0.0.1/my-store/index.php/Home/Store/",
+ADDRESSSERVER="http://127.0.0.1/my-store/index.php/Home/Address/",
+MYSERVER="http://127.0.0.1/my-store/index.php/Home/My/";
 const initialArr = {
 	url:'',
 	data:{},
@@ -25,7 +28,36 @@ const ajaxData = (arr = initialArr,callback = function(){}) => {
 
 const TIMEOUT = 100
 
+
 export default {
+	//首页初始化
+	indexInit:(cb) => {
+		let data = {
+			url:'index',
+			async:false
+		}
+		let _data = ajaxData(data);
+		cb(_data);
+	},
+	//搜索页滚动加载更多
+	getMorePro:({cb,count,load_num}) => {
+		let data = {
+			url:'scrollLoadPro',
+			async:false,
+			data:{count:count,load_num:load_num}
+		}
+		console.log(data);
+		let _pros = ajaxData(data)
+		cb(_pros);
+	},
+	//获取商品列表
+	getProList:(cb,timeout) => {
+		let _prolist = ajaxData({
+			url:'proList',
+			async:false
+		})
+		cb(_prolist);
+	},
 	//添加地址
 	addAddress:(cb,name,tel,address,callback) => {
 		let _address = ajaxData({

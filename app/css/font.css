@@ -1,0 +1,15 @@
+/* 首页产品 */
+@value FONT_INDEX_PRO_NAME: 0.5rem; /* 首页产品名 */
+
+/* 购物车 */
+@value FONT_CART_EDIT: 0.6rem; /* 购物车编辑字体 */
+@value FONT_CART_CHECKBOX: 1rem; /* 购物车checkbox大小 */
+@value FONT_CART_PRO_NAME: 0.6rem; /* 购物车商品名 */
+@value FONT_CART_PRO_SKU: 0.65rem; /* 购物车商品规格 */
+@value FONT_CART_PRO_ORIGINPRICE: 0.5rem; /* 购物车商品原始价格 */
+@value FONT_CART_PRO_QUANTITY: 0.7rem; /* 购物车商品购买数量 */
+@value FONT_CART_EDIT_QUANTITY: 0.7rem; /* 购物车商品编辑数量 */
+@value FONT_CART_DEL: 0.5rem; /* 购物车商品删除按钮 */
+@value FONT_CART_MAIL_PRICE: 0.6rem; /* 购物车运费价格 */
+@value FONT_CART_TOTAL_FEE: 0.7rem; /* 购物车合计价格 */
+@value FONT_CART_SETTLE_BTN: 0.8rem; /* 购物车结算按钮 */

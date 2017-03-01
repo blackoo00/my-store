@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import CartItem from '../../components/cart/cartItem';
 import * as cartsActions from '../../actions/carts';
 import {hashHistory} from 'react-router';
-import '../../components/cart/_cart.scss';
 import Cart from '../../components/cart/index';
 
 
@@ -30,7 +29,7 @@ const CartContainer = ({...rest}) =>
 						addCartProductById = {() => rest.addCartProductById(product.id)}
 						delCartProductById = {() => rest.delCartProductById(product.id,product.number)}
 						removeCartProById = {() => rest.removeCartProById(product.id)}
-						carts = {rest.carts}
+						chooseId = {rest.carts.chooseId}
 					/>
 				)
 			}

@@ -56,77 +56,79 @@
 
 	var _reactRouter = __webpack_require__(4);
 
-	var _Example = __webpack_require__(60);
+	var _reactRouterScroll = __webpack_require__(60);
+
+	var _Example = __webpack_require__(73);
 
 	var _Example2 = _interopRequireDefault(_Example);
 
-	var _StoreApp = __webpack_require__(61);
+	var _StoreApp = __webpack_require__(74);
 
 	var _StoreApp2 = _interopRequireDefault(_StoreApp);
 
-	var _PdetailsController = __webpack_require__(68);
+	var _PdetailsController = __webpack_require__(81);
 
 	var _PdetailsController2 = _interopRequireDefault(_PdetailsController);
 
-	var _SettleController = __webpack_require__(104);
+	var _SettleController = __webpack_require__(117);
 
 	var _SettleController2 = _interopRequireDefault(_SettleController);
 
-	var _ListController = __webpack_require__(111);
+	var _ListController = __webpack_require__(124);
 
 	var _ListController2 = _interopRequireDefault(_ListController);
 
-	var _AddController = __webpack_require__(116);
+	var _AddController = __webpack_require__(129);
 
 	var _AddController2 = _interopRequireDefault(_AddController);
 
-	var _wxpay = __webpack_require__(118);
+	var _wxpay = __webpack_require__(131);
 
 	var _wxpay2 = _interopRequireDefault(_wxpay);
 
-	var _search = __webpack_require__(119);
+	var _SearchController = __webpack_require__(132);
 
-	var _search2 = _interopRequireDefault(_search);
+	var _SearchController2 = _interopRequireDefault(_SearchController);
 
-	var _CartContainer = __webpack_require__(121);
+	var _CartContainer = __webpack_require__(150);
 
 	var _CartContainer2 = _interopRequireDefault(_CartContainer);
 
-	var _my = __webpack_require__(127);
+	var _my = __webpack_require__(156);
 
 	var _my2 = _interopRequireDefault(_my);
 
-	var _myqrcode = __webpack_require__(130);
+	var _myqrcode = __webpack_require__(159);
 
 	var _myqrcode2 = _interopRequireDefault(_myqrcode);
 
-	var _fastclick = __webpack_require__(120);
+	var _fastclick = __webpack_require__(160);
 
 	var _fastclick2 = _interopRequireDefault(_fastclick);
 
-	var _reactAddonsCssTransitionGroup = __webpack_require__(81);
+	var _reactAddonsCssTransitionGroup = __webpack_require__(94);
 
 	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 
-	var _redux = __webpack_require__(131);
+	var _redux = __webpack_require__(161);
 
-	var _reactRedux = __webpack_require__(69);
+	var _reactRedux = __webpack_require__(82);
 
-	var _reduxThunk = __webpack_require__(132);
+	var _reduxThunk = __webpack_require__(162);
 
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
-	var _reduxLogger = __webpack_require__(133);
+	var _reduxLogger = __webpack_require__(163);
 
 	var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
 
-	var _index = __webpack_require__(139);
+	var _index = __webpack_require__(169);
 
 	var _index2 = _interopRequireDefault(_index);
 
-	var _carts = __webpack_require__(73);
+	var _carts = __webpack_require__(86);
 
-	__webpack_require__(143);
+	__webpack_require__(174);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -203,12 +205,15 @@
 	}
 	var store = (0, _redux.createStore)(_index2.default, (0, _redux.applyMiddleware)(_reduxThunk2.default, (0, _reduxLogger2.default)()));
 
+	// onUpdate={() => window.scrollTo(0, 0)}//放在Router标签中
 	(0, _reactDom.render)(_react2.default.createElement(
 	    _reactRedux.Provider,
 	    { store: store },
 	    _react2.default.createElement(
 	        _reactRouter.Router,
-	        { history: _reactRouter.hashHistory },
+	        { history: _reactRouter.hashHistory, onUpdate: function onUpdate() {
+	                return window.scrollTo(0, 0);
+	            } },
 	        _react2.default.createElement(
 	            _reactRouter.Route,
 	            { path: '/', component: Container },
@@ -219,7 +224,7 @@
 	            _react2.default.createElement(_reactRouter.Route, { path: 'AddressList', component: _ListController2.default }),
 	            _react2.default.createElement(_reactRouter.Route, { path: 'AddAddress', component: _AddController2.default }),
 	            _react2.default.createElement(_reactRouter.Route, { path: 'Wxpay', component: _wxpay2.default }),
-	            _react2.default.createElement(_reactRouter.Route, { path: 'Search', component: _search2.default }),
+	            _react2.default.createElement(_reactRouter.Route, { path: 'Search', component: _SearchController2.default }),
 	            _react2.default.createElement(_reactRouter.Route, { path: 'Cart', component: _CartContainer2.default }),
 	            _react2.default.createElement(_reactRouter.Route, { path: 'My', component: _my2.default }),
 	            _react2.default.createElement(_reactRouter.Route, { path: 'MyQrcode', component: _myqrcode2.default })
@@ -5119,6 +5124,792 @@
 /* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
+	exports.__esModule = true;
+	exports.useScroll = exports.ScrollContainer = undefined;
+
+	var _ScrollContainer2 = __webpack_require__(61);
+
+	var _ScrollContainer3 = _interopRequireDefault(_ScrollContainer2);
+
+	var _useScroll2 = __webpack_require__(62);
+
+	var _useScroll3 = _interopRequireDefault(_useScroll2);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.ScrollContainer = _ScrollContainer3.default;
+	exports.useScroll = _useScroll3.default;
+
+/***/ },
+/* 61 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(3);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	var _warning = __webpack_require__(12);
+
+	var _warning2 = _interopRequireDefault(_warning);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var propTypes = {
+	  scrollKey: _react2.default.PropTypes.string.isRequired,
+	  shouldUpdateScroll: _react2.default.PropTypes.func,
+	  children: _react2.default.PropTypes.element.isRequired
+	};
+
+	var contextTypes = {
+	  // This is necessary when rendering on the client. However, when rendering on
+	  // the server, this container will do nothing, and thus does not require the
+	  // scroll behavior context.
+	  scrollBehavior: _react2.default.PropTypes.object
+	};
+
+	var ScrollContainer = function (_React$Component) {
+	  _inherits(ScrollContainer, _React$Component);
+
+	  function ScrollContainer(props, context) {
+	    _classCallCheck(this, ScrollContainer);
+
+	    // We don't re-register if the scroll key changes, so make sure we
+	    // unregister with the initial scroll key just in case the user changes it.
+	    var _this = _possibleConstructorReturn(this, _React$Component.call(this, props, context));
+
+	    _this.shouldUpdateScroll = function (prevRouterProps, routerProps) {
+	      var shouldUpdateScroll = _this.props.shouldUpdateScroll;
+
+	      if (!shouldUpdateScroll) {
+	        return true;
+	      }
+
+	      // Hack to allow accessing scrollBehavior._stateStorage.
+	      return shouldUpdateScroll.call(_this.context.scrollBehavior.scrollBehavior, prevRouterProps, routerProps);
+	    };
+
+	    _this.scrollKey = props.scrollKey;
+	    return _this;
+	  }
+
+	  ScrollContainer.prototype.componentDidMount = function componentDidMount() {
+	    this.context.scrollBehavior.registerElement(this.props.scrollKey, _reactDom2.default.findDOMNode(this), // eslint-disable-line react/no-find-dom-node
+	    this.shouldUpdateScroll);
+
+	    // Only keep around the current DOM node in development, as this is only
+	    // for emitting the appropriate warning.
+	    if (false) {
+	      this.domNode = _reactDom2.default.findDOMNode(this); // eslint-disable-line react/no-find-dom-node
+	    }
+	  };
+
+	  ScrollContainer.prototype.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
+	     false ? (0, _warning2.default)(nextProps.scrollKey === this.props.scrollKey, '<ScrollContainer> does not support changing scrollKey.') : void 0;
+	  };
+
+	  ScrollContainer.prototype.componentDidUpdate = function componentDidUpdate() {
+	    if (false) {
+	      var prevDomNode = this.domNode;
+	      this.domNode = _reactDom2.default.findDOMNode(this); // eslint-disable-line react/no-find-dom-node
+
+	      process.env.NODE_ENV !== 'production' ? (0, _warning2.default)(this.domNode === prevDomNode, '<ScrollContainer> does not support changing DOM node.') : void 0;
+	    }
+	  };
+
+	  ScrollContainer.prototype.componentWillUnmount = function componentWillUnmount() {
+	    this.context.scrollBehavior.unregisterElement(this.scrollKey);
+	  };
+
+	  ScrollContainer.prototype.render = function render() {
+	    return this.props.children;
+	  };
+
+	  return ScrollContainer;
+	}(_react2.default.Component);
+
+	ScrollContainer.propTypes = propTypes;
+	ScrollContainer.contextTypes = contextTypes;
+
+	exports.default = ScrollContainer;
+	module.exports = exports['default'];
+
+/***/ },
+/* 62 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	exports.default = useScroll;
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _ScrollBehaviorContext = __webpack_require__(63);
+
+	var _ScrollBehaviorContext2 = _interopRequireDefault(_ScrollBehaviorContext);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function useScroll(shouldUpdateScroll) {
+	  return {
+	    renderRouterContext: function renderRouterContext(child, props) {
+	      return _react2.default.createElement(
+	        _ScrollBehaviorContext2.default,
+	        {
+	          shouldUpdateScroll: shouldUpdateScroll,
+	          routerProps: props
+	        },
+	        child
+	      );
+	    }
+	  };
+	}
+	module.exports = exports['default'];
+
+/***/ },
+/* 63 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _scrollBehavior = __webpack_require__(64);
+
+	var _scrollBehavior2 = _interopRequireDefault(_scrollBehavior);
+
+	var _StateStorage = __webpack_require__(72);
+
+	var _StateStorage2 = _interopRequireDefault(_StateStorage);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var propTypes = {
+	  shouldUpdateScroll: _react2.default.PropTypes.func,
+	  routerProps: _react2.default.PropTypes.object.isRequired,
+	  children: _react2.default.PropTypes.element.isRequired
+	};
+
+	var childContextTypes = {
+	  scrollBehavior: _react2.default.PropTypes.object.isRequired
+	};
+
+	var ScrollBehaviorContext = function (_React$Component) {
+	  _inherits(ScrollBehaviorContext, _React$Component);
+
+	  function ScrollBehaviorContext(props, context) {
+	    _classCallCheck(this, ScrollBehaviorContext);
+
+	    var _this = _possibleConstructorReturn(this, _React$Component.call(this, props, context));
+
+	    _initialiseProps.call(_this);
+
+	    var routerProps = props.routerProps;
+	    var router = routerProps.router;
+
+
+	    _this.scrollBehavior = new _scrollBehavior2.default({
+	      addTransitionHook: router.listenBefore,
+	      stateStorage: new _StateStorage2.default(router),
+	      getCurrentLocation: function getCurrentLocation() {
+	        return _this.props.routerProps.location;
+	      },
+	      shouldUpdateScroll: _this.shouldUpdateScroll
+	    });
+
+	    _this.scrollBehavior.updateScroll(null, routerProps);
+	    return _this;
+	  }
+
+	  ScrollBehaviorContext.prototype.getChildContext = function getChildContext() {
+	    return {
+	      scrollBehavior: this
+	    };
+	  };
+
+	  ScrollBehaviorContext.prototype.componentDidUpdate = function componentDidUpdate(prevProps) {
+	    var routerProps = this.props.routerProps;
+
+	    var prevRouterProps = prevProps.routerProps;
+
+	    if (routerProps.location === prevRouterProps.location) {
+	      return;
+	    }
+
+	    this.scrollBehavior.updateScroll(prevRouterProps, routerProps);
+	  };
+
+	  ScrollBehaviorContext.prototype.componentWillUnmount = function componentWillUnmount() {
+	    this.scrollBehavior.stop();
+	  };
+
+	  ScrollBehaviorContext.prototype.render = function render() {
+	    return this.props.children;
+	  };
+
+	  return ScrollBehaviorContext;
+	}(_react2.default.Component);
+
+	var _initialiseProps = function _initialiseProps() {
+	  var _this2 = this;
+
+	  this.shouldUpdateScroll = function (prevRouterProps, routerProps) {
+	    var shouldUpdateScroll = _this2.props.shouldUpdateScroll;
+
+	    if (!shouldUpdateScroll) {
+	      return true;
+	    }
+
+	    // Hack to allow accessing scrollBehavior._stateStorage.
+	    return shouldUpdateScroll.call(_this2.scrollBehavior, prevRouterProps, routerProps);
+	  };
+
+	  this.registerElement = function (key, element, shouldUpdateScroll) {
+	    _this2.scrollBehavior.registerElement(key, element, shouldUpdateScroll, _this2.props.routerProps);
+	  };
+
+	  this.unregisterElement = function (key) {
+	    _this2.scrollBehavior.unregisterElement(key);
+	  };
+	};
+
+	ScrollBehaviorContext.propTypes = propTypes;
+	ScrollBehaviorContext.childContextTypes = childContextTypes;
+
+	exports.default = ScrollBehaviorContext;
+	module.exports = exports['default'];
+
+/***/ },
+/* 64 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+
+	var _off = __webpack_require__(65);
+
+	var _off2 = _interopRequireDefault(_off);
+
+	var _on = __webpack_require__(67);
+
+	var _on2 = _interopRequireDefault(_on);
+
+	var _scrollLeft = __webpack_require__(68);
+
+	var _scrollLeft2 = _interopRequireDefault(_scrollLeft);
+
+	var _scrollTop = __webpack_require__(70);
+
+	var _scrollTop2 = _interopRequireDefault(_scrollTop);
+
+	var _requestAnimationFrame = __webpack_require__(71);
+
+	var _requestAnimationFrame2 = _interopRequireDefault(_requestAnimationFrame);
+
+	var _invariant = __webpack_require__(8);
+
+	var _invariant2 = _interopRequireDefault(_invariant);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } /* eslint-disable no-underscore-dangle */
+
+	// Try at most this many times to scroll, to avoid getting stuck.
+	var MAX_SCROLL_ATTEMPTS = 2;
+
+	var ScrollBehavior = function () {
+	  function ScrollBehavior(_ref) {
+	    var _this = this;
+
+	    var addTransitionHook = _ref.addTransitionHook,
+	        stateStorage = _ref.stateStorage,
+	        getCurrentLocation = _ref.getCurrentLocation,
+	        shouldUpdateScroll = _ref.shouldUpdateScroll;
+
+	    _classCallCheck(this, ScrollBehavior);
+
+	    this._onWindowScroll = function () {
+	      // It's possible that this scroll operation was triggered by what will be a
+	      // `POP` transition. Instead of updating the saved location immediately, we
+	      // have to enqueue the update, then potentially cancel it if we observe a
+	      // location update.
+	      if (_this._saveWindowPositionHandle === null) {
+	        _this._saveWindowPositionHandle = (0, _requestAnimationFrame2.default)(_this._saveWindowPosition);
+	      }
+
+	      if (_this._windowScrollTarget) {
+	        var _windowScrollTarget = _this._windowScrollTarget,
+	            xTarget = _windowScrollTarget[0],
+	            yTarget = _windowScrollTarget[1];
+
+	        var x = (0, _scrollLeft2.default)(window);
+	        var y = (0, _scrollTop2.default)(window);
+
+	        if (x === xTarget && y === yTarget) {
+	          _this._windowScrollTarget = null;
+	          _this._cancelCheckWindowScroll();
+	        }
+	      }
+	    };
+
+	    this._saveWindowPosition = function () {
+	      _this._saveWindowPositionHandle = null;
+
+	      _this._savePosition(null, window);
+	    };
+
+	    this._checkWindowScrollPosition = function () {
+	      _this._checkWindowScrollHandle = null;
+
+	      // We can only get here if scrollTarget is set. Every code path that unsets
+	      // scroll target also cancels the handle to avoid calling this handler.
+	      // Still, check anyway just in case.
+	      /* istanbul ignore if: paranoid guard */
+	      if (!_this._windowScrollTarget) {
+	        return;
+	      }
+
+	      var _windowScrollTarget2 = _this._windowScrollTarget,
+	          x = _windowScrollTarget2[0],
+	          y = _windowScrollTarget2[1];
+
+	      window.scrollTo(x, y);
+
+	      ++_this._numWindowScrollAttempts;
+
+	      /* istanbul ignore if: paranoid guard */
+	      if (_this._numWindowScrollAttempts >= MAX_SCROLL_ATTEMPTS) {
+	        _this._windowScrollTarget = null;
+	        return;
+	      }
+
+	      _this._checkWindowScrollHandle = (0, _requestAnimationFrame2.default)(_this._checkWindowScrollPosition);
+	    };
+
+	    this._stateStorage = stateStorage;
+	    this._getCurrentLocation = getCurrentLocation;
+	    this._shouldUpdateScroll = shouldUpdateScroll;
+
+	    // This helps avoid some jankiness in fighting against the browser's
+	    // default scroll behavior on `POP` transitions.
+	    /* istanbul ignore if: not supported by any browsers on Travis */
+	    if ('scrollRestoration' in window.history) {
+	      this._oldScrollRestoration = window.history.scrollRestoration;
+	      window.history.scrollRestoration = 'manual';
+	    } else {
+	      this._oldScrollRestoration = null;
+	    }
+
+	    this._saveWindowPositionHandle = null;
+	    this._checkWindowScrollHandle = null;
+	    this._windowScrollTarget = null;
+	    this._numWindowScrollAttempts = 0;
+
+	    this._scrollElements = {};
+
+	    // We have to listen to each window scroll update rather than to just
+	    // location updates, because some browsers will update scroll position
+	    // before emitting the location change.
+	    (0, _on2.default)(window, 'scroll', this._onWindowScroll);
+
+	    this._removeTransitionHook = addTransitionHook(function () {
+	      if (_this._saveWindowPositionHandle !== null) {
+	        _requestAnimationFrame2.default.cancel(_this._saveWindowPositionHandle);
+	        _this._saveWindowPositionHandle = null;
+	      }
+
+	      // It's fine to save element scroll positions here, though; the browser
+	      // won't modify them.
+	      Object.keys(_this._scrollElements).forEach(function (key) {
+	        _this._saveElementPosition(key);
+	      });
+	    });
+	  }
+
+	  ScrollBehavior.prototype.registerElement = function registerElement(key, element, shouldUpdateScroll, context) {
+	    !!this._scrollElements[key] ?  false ? (0, _invariant2.default)(false, 'ScrollBehavior: There is already an element registered for `%s`.', key) : (0, _invariant2.default)(false) : void 0;
+
+	    this._scrollElements[key] = { element: element, shouldUpdateScroll: shouldUpdateScroll };
+	    this._updateElementScroll(key, null, context);
+	  };
+
+	  ScrollBehavior.prototype.unregisterElement = function unregisterElement(key) {
+	    !this._scrollElements[key] ?  false ? (0, _invariant2.default)(false, 'ScrollBehavior: There is no element registered for `%s`.', key) : (0, _invariant2.default)(false) : void 0;
+
+	    delete this._scrollElements[key];
+	  };
+
+	  ScrollBehavior.prototype.updateScroll = function updateScroll(prevContext, context) {
+	    var _this2 = this;
+
+	    this._updateWindowScroll(prevContext, context);
+
+	    Object.keys(this._scrollElements).forEach(function (key) {
+	      _this2._updateElementScroll(key, prevContext, context);
+	    });
+	  };
+
+	  ScrollBehavior.prototype.stop = function stop() {
+	    /* istanbul ignore if: not supported by any browsers on Travis */
+	    if (this._oldScrollRestoration) {
+	      window.history.scrollRestoration = this._oldScrollRestoration;
+	    }
+
+	    (0, _off2.default)(window, 'scroll', this._onWindowScroll);
+	    this._cancelCheckWindowScroll();
+
+	    this._removeTransitionHook();
+	  };
+
+	  ScrollBehavior.prototype._cancelCheckWindowScroll = function _cancelCheckWindowScroll() {
+	    if (this._checkWindowScrollHandle !== null) {
+	      _requestAnimationFrame2.default.cancel(this._checkWindowScrollHandle);
+	      this._checkWindowScrollHandle = null;
+	    }
+	  };
+
+	  ScrollBehavior.prototype._saveElementPosition = function _saveElementPosition(key) {
+	    var element = this._scrollElements[key].element;
+
+
+	    this._savePosition(key, element);
+	  };
+
+	  ScrollBehavior.prototype._savePosition = function _savePosition(key, element) {
+	    this._stateStorage.save(this._getCurrentLocation(), key, [(0, _scrollLeft2.default)(element), (0, _scrollTop2.default)(element)]);
+	  };
+
+	  ScrollBehavior.prototype._updateWindowScroll = function _updateWindowScroll(prevContext, context) {
+	    // Whatever we were doing before isn't relevant any more.
+	    this._cancelCheckWindowScroll();
+
+	    this._windowScrollTarget = this._getScrollTarget(null, this._shouldUpdateScroll, prevContext, context);
+
+	    // Updating the window scroll position is really flaky. Just trying to
+	    // scroll it isn't enough. Instead, try to scroll a few times until it
+	    // works.
+	    this._numWindowScrollAttempts = 0;
+	    this._checkWindowScrollPosition();
+	  };
+
+	  ScrollBehavior.prototype._updateElementScroll = function _updateElementScroll(key, prevContext, context) {
+	    var _scrollElements$key = this._scrollElements[key],
+	        element = _scrollElements$key.element,
+	        shouldUpdateScroll = _scrollElements$key.shouldUpdateScroll;
+
+
+	    var scrollTarget = this._getScrollTarget(key, shouldUpdateScroll, prevContext, context);
+	    if (!scrollTarget) {
+	      return;
+	    }
+
+	    // Unlike with the window, there shouldn't be any flakiness to deal with
+	    // here.
+	    var x = scrollTarget[0],
+	        y = scrollTarget[1];
+
+	    (0, _scrollLeft2.default)(element, x);
+	    (0, _scrollTop2.default)(element, y);
+	  };
+
+	  ScrollBehavior.prototype._getScrollTarget = function _getScrollTarget(key, shouldUpdateScroll, prevContext, context) {
+	    var scrollTarget = shouldUpdateScroll ? shouldUpdateScroll.call(this, prevContext, context) : true;
+
+	    if (!scrollTarget || Array.isArray(scrollTarget)) {
+	      return scrollTarget;
+	    }
+
+	    var location = this._getCurrentLocation();
+	    if (location.action === 'PUSH') {
+	      return [0, 0];
+	    }
+
+	    return this._stateStorage.read(location, key) || [0, 0];
+	  };
+
+	  return ScrollBehavior;
+	}();
+
+	exports.default = ScrollBehavior;
+	module.exports = exports['default'];
+
+/***/ },
+/* 65 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _inDOM = __webpack_require__(66);
+
+	var _inDOM2 = _interopRequireDefault(_inDOM);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var off = function off() {};
+	if (_inDOM2.default) {
+	  off = function () {
+	    if (document.addEventListener) return function (node, eventName, handler, capture) {
+	      return node.removeEventListener(eventName, handler, capture || false);
+	    };else if (document.attachEvent) return function (node, eventName, handler) {
+	      return node.detachEvent('on' + eventName, handler);
+	    };
+	  }();
+	}
+
+	exports.default = off;
+	module.exports = exports['default'];
+
+/***/ },
+/* 66 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
+	module.exports = exports['default'];
+
+/***/ },
+/* 67 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _inDOM = __webpack_require__(66);
+
+	var _inDOM2 = _interopRequireDefault(_inDOM);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var on = function on() {};
+	if (_inDOM2.default) {
+	  on = function () {
+
+	    if (document.addEventListener) return function (node, eventName, handler, capture) {
+	      return node.addEventListener(eventName, handler, capture || false);
+	    };else if (document.attachEvent) return function (node, eventName, handler) {
+	      return node.attachEvent('on' + eventName, function (e) {
+	        e = e || window.event;
+	        e.target = e.target || e.srcElement;
+	        e.currentTarget = node;
+	        handler.call(node, e);
+	      });
+	    };
+	  }();
+	}
+
+	exports.default = on;
+	module.exports = exports['default'];
+
+/***/ },
+/* 68 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = scrollTop;
+
+	var _isWindow = __webpack_require__(69);
+
+	var _isWindow2 = _interopRequireDefault(_isWindow);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function scrollTop(node, val) {
+	  var win = (0, _isWindow2.default)(node);
+
+	  if (val === undefined) return win ? 'pageXOffset' in win ? win.pageXOffset : win.document.documentElement.scrollLeft : node.scrollLeft;
+
+	  if (win) win.scrollTo(val, 'pageYOffset' in win ? win.pageYOffset : win.document.documentElement.scrollTop);else node.scrollLeft = val;
+	}
+	module.exports = exports['default'];
+
+/***/ },
+/* 69 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = getWindow;
+	function getWindow(node) {
+	  return node === node.window ? node : node.nodeType === 9 ? node.defaultView || node.parentWindow : false;
+	}
+	module.exports = exports["default"];
+
+/***/ },
+/* 70 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = scrollTop;
+
+	var _isWindow = __webpack_require__(69);
+
+	var _isWindow2 = _interopRequireDefault(_isWindow);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function scrollTop(node, val) {
+	  var win = (0, _isWindow2.default)(node);
+
+	  if (val === undefined) return win ? 'pageYOffset' in win ? win.pageYOffset : win.document.documentElement.scrollTop : node.scrollTop;
+
+	  if (win) win.scrollTo('pageXOffset' in win ? win.pageXOffset : win.document.documentElement.scrollLeft, val);else node.scrollTop = val;
+	}
+	module.exports = exports['default'];
+
+/***/ },
+/* 71 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _inDOM = __webpack_require__(66);
+
+	var _inDOM2 = _interopRequireDefault(_inDOM);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var vendors = ['', 'webkit', 'moz', 'o', 'ms'];
+	var cancel = 'clearTimeout';
+	var raf = fallback;
+	var compatRaf = void 0;
+
+	var getKey = function getKey(vendor, k) {
+	  return vendor + (!vendor ? k : k[0].toUpperCase() + k.substr(1)) + 'AnimationFrame';
+	};
+
+	if (_inDOM2.default) {
+	  vendors.some(function (vendor) {
+	    var rafKey = getKey(vendor, 'request');
+
+	    if (rafKey in window) {
+	      cancel = getKey(vendor, 'cancel');
+	      return raf = function raf(cb) {
+	        return window[rafKey](cb);
+	      };
+	    }
+	  });
+	}
+
+	/* https://github.com/component/raf */
+	var prev = new Date().getTime();
+	function fallback(fn) {
+	  var curr = new Date().getTime(),
+	      ms = Math.max(0, 16 - (curr - prev)),
+	      req = setTimeout(fn, ms);
+
+	  prev = curr;
+	  return req;
+	}
+
+	compatRaf = function compatRaf(cb) {
+	  return raf(cb);
+	};
+	compatRaf.cancel = function (id) {
+	  window[cancel] && typeof window[cancel] === 'function' && window[cancel](id);
+	};
+	exports.default = compatRaf;
+	module.exports = exports['default'];
+
+/***/ },
+/* 72 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+
+	var _DOMStateStorage = __webpack_require__(54);
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var STATE_KEY_PREFIX = '@@scroll|';
+
+	var StateStorage = function () {
+	  function StateStorage(router) {
+	    _classCallCheck(this, StateStorage);
+
+	    this.getFallbackLocationKey = router.createPath;
+	  }
+
+	  StateStorage.prototype.read = function read(location, key) {
+	    return (0, _DOMStateStorage.readState)(this.getStateKey(location, key));
+	  };
+
+	  StateStorage.prototype.save = function save(location, key, value) {
+	    (0, _DOMStateStorage.saveState)(this.getStateKey(location, key), value);
+	  };
+
+	  StateStorage.prototype.getStateKey = function getStateKey(location, key) {
+	    var locationKey = location.key || this.getFallbackLocationKey(location);
+	    var stateKeyBase = '' + STATE_KEY_PREFIX + locationKey;
+	    return key == null ? stateKeyBase : stateKeyBase + '|' + key;
+	  };
+
+	  return StateStorage;
+	}();
+
+	exports.default = StateStorage;
+	module.exports = exports['default'];
+
+/***/ },
+/* 73 */
+/***/ function(module, exports, __webpack_require__) {
+
 	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
@@ -5143,7 +5934,7 @@
 	});
 
 /***/ },
-/* 61 */
+/* 74 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5151,8 +5942,8 @@
 	var _reactRouter = __webpack_require__(4);
 
 	var React = __webpack_require__(1);
-	var StoreIndex = __webpack_require__(62);
-	var Foot = __webpack_require__(67);
+	var StoreIndex = __webpack_require__(75);
+	var Foot = __webpack_require__(80);
 
 
 	var StoreApp = React.createClass({
@@ -5172,7 +5963,7 @@
 	module.exports = StoreApp;
 
 /***/ },
-/* 62 */
+/* 75 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5186,9 +5977,9 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var React = __webpack_require__(1);
-	var SwiperDom = __webpack_require__(63);
-	var Cat = __webpack_require__(65);
-	var YourLike = __webpack_require__(66);
+	var SwiperDom = __webpack_require__(76);
+	var Cat = __webpack_require__(78);
+	var YourLike = __webpack_require__(79);
 
 
 	var StoreIndex = React.createClass({
@@ -5257,10 +6048,6 @@
 				}
 			}
 		},
-		handleSearch: function handleSearch() {
-			_reactRouter.hashHistory.push({ pathname: '/Search' });
-		},
-
 		render: function render() {
 			return React.createElement(
 				'div',
@@ -5280,13 +6067,17 @@
 							React.createElement('a', { href: 'javascript:', className: 'weui_icon_clear', id: 'search_clear' })
 						),
 						React.createElement(
-							'label',
-							{ htmlFor: 'search_input1', className: 'weui_search_text', id: 'search_text', onClick: this.handleSearch },
-							React.createElement('i', { className: 'weui_icon_search' }),
+							_reactRouter.Link,
+							{ to: '/Search' },
 							React.createElement(
-								'span',
-								null,
-								'\u4F60\u641C\u4E00\u4E2A\u8BD5\u8BD5\uFF01'
+								'label',
+								{ htmlFor: 'search_input1', className: 'weui_search_text', id: 'search_text' },
+								React.createElement('i', { className: 'weui_icon_search' }),
+								React.createElement(
+									'span',
+									null,
+									'\u4F60\u641C\u4E00\u4E2A\u8BD5\u8BD5\uFF01'
+								)
 							)
 						)
 					),
@@ -5311,13 +6102,13 @@
 	module.exports = StoreIndex;
 
 /***/ },
-/* 63 */
+/* 76 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(1);
-	var swiper = __webpack_require__(64);
+	var swiper = __webpack_require__(77);
 
 	var SwiperDom = React.createClass({
 		displayName: 'SwiperDom',
@@ -5378,7 +6169,7 @@
 	module.exports = SwiperDom;
 
 /***/ },
-/* 64 */
+/* 77 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -10680,7 +11471,7 @@
 
 
 /***/ },
-/* 65 */
+/* 78 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -10716,7 +11507,7 @@
 	module.exports = Cat;
 
 /***/ },
-/* 66 */
+/* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10728,28 +11519,28 @@
 
 	var YourLike = React.createClass({
 		displayName: 'YourLike',
-		LinkTo: function LinkTo() {
-			_reactRouter.hashHistory.push({ pathname: '/pdetail', query: { id: 1 } });
-		},
 
 		render: function render() {
 			var prolist = [];
-			var _self = this;
 			this.props.ProList.map(function (item, index) {
 				prolist.push(React.createElement(
-					'div',
-					{ key: index, className: 'u-lk-pro-item', onClick: _self.LinkTo },
-					React.createElement('img', { src: item.logo }),
+					_reactRouter.Link,
+					{ key: index, to: { pathname: '/pdetail', query: { id: item.id } } },
 					React.createElement(
-						'p',
-						{ className: 'pro-name' },
-						item.name
-					),
-					React.createElement(
-						'p',
-						{ className: 'pro-price' },
-						'\uFFE5',
-						item.price
+						'div',
+						{ className: 'u-lk-pro-item' },
+						React.createElement('img', { src: item.logo }),
+						React.createElement(
+							'p',
+							{ className: 'pro-name' },
+							item.name
+						),
+						React.createElement(
+							'p',
+							{ className: 'pro-price' },
+							'\uFFE5',
+							item.price
+						)
 					)
 				));
 			});
@@ -10768,7 +11559,7 @@
 	module.exports = YourLike;
 
 /***/ },
-/* 67 */
+/* 80 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10856,7 +11647,7 @@
 	module.exports = Foot;
 
 /***/ },
-/* 68 */
+/* 81 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10869,15 +11660,15 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactRedux = __webpack_require__(69);
+	var _reactRedux = __webpack_require__(82);
 
-	var _pdetails = __webpack_require__(70);
+	var _pdetails = __webpack_require__(83);
 
 	var actions = _interopRequireWildcard(_pdetails);
 
-	__webpack_require__(74);
+	__webpack_require__(87);
 
-	var _index = __webpack_require__(78);
+	var _index = __webpack_require__(91);
 
 	var _index2 = _interopRequireDefault(_index);
 
@@ -10887,15 +11678,15 @@
 
 	var PdetailsContainer = _react2.default.createClass({
 		displayName: 'PdetailsContainer',
-		componentDidMount: function componentDidMount() {
-			var init = this.props.init;
+		componentWillMount: function componentWillMount() {
+			var _props = this.props,
+			    init = _props.init,
+			    pdetails = _props.pdetails;
 
 			var pid = this.props.location.query.id;
-			var h = document.body.clientHeight - $('.bottom_bar').height();
-			$('.pro-detail').height(h);
-			setTimeout(function () {
+			if (pdetails.pro.id != pid) {
 				init(pid);
-			}, 200);
+			}
 		},
 		componentWillUnmount: function componentWillUnmount() {
 			var handleHidePra = this.props.handleHidePra;
@@ -10903,15 +11694,14 @@
 			handleHidePra();
 		},
 		render: function render() {
-			var _props = this.props,
-			    pdetails = _props.pdetails,
-			    _handleCollection = _props.handleCollection,
-			    handleShowPra = _props.handleShowPra,
-			    handleHidePra = _props.handleHidePra;
+			var _props2 = this.props,
+			    pdetails = _props2.pdetails,
+			    _handleCollection = _props2.handleCollection,
+			    handleShowPra = _props2.handleShowPra,
+			    handleHidePra = _props2.handleHidePra;
 
 			var pro = pdetails.pro;
 			return _react2.default.createElement(_index2.default, {
-				test: pdetails.ban.length,
 				pdetails: pdetails,
 				handleCollection: function handleCollection() {
 					_handleCollection(pro.id);
@@ -10957,13 +11747,13 @@
 	exports.default = (0, _reactRedux.connect)(mapStatetoProps, mapDispatchToProps)(PdetailsContainer);
 
 /***/ },
-/* 69 */
+/* 82 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = (__webpack_require__(2))(179);
 
 /***/ },
-/* 70 */
+/* 83 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10973,17 +11763,17 @@
 	});
 	exports.addCart = exports.delNumber = exports.addNumber = exports.chooseAttr = exports.handleHidePra = exports.handleShowPra = exports.handleCollection = exports.proDetailInit = undefined;
 
-	var _shop = __webpack_require__(71);
+	var _shop = __webpack_require__(84);
 
 	var _shop2 = _interopRequireDefault(_shop);
 
-	var _ActionTypes = __webpack_require__(72);
+	var _ActionTypes = __webpack_require__(85);
 
 	var types = _interopRequireWildcard(_ActionTypes);
 
 	var _reactRouter = __webpack_require__(4);
 
-	var _carts = __webpack_require__(73);
+	var _carts = __webpack_require__(86);
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -11078,7 +11868,7 @@
 	};
 
 /***/ },
-/* 71 */
+/* 84 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -11120,6 +11910,14 @@
 	var TIMEOUT = 100;
 
 	exports.default = {
+		//获取商品列表
+		getProList: function getProList(cb, timeout) {
+			var _prolist = ajaxData({
+				url: 'proList',
+				async: false
+			});
+			cb(_prolist);
+		},
 		//添加地址
 		addAddress: function addAddress(cb, name, tel, address, callback) {
 			var _address = ajaxData({
@@ -11216,7 +12014,7 @@
 	};
 
 /***/ },
-/* 72 */
+/* 85 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -11246,9 +12044,13 @@
 	var GET_MY_ADDRESSES = exports.GET_MY_ADDRESSES = 'GET_MY_ADDRESSES'; //读取个人地址列表
 	var SET_DEFAULT_ADDRESS = exports.SET_DEFAULT_ADDRESS = 'SET_DEFAULT_ADDRESS'; //设置默认地址
 	var ADD_ADDRESS = exports.ADD_ADDRESS = 'ADD_ADDRESS'; //添加地址
+	var GET_PRODUCTS = exports.GET_PRODUCTS = 'GET_PRODUCTS'; //获取商品列表
+	var CANCEL_SEARCH = exports.CANCEL_SEARCH = 'CANCEL_SEARCH'; //取消搜索
+	var SEARCH_PRO = exports.SEARCH_PRO = 'SEARCH_PRO'; //搜索商品
+	var SCROLL_POSITION = exports.SCROLL_POSITION = 'SCROLL_POSITION'; //滑动位置
 
 /***/ },
-/* 73 */
+/* 86 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -11258,11 +12060,11 @@
 	});
 	exports.handleSubmitOrder = exports.settleCart = exports.removeCartProById = exports.delCartProductById = exports.addCartProductById = exports.chooseAll = exports.chooseById = exports.editCart = exports.getAllProducts = undefined;
 
-	var _shop = __webpack_require__(71);
+	var _shop = __webpack_require__(84);
 
 	var _shop2 = _interopRequireDefault(_shop);
 
-	var _ActionTypes = __webpack_require__(72);
+	var _ActionTypes = __webpack_require__(85);
 
 	var types = _interopRequireWildcard(_ActionTypes);
 
@@ -11386,16 +12188,16 @@
 	};
 
 /***/ },
-/* 74 */
+/* 87 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 75 */,
-/* 76 */,
-/* 77 */,
-/* 78 */
+/* 88 */,
+/* 89 */,
+/* 90 */,
+/* 91 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -11408,11 +12210,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _SwiperDom = __webpack_require__(63);
+	var _SwiperDom = __webpack_require__(76);
 
 	var _SwiperDom2 = _interopRequireDefault(_SwiperDom);
 
-	var _SpectController = __webpack_require__(79);
+	var _SpectController = __webpack_require__(92);
 
 	var _SpectController2 = _interopRequireDefault(_SpectController);
 
@@ -11422,8 +12224,7 @@
 		var pdetails = _ref.pdetails,
 		    handleCollection = _ref.handleCollection,
 		    addToCart = _ref.addToCart,
-		    buyNow = _ref.buyNow,
-		    test = _ref.test;
+		    buyNow = _ref.buyNow;
 		return _react2.default.createElement(
 			'div',
 			{ className: 'pro-detail-wrapper' },
@@ -11487,7 +12288,7 @@
 	exports.default = Pdetail;
 
 /***/ },
-/* 79 */
+/* 92 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -11500,17 +12301,17 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _parameter = __webpack_require__(80);
+	var _parameter = __webpack_require__(93);
 
 	var _parameter2 = _interopRequireDefault(_parameter);
 
-	var _reactRedux = __webpack_require__(69);
+	var _reactRedux = __webpack_require__(82);
 
-	var _reactAddonsCssTransitionGroup = __webpack_require__(81);
+	var _reactAddonsCssTransitionGroup = __webpack_require__(94);
 
 	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 
-	var _pdetails = __webpack_require__(70);
+	var _pdetails = __webpack_require__(83);
 
 	var actions = _interopRequireWildcard(_pdetails);
 
@@ -11579,7 +12380,7 @@
 		};
 	};
 
-	var mapDispatchToProps = function mapDispatchToProps(dispatch, state) {
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 		return {
 			//关闭商品规格选项
 			handleHidePra: function handleHidePra() {
@@ -11613,7 +12414,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(SpectContainer);
 
 /***/ },
-/* 80 */
+/* 93 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -11757,13 +12558,13 @@
 	exports.default = Paramenter;
 
 /***/ },
-/* 81 */
+/* 94 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(82);
+	module.exports = __webpack_require__(95);
 
 /***/ },
-/* 82 */
+/* 95 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -11778,7 +12579,7 @@
 
 	'use strict';
 
-	var _assign = __webpack_require__(83);
+	var _assign = __webpack_require__(96);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -11786,10 +12587,10 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var React = __webpack_require__(84);
+	var React = __webpack_require__(97);
 
-	var ReactTransitionGroup = __webpack_require__(85);
-	var ReactCSSTransitionGroupChild = __webpack_require__(97);
+	var ReactTransitionGroup = __webpack_require__(98);
+	var ReactCSSTransitionGroupChild = __webpack_require__(110);
 
 	function createTransitionTimeoutPropValidator(transitionType) {
 	  var timeoutPropName = 'transition' + transitionType + 'Timeout';
@@ -11872,19 +12673,19 @@
 	module.exports = ReactCSSTransitionGroup;
 
 /***/ },
-/* 83 */
+/* 96 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = (__webpack_require__(2))(4);
 
 /***/ },
-/* 84 */
+/* 97 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = (__webpack_require__(2))(2);
 
 /***/ },
-/* 85 */
+/* 98 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -11899,7 +12700,7 @@
 
 	'use strict';
 
-	var _assign = __webpack_require__(83);
+	var _assign = __webpack_require__(96);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -11907,11 +12708,11 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var React = __webpack_require__(84);
-	var ReactAddonsDOMDependencies = __webpack_require__(86);
-	var ReactTransitionChildMapping = __webpack_require__(89);
+	var React = __webpack_require__(97);
+	var ReactAddonsDOMDependencies = __webpack_require__(99);
+	var ReactTransitionChildMapping = __webpack_require__(102);
 
-	var emptyFunction = __webpack_require__(96);
+	var emptyFunction = __webpack_require__(109);
 
 	/**
 	 * A basis for animations. When children are declaratively added or removed,
@@ -12138,7 +12939,7 @@
 	module.exports = ReactTransitionGroup;
 
 /***/ },
-/* 86 */
+/* 99 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -12153,8 +12954,8 @@
 
 	'use strict';
 
-	var ReactDOM = __webpack_require__(87);
-	var ReactInstanceMap = __webpack_require__(88);
+	var ReactDOM = __webpack_require__(100);
+	var ReactInstanceMap = __webpack_require__(101);
 
 	exports.getReactDOM = function () {
 	  return ReactDOM;
@@ -12178,19 +12979,19 @@
 	}
 
 /***/ },
-/* 87 */
+/* 100 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = (__webpack_require__(2))(33);
 
 /***/ },
-/* 88 */
+/* 101 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = (__webpack_require__(2))(117);
 
 /***/ },
-/* 89 */
+/* 102 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -12205,7 +13006,7 @@
 
 	'use strict';
 
-	var flattenChildren = __webpack_require__(90);
+	var flattenChildren = __webpack_require__(103);
 
 	var ReactTransitionChildMapping = {
 	  /**
@@ -12297,7 +13098,7 @@
 	module.exports = ReactTransitionChildMapping;
 
 /***/ },
-/* 90 */
+/* 103 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -12313,9 +13114,9 @@
 
 	'use strict';
 
-	var KeyEscapeUtils = __webpack_require__(92);
-	var traverseAllChildren = __webpack_require__(93);
-	var warning = __webpack_require__(94);
+	var KeyEscapeUtils = __webpack_require__(105);
+	var traverseAllChildren = __webpack_require__(106);
+	var warning = __webpack_require__(107);
 
 	var ReactComponentTreeHook;
 
@@ -12325,7 +13126,7 @@
 	  // https://github.com/facebook/react/issues/7240
 	  // Remove the inline requires when we don't need them anymore:
 	  // https://github.com/facebook/react/pull/7178
-	  ReactComponentTreeHook = __webpack_require__(95);
+	  ReactComponentTreeHook = __webpack_require__(108);
 	}
 
 	/**
@@ -12375,46 +13176,46 @@
 	}
 
 	module.exports = flattenChildren;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(91)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(104)))
 
 /***/ },
-/* 91 */
+/* 104 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = (__webpack_require__(2))(3);
 
 /***/ },
-/* 92 */
+/* 105 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = (__webpack_require__(2))(17);
 
 /***/ },
-/* 93 */
+/* 106 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = (__webpack_require__(2))(15);
 
 /***/ },
-/* 94 */
+/* 107 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = (__webpack_require__(2))(11);
 
 /***/ },
-/* 95 */
+/* 108 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = (__webpack_require__(2))(26);
 
 /***/ },
-/* 96 */
+/* 109 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = (__webpack_require__(2))(12);
 
 /***/ },
-/* 97 */
+/* 110 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -12429,13 +13230,13 @@
 
 	'use strict';
 
-	var React = __webpack_require__(84);
-	var ReactAddonsDOMDependencies = __webpack_require__(86);
+	var React = __webpack_require__(97);
+	var ReactAddonsDOMDependencies = __webpack_require__(99);
 
-	var CSSCore = __webpack_require__(98);
-	var ReactTransitionEvents = __webpack_require__(100);
+	var CSSCore = __webpack_require__(111);
+	var ReactTransitionEvents = __webpack_require__(113);
 
-	var onlyChild = __webpack_require__(103);
+	var onlyChild = __webpack_require__(116);
 
 	var TICK = 17;
 
@@ -12585,7 +13386,7 @@
 	module.exports = ReactCSSTransitionGroupChild;
 
 /***/ },
-/* 98 */
+/* 111 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12601,7 +13402,7 @@
 	 * @typechecks
 	 */
 
-	var invariant = __webpack_require__(99);
+	var invariant = __webpack_require__(112);
 
 	/**
 	 * The CSSCore module specifies the API (and implements most of the methods)
@@ -12711,13 +13512,13 @@
 	module.exports = CSSCore;
 
 /***/ },
-/* 99 */
+/* 112 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = (__webpack_require__(2))(8);
 
 /***/ },
-/* 100 */
+/* 113 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -12732,9 +13533,9 @@
 
 	'use strict';
 
-	var ExecutionEnvironment = __webpack_require__(101);
+	var ExecutionEnvironment = __webpack_require__(114);
 
-	var getVendorPrefixedEventName = __webpack_require__(102);
+	var getVendorPrefixedEventName = __webpack_require__(115);
 
 	var endEvents = [];
 
@@ -12794,25 +13595,25 @@
 	module.exports = ReactTransitionEvents;
 
 /***/ },
-/* 101 */
+/* 114 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = (__webpack_require__(2))(48);
 
 /***/ },
-/* 102 */
+/* 115 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = (__webpack_require__(2))(108);
 
 /***/ },
-/* 103 */
+/* 116 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = (__webpack_require__(2))(31);
 
 /***/ },
-/* 104 */
+/* 117 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12825,25 +13626,25 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactRedux = __webpack_require__(69);
+	var _reactRedux = __webpack_require__(82);
 
-	var _carts = __webpack_require__(73);
+	var _carts = __webpack_require__(86);
 
 	var actions = _interopRequireWildcard(_carts);
 
-	var _address = __webpack_require__(105);
+	var _address = __webpack_require__(118);
 
 	var addactions = _interopRequireWildcard(_address);
 
-	var _cartitem = __webpack_require__(106);
+	var _cartitem = __webpack_require__(119);
 
 	var _cartitem2 = _interopRequireDefault(_cartitem);
 
-	var _weui = __webpack_require__(107);
+	var _weui = __webpack_require__(120);
 
-	__webpack_require__(108);
+	__webpack_require__(121);
 
-	var _index = __webpack_require__(110);
+	var _index = __webpack_require__(123);
 
 	var _index2 = _interopRequireDefault(_index);
 
@@ -12925,7 +13726,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(SettleController);
 
 /***/ },
-/* 105 */
+/* 118 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12935,11 +13736,11 @@
 	});
 	exports.addAddress = exports.setDefaultAddress = exports.getMyAddresses = exports.getDefaultAddress = undefined;
 
-	var _ActionTypes = __webpack_require__(72);
+	var _ActionTypes = __webpack_require__(85);
 
 	var types = _interopRequireWildcard(_ActionTypes);
 
-	var _shop = __webpack_require__(71);
+	var _shop = __webpack_require__(84);
 
 	var _shop2 = _interopRequireDefault(_shop);
 
@@ -13018,7 +13819,7 @@
 	};
 
 /***/ },
-/* 106 */
+/* 119 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -13109,7 +13910,7 @@
 	exports.default = CartItem;
 
 /***/ },
-/* 107 */
+/* 120 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13174,14 +13975,14 @@
 	};
 
 /***/ },
-/* 108 */
+/* 121 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 109 */,
-/* 110 */
+/* 122 */,
+/* 123 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13194,7 +13995,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _weui = __webpack_require__(107);
+	var _weui = __webpack_require__(120);
 
 	var _reactRouter = __webpack_require__(4);
 
@@ -13347,7 +14148,7 @@
 	exports.default = Settle;
 
 /***/ },
-/* 111 */
+/* 124 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13360,21 +14161,21 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactRedux = __webpack_require__(69);
+	var _reactRedux = __webpack_require__(82);
 
-	var _list = __webpack_require__(112);
+	var _list = __webpack_require__(125);
 
 	var _list2 = _interopRequireDefault(_list);
 
-	var _additem = __webpack_require__(113);
+	var _additem = __webpack_require__(126);
 
 	var _additem2 = _interopRequireDefault(_additem);
 
-	var _address = __webpack_require__(105);
+	var _address = __webpack_require__(118);
 
 	var actions = _interopRequireWildcard(_address);
 
-	__webpack_require__(114);
+	__webpack_require__(127);
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -13432,7 +14233,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(ListContainer);
 
 /***/ },
-/* 112 */
+/* 125 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13447,7 +14248,7 @@
 
 	var _reactRouter = __webpack_require__(4);
 
-	var _weui = __webpack_require__(107);
+	var _weui = __webpack_require__(120);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -13495,7 +14296,7 @@
 	exports.default = AddList;
 
 /***/ },
-/* 113 */
+/* 126 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -13561,14 +14362,14 @@
 	exports.default = AddItem;
 
 /***/ },
-/* 114 */
+/* 127 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 115 */,
-/* 116 */
+/* 128 */,
+/* 129 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13581,13 +14382,13 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactRedux = __webpack_require__(69);
+	var _reactRedux = __webpack_require__(82);
 
-	var _add = __webpack_require__(117);
+	var _add = __webpack_require__(130);
 
 	var _add2 = _interopRequireDefault(_add);
 
-	var _address2 = __webpack_require__(105);
+	var _address2 = __webpack_require__(118);
 
 	var actions = _interopRequireWildcard(_address2);
 
@@ -13643,7 +14444,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchTpProps)(AddContainer);
 
 /***/ },
-/* 117 */
+/* 130 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13656,7 +14457,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _weui = __webpack_require__(107);
+	var _weui = __webpack_require__(120);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -13726,7 +14527,7 @@
 	exports.default = AddAddress;
 
 /***/ },
-/* 118 */
+/* 131 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13884,7 +14685,7 @@
 	});
 
 /***/ },
-/* 119 */
+/* 132 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13897,237 +14698,2338 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _fastclick = __webpack_require__(120);
+	var _reactRedux = __webpack_require__(82);
 
-	var _fastclick2 = _interopRequireDefault(_fastclick);
+	var _search = __webpack_require__(133);
+
+	var actions = _interopRequireWildcard(_search);
+
+	var _prolist = __webpack_require__(134);
+
+	var _prolist2 = _interopRequireDefault(_prolist);
+
+	var _item = __webpack_require__(136);
+
+	var _item2 = _interopRequireDefault(_item);
+
+	var _reactRouterScroll = __webpack_require__(60);
+
+	var _reactRouter = __webpack_require__(4);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	exports.default = _react2.default.createClass({
-		displayName: 'search',
-		getInitialState: function getInitialState() {
-			return {
-				pro_list: [],
-				searchText: '',
-				scroll: true
-			};
-		},
-		componentWillMount: function componentWillMount() {
-			var _self = this;
-			$.ajax({
-				url: STORESERVER + 'proList',
-				async: false,
-				success: function success(data) {
-					_self.setState({
-						pro_list: data.data
-					});
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+	var Scroll = __webpack_require__(137);
+	var scroll = Scroll.animateScroll;
+	var seachkey = '';
+
+	var SearchContainer = function SearchContainer(_ref) {
+		var rest = _objectWithoutProperties(_ref, []);
+
+		if (rest.list.length == 0) {
+			rest.init();
+		}
+
+		if (rest.scrollTop != 0) {
+			console.log(rest.scrollTop);
+			window.scrollTo(0, rest.scrollTop);
+		}
+
+		return _react2.default.createElement(
+			_prolist2.default,
+			{
+				handleSearchPro: function handleSearchPro() {
+					rest.handleSearchPro(seachkey.value);
+				},
+				handleCancelSearch: function handleCancelSearch() {
+					rest.handleCancelSearch();
+				},
+				refs: function refs(node) {
+					seachkey = node;
 				}
-			});
-		},
-		componentDidMount: function componentDidMount() {
-			// FastClick.attach(document.body);
-			var loading = false;
-			var _self = this;
-			$(document.body).infinite().on("infinite", function () {
-				var pro_quantity = _self.state.pro_list.length;
-				if (loading || !_self.state.scroll) return;
-				console.log(_self.state.scroll);
-				loading = true;
-				setTimeout(function () {
-					$.ajax({
-						url: STORESERVER + "scrollLoadPro",
-						data: { count: pro_quantity, type: 'normal' },
-						async: false,
-						success: function success(data) {
-							loading = false;
-							if (data.length != pro_quantity) {
-								_self.setState({
-									pro_list: data
-								});
-							} else {
-								_self.setState({
-									scroll: false
-								});
-							}
+			},
+			rest.list.map(function (item) {
+				if (item.name.includes(rest.searchText)) {
+					return _react2.default.createElement(_item2.default, {
+						key: item.id,
+						elem: item,
+						ProDetails: function ProDetails() {
+							rest.LinkToDetails(item.id);
 						}
 					});
-					loading = false;
-				}, 500);
-			});
-		},
-		handleSearchPro: function handleSearchPro() {
-			var searchKey = this.refs.searchKey.value;
-			this.setState({
-				searchText: searchKey
-			});
-		},
-		handleCancelSearch: function handleCancelSearch() {
-			this.setState({
-				searchText: ''
-			});
-		},
-		render: function render() {
-			var pro_list = this.state.pro_list;
-			var pros = [];
-			if (pro_list.length != 0) {
-				pro_list.filter(function (data) {
-					return data.name.toLowerCase().indexOf(this.state.searchText.toLowerCase()) > -1;
-				}.bind(this)).map(function (elem, index) {
-					pros.push(_react2.default.createElement(
-						'li',
-						{ key: index },
-						_react2.default.createElement(
-							'div',
-							{ className: 'list-item' },
-							_react2.default.createElement(
-								'div',
-								{ className: 'p' },
-								_react2.default.createElement(
-									'a',
-									{ href: '#', title: '' },
-									_react2.default.createElement('img', { className: 'p-pic', src: elem.logo }),
-									_react2.default.createElement('span', { className: 'flag c-icon-pt' })
-								)
-							),
-							_react2.default.createElement(
-								'div',
-								{ className: 'd' },
-								_react2.default.createElement(
-									'a',
-									{ href: '#', title: '' },
-									_react2.default.createElement(
-										'h3',
-										{ className: 'd-title' },
-										elem.name
-									)
-								),
-								_react2.default.createElement(
-									'p',
-									{ className: 'd-price' },
-									' ',
-									_react2.default.createElement(
-										'em',
-										{ className: 'h' },
-										_react2.default.createElement(
-											'span',
-											{ className: 'price-icon' },
-											'\xA5'
-										),
-										_react2.default.createElement(
-											'span',
-											{ className: 'font-num' },
-											elem.price
-										)
-									),
-									'  ',
-									_react2.default.createElement(
-										'del',
-										null,
-										_react2.default.createElement(
-											'span',
-											{ className: 'price-icon' },
-											'\xA5'
-										),
-										_react2.default.createElement(
-											'span',
-											{ className: 'font-num' },
-											elem.market_price
-										)
-									)
-								),
-								_react2.default.createElement(
-									'div',
-									{ className: 'd-main' },
-									_react2.default.createElement(
-										'p',
-										{ className: 'd-freight' },
-										elem.mail_price > 0 ? elem.mail_price : '免运费'
-									),
-									_react2.default.createElement(
-										'p',
-										{ className: 'd-num' },
-										_react2.default.createElement(
-											'span',
-											{ className: 'font-num' },
-											elem.sales_count
-										),
-										'\u4EBA\u4ED8\u6B3E'
-									),
-									_react2.default.createElement(
-										'p',
-										{ className: 'd-area' },
-										'\u53F0\u5DDE'
-									)
-								)
-							)
-						),
-						_react2.default.createElement('div', { className: 'icons-group' })
-					));
-				});
+				}
+			})
+		);
+	};
+
+	var mapStateToProps = function mapStateToProps(state) {
+		return {
+			list: state.search.list,
+			searchText: state.search.searchText,
+			scrollTop: state.search.scrollTop
+		};
+	};
+
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+		return {
+			init: function init() {
+				dispatch(actions.getProList());
+			},
+			handleSearchPro: function handleSearchPro(keys) {
+				dispatch(actions.searchPro(keys));
+			},
+			handleCancelSearch: function handleCancelSearch() {
+				dispatch(actions.cancelSearch());
+			},
+			LinkToDetails: function LinkToDetails(pid) {
+				scroll.scrollToTop({ duration: 100 });
+				dispatch(actions.scrollPosition(document.body.scrollTop));
+				_reactRouter.hashHistory.push({ pathname: '/pdetail', query: { id: pid } });
+			},
+			scrollToTop: function scrollToTop() {
+				scroll.scrollToTop();
 			}
-			return _react2.default.createElement(
-				'div',
-				{ className: 'search-wrap' },
+		};
+	};
+
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(SearchContainer);
+
+/***/ },
+/* 133 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.scrollPosition = exports.searchPro = exports.cancelSearch = exports.getProList = undefined;
+
+	var _ActionTypes = __webpack_require__(85);
+
+	var types = _interopRequireWildcard(_ActionTypes);
+
+	var _shop = __webpack_require__(84);
+
+	var _shop2 = _interopRequireDefault(_shop);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	//获取商品列表
+	var getProListDip = function getProListDip(products) {
+		return {
+			type: types.GET_PRODUCTS,
+			products: products
+		};
+	};
+
+	var getProList = exports.getProList = function getProList(products) {
+		return function (dispatch) {
+			_shop2.default.getProList(function (products) {
+				dispatch(getProListDip(products));
+			});
+		};
+	};
+
+	//清空搜索内容
+	var cancelSearch = exports.cancelSearch = function cancelSearch() {
+		return {
+			type: types.CANCEL_SEARCH
+		};
+	};
+
+	//搜索
+	var searchPro = exports.searchPro = function searchPro(keys) {
+		return {
+			type: types.SEARCH_PRO,
+			keys: keys
+		};
+	};
+
+	//记录滑动位置
+	var scrollPosition = exports.scrollPosition = function scrollPosition(l) {
+		return {
+			type: types.SCROLL_POSITION,
+			location: l
+		};
+	};
+
+/***/ },
+/* 134 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _search = __webpack_require__(135);
+
+	var _search2 = _interopRequireDefault(_search);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var ProList = function ProList(_ref) {
+		var children = _ref.children,
+		    handleSearchPro = _ref.handleSearchPro,
+		    handleCancelSearch = _ref.handleCancelSearch,
+		    refs = _ref.refs,
+		    searchText = _ref.searchText;
+		return _react2.default.createElement(
+			'div',
+			{ id: 'search-wrap' },
+			_react2.default.createElement(_search2.default, {
+				handleSearchPro: handleSearchPro,
+				handleCancelSearch: handleCancelSearch,
+				refs: refs,
+				searchText: searchText
+			}),
+			_react2.default.createElement(
+				'section',
+				{ className: 'searchcontent' },
 				_react2.default.createElement(
 					'div',
-					{ className: 'weui_search_bar', id: 'search_bar' },
+					{ className: 'search-list list-view' },
 					_react2.default.createElement(
-						'form',
-						{ className: 'weui_search_outer' },
+						'ul',
+						null,
 						_react2.default.createElement(
 							'div',
-							{ className: 'weui_search_inner' },
-							' ',
-							_react2.default.createElement('i', { className: 'weui_icon_search' }),
-							_react2.default.createElement('input', { type: 'search', onChange: this.handleSearchPro, ref: 'searchKey', className: 'weui_search_input', id: 'search_input', placeholder: '\u4F60\u641C\u4E00\u4E2A\u8BD5\u8BD5\uFF01', required: true }),
-							_react2.default.createElement('a', { href: 'javascript:', className: 'weui_icon_clear', id: 'search_clear', onClick: this.handleCancelSearch })
-						),
+							{ className: 'page-container' },
+							children
+						)
+					)
+				)
+			)
+		);
+	};
+
+	exports.default = ProList;
+
+/***/ },
+/* 135 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Search = function Search(_ref) {
+		var handleSearchPro = _ref.handleSearchPro,
+		    handleCancelSearch = _ref.handleCancelSearch,
+		    refs = _ref.refs,
+		    searchText = _ref.searchText;
+		return _react2.default.createElement(
+			"div",
+			{ className: "weui_search_bar", id: "search_bar" },
+			_react2.default.createElement(
+				"div",
+				{ className: "weui_search_outer" },
+				_react2.default.createElement(
+					"div",
+					{ className: "weui_search_inner" },
+					" ",
+					_react2.default.createElement("i", { className: "weui_icon_search" }),
+					_react2.default.createElement("input", { type: "search", onChange: handleSearchPro, ref: refs, className: "weui_search_input", id: "search_input", placeholder: searchText || '你搜一个试试！', required: true }),
+					_react2.default.createElement("a", { href: "javascript:", className: "weui_icon_clear", id: "search_clear", onClick: handleCancelSearch })
+				),
+				_react2.default.createElement(
+					"label",
+					{ className: "weui_search_text", id: "search_text" },
+					_react2.default.createElement("i", { className: "weui_icon_search" }),
+					_react2.default.createElement(
+						"span",
+						null,
+						"\u4F60\u641C\u4E00\u4E2A\u8BD5\u8BD5\uFF01"
+					)
+				)
+			),
+			_react2.default.createElement(
+				"a",
+				{ href: "javascript:", className: "weui_search_cancel", id: "search_cancel", onClick: handleCancelSearch },
+				"\u53D6\u6D88"
+			)
+		);
+	};
+
+	exports.default = Search;
+
+/***/ },
+/* 136 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(4);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var proItem = function proItem(_ref) {
+		var elem = _ref.elem,
+		    ProDetails = _ref.ProDetails;
+		return _react2.default.createElement(
+			'li',
+			{ onClick: ProDetails },
+			_react2.default.createElement(
+				'div',
+				{ className: 'list-item' },
+				_react2.default.createElement(
+					'div',
+					{ className: 'p' },
+					_react2.default.createElement('img', { className: 'p-pic', src: elem.logo }),
+					_react2.default.createElement('span', { className: 'flag c-icon-pt' })
+				),
+				_react2.default.createElement(
+					'div',
+					{ className: 'd' },
+					_react2.default.createElement(
+						'h3',
+						{ className: 'd-title' },
+						elem.name
+					),
+					_react2.default.createElement(
+						'p',
+						{ className: 'd-price' },
+						' ',
 						_react2.default.createElement(
-							'label',
-							{ htmlFor: 'search_input', className: 'weui_search_text', id: 'search_text', onClick: this.handleSearch },
-							_react2.default.createElement('i', { className: 'weui_icon_search' }),
+							'em',
+							{ className: 'h' },
 							_react2.default.createElement(
 								'span',
-								null,
-								'\u4F60\u641C\u4E00\u4E2A\u8BD5\u8BD5\uFF01'
+								{ className: 'price-icon' },
+								'\xA5'
+							),
+							_react2.default.createElement(
+								'span',
+								{ className: 'font-num' },
+								elem.price
+							)
+						),
+						'  ',
+						_react2.default.createElement(
+							'del',
+							null,
+							_react2.default.createElement(
+								'span',
+								{ className: 'price-icon' },
+								'\xA5'
+							),
+							_react2.default.createElement(
+								'span',
+								{ className: 'font-num' },
+								elem.market_price
 							)
 						)
 					),
 					_react2.default.createElement(
-						'a',
-						{ href: 'javascript:', className: 'weui_search_cancel', id: 'search_cancel', onClick: this.handleCancelSearch },
-						'\u53D6\u6D88'
+						'div',
+						{ className: 'd-main' },
+						_react2.default.createElement(
+							'p',
+							{ className: 'd-freight' },
+							elem.mail_price > 0 ? elem.mail_price : '免运费'
+						),
+						_react2.default.createElement(
+							'p',
+							{ className: 'd-num' },
+							_react2.default.createElement(
+								'span',
+								{ className: 'font-num' },
+								elem.sales_count
+							),
+							'\u4EBA\u4ED8\u6B3E'
+						),
+						_react2.default.createElement(
+							'p',
+							{ className: 'd-area' },
+							'\u53F0\u5DDE'
+						)
+					)
+				)
+			),
+			_react2.default.createElement('div', { className: 'icons-group' })
+		);
+	};
+
+	exports.default = proItem;
+
+/***/ },
+/* 137 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports.Link = __webpack_require__(138);
+	exports.Button = __webpack_require__(148);
+	exports.Element = __webpack_require__(149);
+	exports.Helpers = __webpack_require__(139);
+	exports.scroller = __webpack_require__(147);
+	exports.Events = __webpack_require__(145);
+	exports.scrollSpy = __webpack_require__(146);
+	exports.animateScroll = __webpack_require__(140);
+
+
+/***/ },
+/* 138 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(1);
+	var Helpers = __webpack_require__(139);
+
+	var Link = React.createClass({
+	  render: function () {
+	    return React.DOM.a(this.props, this.props.children);
+	  }
+	});
+
+	module.exports = Helpers.Scroll(Link);
+
+
+/***/ },
+/* 139 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(1);
+	var ReactDOM = __webpack_require__(3);
+
+	var animateScroll = __webpack_require__(140);
+	var scrollSpy = __webpack_require__(146);
+	var defaultScroller = __webpack_require__(147);
+	var assign = __webpack_require__(141);
+
+
+	var protoTypes = {
+	  to: React.PropTypes.string.isRequired,
+	  containerId: React.PropTypes.string,
+	  activeClass:React.PropTypes.string,
+	  spy: React.PropTypes.bool,
+	  smooth: React.PropTypes.bool,
+	  offset: React.PropTypes.number,
+	  delay: React.PropTypes.number,
+	  isDynamic: React.PropTypes.bool,
+	  onClick: React.PropTypes.func,
+	  duration: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.func]),
+	  absolute: React.PropTypes.bool,
+	  onSetActive: React.PropTypes.func,
+	  ignoreCancelEvents: React.PropTypes.bool
+	};
+
+	var Helpers = {
+
+	  Scroll: function (Component, customScroller) {
+
+	    var scroller = customScroller || defaultScroller;
+
+	    return React.createClass({
+
+	      propTypes: protoTypes,
+
+	      getDefaultProps: function() {
+	        return {offset: 0};
+	      },
+
+	      scrollTo : function(to, props) {
+	          scroller.scrollTo(to, props);
+	      },
+
+	      handleClick: function(event) {
+
+	        /*
+	         * give the posibility to override onClick
+	         */
+
+	        if(this.props.onClick) {
+	          this.props.onClick(event);
+	        }
+
+	        /*
+	         * dont bubble the navigation
+	         */
+
+	        if (event.stopPropagation) event.stopPropagation();
+	        if (event.preventDefault) event.preventDefault();
+
+	        /*
+	         * do the magic!
+	         */
+	        this.scrollTo(this.props.to, this.props);
+
+	      },
+
+	      spyHandler: function(y) {
+	        var element = scroller.get(this.props.to);
+	        if (!element) return;
+	        var cords = element.getBoundingClientRect();
+	        var topBound = cords.top + y;
+	        var bottomBound = topBound + cords.height;
+	        var offsetY = y - this.props.offset;
+	        var to = this.props.to;
+	        var isInside = (offsetY >= topBound && offsetY <= bottomBound);
+	        var isOutside = (offsetY < topBound || offsetY > bottomBound);
+	        var activeLink = scroller.getActiveLink();
+
+	        if (isOutside && activeLink === to) {
+	          scroller.setActiveLink(void 0);
+	          this.setState({ active : false });
+
+	        } else if (isInside && activeLink != to) {
+	          scroller.setActiveLink(to);
+	          this.setState({ active : true });
+
+	          if(this.props.onSetActive) {
+	            this.props.onSetActive(to);
+	          }
+
+	          scrollSpy.updateStates();
+	        }
+	      },
+
+	      componentDidMount: function() {
+
+
+
+	        var containerId = this.props.containerId;
+
+	        var scrollSpyContainer = containerId ? document.getElementById(containerId) : document;
+
+	        if(!scrollSpy.isMounted(scrollSpyContainer)) {
+	          scrollSpy.mount(scrollSpyContainer);
+	        }
+
+
+	        if(this.props.spy) {
+	          var to = this.props.to;
+	          var element = null;
+	          var elemTopBound = 0;
+	          var elemBottomBound = 0;
+
+	          this._stateHandler = function() {
+	            if(scroller.getActiveLink() != to) {
+	                this.setState({ active : false });
+	            }
+	          }.bind(this)
+
+	          scrollSpy.addStateHandler(this._stateHandler);
+
+	          this._spyHandler = function(y) {
+
+	            var containerTop = 0;
+	            if(scrollSpyContainer.getBoundingClientRect) {
+	              var containerCords = scrollSpyContainer.getBoundingClientRect();
+	              containerTop = containerCords.top;
+	            }
+
+	            if(!element || this.props.isDynamic) {
+	                element = scroller.get(to);
+	                if(!element){ return;}
+
+	                var cords = element.getBoundingClientRect();
+	                elemTopBound = (cords.top - containerTop + y);
+	                elemBottomBound = elemTopBound + cords.height;
+	            }
+
+
+
+	            var offsetY = y - this.props.offset;
+	            var isInside = (offsetY >= Math.floor(elemTopBound) && offsetY <= Math.floor(elemBottomBound));
+	            var isOutside = (offsetY < Math.floor(elemTopBound) || offsetY > Math.floor(elemBottomBound));
+	            var activeLink = scroller.getActiveLink();
+
+	            if (isOutside && activeLink === to) {
+	              scroller.setActiveLink(void 0);
+	              this.setState({ active : false });
+
+	            } else if (isInside && activeLink != to) {
+	              scroller.setActiveLink(to);
+	              this.setState({ active : true });
+
+	              if(this.props.onSetActive) {
+	                this.props.onSetActive(to);
+	              }
+
+	              scrollSpy.updateStates();
+
+	            }
+	          }.bind(this);
+
+	          scrollSpy.addSpyHandler(this._spyHandler, scrollSpyContainer);
+	        }
+	      },
+	      componentWillUnmount: function() {
+	        scrollSpy.unmount(this._stateHandler, this._spyHandler);
+	      },
+	      render: function() {
+
+	        var className = "";
+	        if(this.state && this.state.active) {
+	          className = ((this.props.className || "") + " " + (this.props.activeClass || "active")).trim();
+	        } else {
+	          className = this.props.className;
+	        }
+
+	        var props = assign({}, this.props);
+
+	        for(var prop in protoTypes) {
+	          if(props.hasOwnProperty(prop)) {
+	            delete props[prop];
+	          }
+	        }
+
+	        props.className = className;
+	        props.onClick = this.handleClick;
+
+	        return React.createElement(Component, props);
+	      }
+	    });
+	  },
+
+
+	  Element: function(Component) {
+	    return React.createClass({
+	      propTypes: {
+	        name: React.PropTypes.string,
+	        id:   React.PropTypes.string
+	      },
+	      componentDidMount: function() {
+	        this.registerElems(this.props.name);
+	      },
+	      componentWillReceiveProps: function(nextProps) {
+	        if (this.props.name !== nextProps.name) {
+	          this.registerElems(nextProps.name);
+	        }
+	      },
+	      componentWillUnmount: function() {
+	        defaultScroller.unregister(this.props.name);
+	      },
+	      registerElems: function(name) {
+	        var domNode = ReactDOM.findDOMNode(this);
+	        defaultScroller.register(name, domNode);
+	      },
+	      render: function() {
+	        return React.createElement(Component, this.props);
+	      }
+	    });
+	  }
+	};
+
+	module.exports = Helpers;
+
+
+/***/ },
+/* 140 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var assign = __webpack_require__(141);
+
+	var smooth = __webpack_require__(142);
+
+	var easing = smooth.defaultEasing;
+
+	var cancelEvents = __webpack_require__(143);
+
+	var events = __webpack_require__(145);
+
+	/*
+	 * Function helper
+	 */
+	var functionWrapper = function(value) {
+	  return typeof value === 'function' ? value : function() { return value; };
+	};
+
+	/*
+	 * Wraps window properties to allow server side rendering
+	 */
+	var currentWindowProperties = function() {
+	  if (typeof window !== 'undefined') {
+	    return window.requestAnimationFrame || window.webkitRequestAnimationFrame;
+	  }
+	};
+
+	/*
+	 * Helper function to never extend 60fps on the webpage.
+	 */
+	var requestAnimationFrameHelper = (function () {
+	  return  currentWindowProperties() ||
+	          function (callback, element, delay) {
+	              window.setTimeout(callback, delay || (1000/60), new Date().getTime());
+	          };
+	})();
+
+
+	var __currentPositionY  = 0;
+	var __startPositionY    = 0;
+	var __targetPositionY   = 0;
+	var __progress          = 0;
+	var __duration          = 0;
+	var __cancel            = false;
+
+	var __target;
+	var __containerElement;
+	var __to;
+	var __start;
+	var __deltaTop;
+	var __percent;
+	var __delayTimeout;
+
+
+	var currentPositionY = function() {
+	  if (__containerElement) {
+	        return __containerElement.scrollTop;
+		} else {
+	    var supportPageOffset = window.pageXOffset !== undefined;
+	    var isCSS1Compat = ((document.compatMode || "") === "CSS1Compat");
+	    return supportPageOffset ? window.pageYOffset : isCSS1Compat ?
+	           document.documentElement.scrollTop : document.body.scrollTop;
+	   }
+	};
+
+	var scrollContainerHeight = function() {
+	  if(__containerElement) {
+	    return Math.max(
+	      __containerElement.scrollHeight,
+	      __containerElement.offsetHeight,
+	      __containerElement.clientHeight
+	    );
+	  } else {
+	    var body = document.body;
+	    var html = document.documentElement;
+
+	    return Math.max(
+	      body.scrollHeight,
+	      body.offsetHeight,
+	      html.clientHeight,
+	      html.scrollHeight,
+	      html.offsetHeight
+	    );
+	  }
+	};
+
+	var animateTopScroll = function(timestamp) {
+
+	  // Cancel on specific events
+	  if(__cancel) { 
+	    if(events.registered['end']) {
+	      events.registered['end'](__to, __target, __currentPositionY);
+	    }
+	    return 
+	  };
+
+	  __deltaTop = Math.round(__targetPositionY - __startPositionY);
+
+	  if (__start === null) {
+	    __start = timestamp;
+	  }
+
+	  __progress = timestamp - __start;
+
+	  __percent = (__progress >= __duration ? 1 : easing(__progress/__duration));
+
+	  __currentPositionY = __startPositionY + Math.ceil(__deltaTop * __percent);
+
+	  if(__containerElement) {
+	    __containerElement.scrollTop = __currentPositionY;
+	  } else {
+	    window.scrollTo(0, __currentPositionY);
+	  }
+
+	  if(__percent < 1) {
+	    requestAnimationFrameHelper.call(window, animateTopScroll);
+	    return;
+	  }
+
+	  if(events.registered['end']) {
+	    events.registered['end'](__to, __target, __currentPositionY);
+	  }
+
+	};
+
+	var setContainer = function (options) {
+	  if(!options || !options.containerId) {
+	    __containerElement = null;
+	    return;
+	  }
+
+	  __containerElement = document.getElementById(options.containerId);
+	};
+
+	var startAnimateTopScroll = function(y, options, to, target) {
+
+	  window.clearTimeout(__delayTimeout);
+
+
+	  if (!options.ignoreCancelEvents) {
+	    /*
+	     * Sets the cancel trigger
+	     */
+
+	    cancelEvents.register(function() {
+	      __cancel = true;
+	    });
+	  }
+
+	  setContainer(options);
+
+
+	  __start           = null;
+	  __cancel          = false;
+	  __startPositionY  = currentPositionY();
+	  __targetPositionY = options.absolute ? y : y + __startPositionY;
+	  __deltaTop        = Math.round(__targetPositionY - __startPositionY);
+
+	  __duration        = functionWrapper(options.duration)(__deltaTop);
+	  __duration        = isNaN(parseFloat(__duration)) ? 1000 : parseFloat(__duration);
+	  __to              = to;
+	  __target          = target;
+
+	  if(options && options.delay > 0) {
+	    __delayTimeout = window.setTimeout(function animate() {
+	      requestAnimationFrameHelper.call(window, animateTopScroll);
+	    }, options.delay);
+	    return;
+	  }
+
+	  requestAnimationFrameHelper.call(window, animateTopScroll);
+
+	};
+
+	var scrollToTop = function (options) {
+	  startAnimateTopScroll(0, assign(options || {}, { absolute : true }));
+	};
+
+	var scrollTo = function (toY, options) {
+	  startAnimateTopScroll(toY, assign(options || {}, { absolute : true }));
+	};
+
+	var scrollToBottom = function(options) {
+	  setContainer(options);
+	  startAnimateTopScroll(scrollContainerHeight(), assign(options || {}, { absolute : true }));
+	};
+
+	var scrollMore = function(toY, options) {
+	  setContainer(options);
+	  startAnimateTopScroll(currentPositionY() + toY, assign(options || {}, { absolute : true }));
+	};
+
+	module.exports = {
+	  animateTopScroll: startAnimateTopScroll,
+	  scrollToTop: scrollToTop,
+	  scrollToBottom: scrollToBottom,
+	  scrollTo: scrollTo,
+	  scrollMore: scrollMore,
+	};
+
+
+/***/ },
+/* 141 */
+/***/ function(module, exports) {
+
+	/*
+	object-assign
+	(c) Sindre Sorhus
+	@license MIT
+	*/
+
+	'use strict';
+	/* eslint-disable no-unused-vars */
+	var getOwnPropertySymbols = Object.getOwnPropertySymbols;
+	var hasOwnProperty = Object.prototype.hasOwnProperty;
+	var propIsEnumerable = Object.prototype.propertyIsEnumerable;
+
+	function toObject(val) {
+		if (val === null || val === undefined) {
+			throw new TypeError('Object.assign cannot be called with null or undefined');
+		}
+
+		return Object(val);
+	}
+
+	function shouldUseNative() {
+		try {
+			if (!Object.assign) {
+				return false;
+			}
+
+			// Detect buggy property enumeration order in older V8 versions.
+
+			// https://bugs.chromium.org/p/v8/issues/detail?id=4118
+			var test1 = new String('abc');  // eslint-disable-line no-new-wrappers
+			test1[5] = 'de';
+			if (Object.getOwnPropertyNames(test1)[0] === '5') {
+				return false;
+			}
+
+			// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+			var test2 = {};
+			for (var i = 0; i < 10; i++) {
+				test2['_' + String.fromCharCode(i)] = i;
+			}
+			var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
+				return test2[n];
+			});
+			if (order2.join('') !== '0123456789') {
+				return false;
+			}
+
+			// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+			var test3 = {};
+			'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
+				test3[letter] = letter;
+			});
+			if (Object.keys(Object.assign({}, test3)).join('') !==
+					'abcdefghijklmnopqrst') {
+				return false;
+			}
+
+			return true;
+		} catch (err) {
+			// We don't expect any of the above to throw, but better to be safe.
+			return false;
+		}
+	}
+
+	module.exports = shouldUseNative() ? Object.assign : function (target, source) {
+		var from;
+		var to = toObject(target);
+		var symbols;
+
+		for (var s = 1; s < arguments.length; s++) {
+			from = Object(arguments[s]);
+
+			for (var key in from) {
+				if (hasOwnProperty.call(from, key)) {
+					to[key] = from[key];
+				}
+			}
+
+			if (getOwnPropertySymbols) {
+				symbols = getOwnPropertySymbols(from);
+				for (var i = 0; i < symbols.length; i++) {
+					if (propIsEnumerable.call(from, symbols[i])) {
+						to[symbols[i]] = from[symbols[i]];
+					}
+				}
+			}
+		}
+
+		return to;
+	};
+
+
+/***/ },
+/* 142 */
+/***/ function(module, exports) {
+
+	module.exports = {
+	 /*
+	  * https://github.com/oblador/angular-scroll (duScrollDefaultEasing)
+	  */
+	  defaultEasing : function (x) {
+	    'use strict';
+
+	    if(x < 0.5) {
+	      return Math.pow(x*2, 2)/2;
+	    }
+	    return 1-Math.pow((1-x)*2, 2)/2;
+	  }
+	}
+
+/***/ },
+/* 143 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var addPassiveEventListener = __webpack_require__(144);
+
+	var events = ['mousedown', 'mousewheel', 'touchmove', 'keydown']
+
+	module.exports = {
+		register : function(cancelEvent) {
+			if (typeof document === 'undefined') {
+				return;
+			}
+
+			for(var i = 0; i < events.length; i = i + 1) {
+				addPassiveEventListener(document, events[i], cancelEvent);
+			}
+		}
+	};
+
+
+/***/ },
+/* 144 */
+/***/ function(module, exports) {
+
+	/*
+	 * Tell the browser that the event listener won't prevent a scroll.
+	 * Allowing the browser to continue scrolling without having to
+	 * to wait for the listener to return.
+	 */
+	var addPassiveEventListener = function(target, eventName, listener) {
+	    var supportsPassiveOption = (function(){
+	        var supportsPassiveOption = false;
+	        try {
+	            var opts = Object.defineProperty({}, 'passive', {
+	                get: function() {
+	                    supportsPassiveOption = true;
+	                }
+	            });
+	            window.addEventListener('test', null, opts);
+	        } catch (e) {}
+	        return supportsPassiveOption;
+	    })();
+
+	    target.addEventListener(eventName, listener, supportsPassiveOption ? {passive: true} : false);
+	};
+
+	module.exports = addPassiveEventListener;
+
+
+/***/ },
+/* 145 */
+/***/ function(module, exports) {
+
+	
+	var Events = {
+		registered : {},
+		scrollEvent : {
+			register: function(evtName, callback) {
+				Events.registered[evtName] = callback;
+			},
+			remove: function(evtName) {
+				Events.registered[evtName] = null;
+			}
+		}
+	};
+
+	module.exports = Events;
+
+/***/ },
+/* 146 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var addPassiveEventListener = __webpack_require__(144);
+
+	var eventThrottler = function(eventHandler) {
+	  var eventHandlerTimeout;
+	  return function(event) {
+	    // ignore events as long as an eventHandler execution is in the queue
+	    if ( !eventHandlerTimeout ) {
+	      eventHandlerTimeout = setTimeout(function() {
+	        eventHandlerTimeout = null;
+	        eventHandler(event);
+	        // The eventHandler will execute at a rate of 15fps
+	      }, 66);
+	    }
+	  };
+	};
+
+	var scrollSpy = {
+
+	  spyCallbacks: [],
+	  spySetState: [],
+	  scrollSpyContainers: [],
+
+	  mount: function (scrollSpyContainer) {
+	    var t = this;
+	    if (scrollSpyContainer) {
+	      var eventHandler = eventThrottler(function(event) {
+	        t.scrollHandler(scrollSpyContainer);
+	      });
+	      this.scrollSpyContainers.push(scrollSpyContainer);
+	      addPassiveEventListener(scrollSpyContainer, 'scroll', eventHandler);
+	    }
+	  },
+
+	  isMounted: function (scrollSpyContainer) {
+	    return this.scrollSpyContainers.indexOf(scrollSpyContainer) !== -1;
+	  },
+
+	  currentPositionY: function (scrollSpyContainer) {
+	    if(scrollSpyContainer === document) {
+	      var supportPageOffset = window.pageXOffset !== undefined;
+	      var isCSS1Compat = ((document.compatMode || "") === "CSS1Compat");
+	      return supportPageOffset ? window.pageYOffset : isCSS1Compat ?
+	      document.documentElement.scrollTop : document.body.scrollTop;
+	    } else {
+	      return scrollSpyContainer.scrollTop;
+	    }
+	  },
+
+	  scrollHandler: function (scrollSpyContainer) {
+	    var callbacks = this.scrollSpyContainers[this.scrollSpyContainers.indexOf(scrollSpyContainer)].spyCallbacks;
+	    if (callbacks) {
+	      for(var i = 0; i < callbacks.length; i++) {
+	        var position =this.currentPositionY(scrollSpyContainer);
+	        callbacks[i](this.currentPositionY(scrollSpyContainer));
+	      }
+	    }
+	  },
+
+	  addStateHandler: function(handler){
+	    this.spySetState.push(handler);
+	  },
+
+	  addSpyHandler: function(handler, scrollSpyContainer) {
+	    var container = this.scrollSpyContainers[this.scrollSpyContainers.indexOf(scrollSpyContainer)];
+	    if(!container.spyCallbacks) {
+	      container.spyCallbacks = [];
+	    }
+	    container.spyCallbacks.push(handler);
+	  },
+
+	  updateStates: function(){
+	    var length = this.spySetState.length;
+
+	    for(var i = 0; i < length; i++) {
+	      this.spySetState[i]();
+	    }
+	  },
+
+	  unmount: function (stateHandler, spyHandler) {
+	    for (var i = 0; i < this.scrollSpyContainers.length; i++) {
+	      var callbacks = this.scrollSpyContainers[i].spyCallbacks;
+	      if(callbacks && callbacks.length) {
+	        callbacks.splice(callbacks.indexOf(spyHandler), 1);
+	      }
+	    }
+
+	    if(this.spySetState && this.spySetState.length) {
+	      this.spySetState.splice(this.spySetState.indexOf(stateHandler), 1);
+	    }
+
+	    document.removeEventListener('scroll', this.scrollHandler);
+	  },
+
+	  update: function() {
+	    for (var i = 0; i < this.scrollSpyContainers.length; i++) {
+	      this.scrollHandler(this.scrollSpyContainers[i]);
+	    }
+	  }
+	}
+
+	module.exports = scrollSpy;
+
+
+/***/ },
+/* 147 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var assign = __webpack_require__(141);
+
+	var animateScroll = __webpack_require__(140);
+	var events = __webpack_require__(145);
+
+	var __mapped = {};
+	var __activeLink;
+
+	module.exports = {
+
+	  unmount: function() {
+	    __mapped = {};
+	  },
+
+	  register: function(name, element){
+	    __mapped[name] = element;
+	  },
+
+	  unregister: function(name) {
+	    delete __mapped[name];
+	  },
+
+	  get: function(name) {
+	    return __mapped[name] || document.getElementById(name);
+	  },
+
+	  setActiveLink: function(link) {
+	    __activeLink = link;
+	  },
+
+	  getActiveLink: function() {
+	    return __activeLink;
+	  },
+
+	  scrollTo: function(to, props) {
+
+	     /*
+	     * get the mapped DOM element
+	     */
+
+	      var target = this.get(to);
+
+	      if(!target) {
+	        console.warn("target Element not found");
+	        return;
+	      }
+
+	      props = assign({}, props, { absolute : false });
+
+
+	      if(events.registered['begin']) {
+	        events.registered['begin'](to, target);
+	      }
+
+	      var containerId = props.containerId;
+	      var containerElement = containerId ? document.getElementById(containerId) : null;
+
+	      var scrollOffset;
+
+	      if(containerId && containerElement) {
+	        props.absolute = true;
+	        if(containerElement !== target.offsetParent) {
+	          if(!containerElement.contains(target)) {
+	            throw new Error('Container with ID ' + containerId + ' is not a parent of target ' + to);
+	          } else {
+	            throw new Error('Container with ID ' + containerId + ' is not a positioned element');
+	          }
+	        }
+
+	        scrollOffset = target.offsetTop;
+	      } else {
+	        var coordinates = target.getBoundingClientRect();
+	        scrollOffset = coordinates.top;
+	      }
+
+	      scrollOffset += (props.offset || 0);
+
+
+	      /*
+	       * if animate is not provided just scroll into the view
+	       */
+	      if(!props.smooth) {
+	        if(containerId && containerElement) {
+	          containerElement.scrollTop = scrollOffset;
+	        } else {
+	          // window.scrollTo accepts only absolute values so body rectangle needs to be subtracted
+	          var bodyRect = document.body.getBoundingClientRect();
+	          window.scrollTo(0, scrollOffset - bodyRect.top);
+	        }
+
+	        if(events.registered['end']) {
+	          events.registered['end'](to, target);
+	        }
+
+	        return;
+	      }
+
+	      /*
+	       * Animate scrolling
+	       */
+
+	      animateScroll.animateTopScroll(scrollOffset, props, to, target);
+	  }
+	};
+
+
+/***/ },
+/* 148 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(1);
+	var Helpers = __webpack_require__(139);
+
+	var Button = React.createClass({
+	  render: function () {
+	    return React.DOM.input(this.props, this.props.children);
+	  }
+	});
+
+	module.exports = Helpers.Scroll(Button);
+
+
+/***/ },
+/* 149 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(1);
+	var Helpers = __webpack_require__(139);
+
+	var Element = React.createClass({
+	  render: function () {
+	    return React.DOM.div(this.props, this.props.children);
+	  }
+	});
+
+	module.exports = Helpers.Element(Element);
+
+
+/***/ },
+/* 150 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRedux = __webpack_require__(82);
+
+	var _cartItem = __webpack_require__(151);
+
+	var _cartItem2 = _interopRequireDefault(_cartItem);
+
+	var _carts = __webpack_require__(86);
+
+	var cartsActions = _interopRequireWildcard(_carts);
+
+	var _reactRouter = __webpack_require__(4);
+
+	__webpack_require__(152);
+
+	var _index = __webpack_require__(154);
+
+	var _index2 = _interopRequireDefault(_index);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+	var CartContainer = function CartContainer(_ref) {
+		var rest = _objectWithoutProperties(_ref, []);
+
+		if (rest.products.length == 0) {
+			rest.init();
+		}
+		return _react2.default.createElement(
+			_index2.default,
+			{
+				carts: rest.carts,
+				chooseAll: rest.chooseAll,
+				settle: function settle() {
+					return rest.settle(rest.carts.chooseId);
+				}
+			},
+			rest.products.map(function (product) {
+				if (product.delete == 0) {
+					return _react2.default.createElement(_cartItem2.default, {
+						key: product.id,
+						elem: product,
+						editId: rest.editId,
+						edit: function edit() {
+							return rest.edit(product.id);
+						},
+						chooseById: function chooseById() {
+							return rest.chooseById(product.id);
+						},
+						addCartProductById: function addCartProductById() {
+							return rest.addCartProductById(product.id);
+						},
+						delCartProductById: function delCartProductById() {
+							return rest.delCartProductById(product.id, product.number);
+						},
+						removeCartProById: function removeCartProById() {
+							return rest.removeCartProById(product.id);
+						},
+						carts: rest.carts
+					});
+				}
+			})
+		);
+	};
+
+	var mapStateToProps = function mapStateToProps(state) {
+		return {
+			products: state.carts.products,
+			editId: state.carts.editId,
+			chooseNum: state.carts.chooseNum,
+			carts: state.carts
+		};
+	};
+
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+		return {
+			//点击编辑按钮
+			edit: function edit(cartId) {
+				dispatch(cartsActions.editCart(cartId));
+			},
+			//单选
+			chooseById: function chooseById(cartId) {
+				dispatch(cartsActions.chooseById(cartId));
+			},
+			//全选
+			chooseAll: function chooseAll() {
+				dispatch(cartsActions.chooseAll());
+			},
+			//增加购物车商品数量
+			addCartProductById: function addCartProductById(cartId) {
+				dispatch(cartsActions.addCartProductById(cartId));
+			},
+			//减少购物车商品数量
+			delCartProductById: function delCartProductById(cartId, number) {
+				dispatch(cartsActions.delCartProductById(cartId, number));
+			},
+			//结算
+			settle: function settle(cartIds) {
+				dispatch(cartsActions.settleCart(cartIds));
+			},
+			//购物车初始化
+			init: function init() {
+				dispatch(cartsActions.getAllProducts(true));
+			},
+			removeCartProById: function removeCartProById(cartId) {
+				dispatch(cartsActions.removeCartProById(cartId));
+			}
+		};
+	};
+
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(CartContainer);
+
+/***/ },
+/* 151 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var CartItem = function CartItem(_ref) {
+		var elem = _ref.elem,
+		    editId = _ref.editId,
+		    edit = _ref.edit,
+		    chooseById = _ref.chooseById,
+		    carts = _ref.carts,
+		    addCartProductById = _ref.addCartProductById,
+		    delCartProductById = _ref.delCartProductById,
+		    removeCartProById = _ref.removeCartProById;
+		return _react2.default.createElement(
+			"div",
+			{ className: "bundlev2" },
+			_react2.default.createElement(
+				"div",
+				{ className: "shop" },
+				_react2.default.createElement(
+					"div",
+					{ className: "o-t-title-shop" },
+					_react2.default.createElement(
+						"div",
+						{ className: "tcont" },
+						_react2.default.createElement(
+							"div",
+							{ className: "state" },
+							_react2.default.createElement(
+								"div",
+								{ className: "state-cont", onClick: edit },
+								_react2.default.createElement(
+									"p",
+									null,
+									editId.includes(elem.id) ? "完成" : "编辑"
+								)
+							)
+						)
+					)
+				)
+			),
+			_react2.default.createElement(
+				"div",
+				{ className: (editId.includes(elem.id) ? "edit-true" : "edit-false") + " item-list o-t-item undefined" },
+				_react2.default.createElement(
+					"div",
+					{ className: "item-cb" },
+					_react2.default.createElement(
+						"p",
+						null,
+						_react2.default.createElement("input", { id: "cb-" + elem.id, type: "checkbox", className: "cb o-t-cb", checked: carts.chooseId.includes(elem.id), onChange: chooseById }),
+						_react2.default.createElement("label", { htmlFor: "cb-" + elem.id })
 					)
 				),
 				_react2.default.createElement(
-					'section',
-					{ className: 'searchcontent' },
+					"div",
+					{ className: "item-detail" },
 					_react2.default.createElement(
-						'div',
-						{ className: 'search-list list-view' },
+						"div",
+						null,
 						_react2.default.createElement(
-							'ul',
-							null,
+							"div",
+							{ className: "item-img" },
 							_react2.default.createElement(
-								'div',
-								{ className: 'page-container' },
-								pros
+								"a",
+								{ href: "//a.m.taobao.com/i538664564931.htm" },
+								_react2.default.createElement("img", { className: "", src: elem.goods_logo, "data-src-checked": "true" })
+							)
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "item-info" },
+							_react2.default.createElement(
+								"a",
+								{ href: "//a.m.taobao.com/i538664564931.htm" },
+								_react2.default.createElement(
+									"h3",
+									{ className: "title" },
+									elem.goods_name
+								),
+								_react2.default.createElement(
+									"div",
+									{ className: "sku" },
+									_react2.default.createElement(
+										"p",
+										null,
+										elem.goods_attr
+									)
+								)
+							),
+							_react2.default.createElement(
+								"div",
+								{ className: "pay" },
+								_react2.default.createElement(
+									"div",
+									{ className: "pay-price" },
+									_react2.default.createElement(
+										"div",
+										{ className: "price" },
+										_react2.default.createElement(
+											"p",
+											{ className: "o-t-price" },
+											_react2.default.createElement(
+												"span",
+												null,
+												elem.goods_price
+											)
+										)
+									),
+									_react2.default.createElement(
+										"div",
+										{ className: "originPrice" },
+										_react2.default.createElement(
+											"p",
+											null,
+											" ",
+											_react2.default.createElement(
+												"del",
+												null,
+												"\uFFE5",
+												elem.market_price
+											)
+										)
+									)
+								),
+								_react2.default.createElement(
+									"div",
+									{ className: "quantity" },
+									_react2.default.createElement(
+										"p",
+										null,
+										_react2.default.createElement(
+											"span",
+											null,
+											"x"
+										),
+										_react2.default.createElement(
+											"span",
+											null,
+											elem.number
+										)
+									)
+								)
+							)
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "item-info2" },
+							_react2.default.createElement(
+								"div",
+								{ className: "edit-quantity" },
+								_react2.default.createElement(
+									"p",
+									{ className: "btn-minus" },
+									_react2.default.createElement("a", { className: "btn minus off", min: "1", onClick: delCartProductById })
+								),
+								_react2.default.createElement(
+									"p",
+									{ className: "btn-input" },
+									_react2.default.createElement("input", { type: "tel", value: elem.number, readOnly: true })
+								),
+								_react2.default.createElement(
+									"p",
+									{ className: "btn-plus" },
+									_react2.default.createElement("a", { className: "btn plus", onClick: addCartProductById })
+								)
+							),
+							_react2.default.createElement(
+								"div",
+								{ className: "edit-sku" },
+								_react2.default.createElement(
+									"div",
+									null,
+									_react2.default.createElement(
+										"p",
+										null,
+										elem.goods_attr
+									)
+								)
 							)
 						)
 					)
 				),
 				_react2.default.createElement(
+					"div",
+					{ className: "item-del c-edit-delhide", onClick: removeCartProById },
+					_react2.default.createElement(
+						"p",
+						null,
+						"\u5220\u9664"
+					)
+				)
+			)
+		);
+	};
+	exports.default = CartItem;
+
+/***/ },
+/* 152 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 153 */,
+/* 154 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _weui = __webpack_require__(120);
+
+	var _footer = __webpack_require__(155);
+
+	var _footer2 = _interopRequireDefault(_footer);
+
+	var _reactRouter = __webpack_require__(4);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Cart = function Cart(_ref) {
+		var children = _ref.children,
+		    carts = _ref.carts,
+		    chooseAll = _ref.chooseAll,
+		    settle = _ref.settle;
+		return _react2.default.createElement(
+			'div',
+			{ className: 'cart-wrap' },
+			_react2.default.createElement(_weui.CommonHeader, {
+				value: '购物车(' + carts.chooseNum + ')',
+				back: true,
+				pathname: '/' }),
+			_react2.default.createElement(
+				'div',
+				{ className: 'cartbuy' },
+				children,
+				_react2.default.createElement(_footer2.default, {
+					carts: carts,
+					chooseAll: chooseAll,
+					settle: settle
+				})
+			)
+		);
+	};
+
+	exports.default = Cart;
+
+/***/ },
+/* 155 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Footer = function Footer(_ref) {
+		var carts = _ref.carts,
+		    chooseAll = _ref.chooseAll,
+		    settle = _ref.settle;
+		return _react2.default.createElement(
+			"div",
+			{ className: "footer" },
+			_react2.default.createElement(
+				"div",
+				{ className: "f-fx" },
+				_react2.default.createElement(
+					"div",
+					null,
+					_react2.default.createElement(
+						"div",
+						{ className: "ft-cb" },
+						_react2.default.createElement(
+							"p",
+							null,
+							_react2.default.createElement("input", { id: "cb-footer", type: "checkbox", className: "cb o-t-cb", onChange: chooseAll, checked: carts.chooseAll }),
+							_react2.default.createElement("label", { htmlFor: "cb-footer" })
+						)
+					),
+					_react2.default.createElement(
+						"div",
+						{ className: "qx" },
+						"\u5168\u9009"
+					),
+					_react2.default.createElement(
+						"div",
+						{ className: "pay" },
+						_react2.default.createElement(
+							"div",
+							null,
+							_react2.default.createElement(
+								"div",
+								null,
+								_react2.default.createElement(
+									"span",
+									{ className: "hj" },
+									"\u5408\u8BA1\uFF1A"
+								),
+								_react2.default.createElement(
+									"p",
+									{ className: "o-t-price", "data-symbol": "\uFFE5" },
+									_react2.default.createElement(
+										"span",
+										null,
+										carts.totalFee
+									)
+								)
+							),
+							_react2.default.createElement(
+								"p",
+								null,
+								"\u4E0D\u542B\u8FD0\u8D39"
+							)
+						)
+					),
+					_react2.default.createElement(
+						"div",
+						{ className: "btn", onClick: settle },
+						_react2.default.createElement(
+							"p",
+							null,
+							_react2.default.createElement(
+								"span",
+								null,
+								"\u7ED3\u7B97(",
+								carts.chooseNum,
+								")"
+							)
+						)
+					)
+				)
+			)
+		);
+	};
+	exports.default = Footer;
+
+/***/ },
+/* 156 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(3);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	var _ajaxfileupload = __webpack_require__(157);
+
+	var _ajaxfileupload2 = _interopRequireDefault(_ajaxfileupload);
+
+	var _fileInput = __webpack_require__(158);
+
+	var _fileInput2 = _interopRequireDefault(_fileInput);
+
+	var _weui = __webpack_require__(120);
+
+	var _myqrcode = __webpack_require__(159);
+
+	var _myqrcode2 = _interopRequireDefault(_myqrcode);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _react2.default.createClass({
+		displayName: 'my',
+		getInitialState: function getInitialState() {
+			return {
+				info: []
+			};
+		},
+		componentWillMount: function componentWillMount() {
+			this.handleGetMyInfo();
+		},
+		componentDidMount: function componentDidMount() {},
+		handleUploadPic: function handleUploadPic() {
+			var _self = this;
+			_ajaxfileupload2.default.ajaxFileUpload({
+				url: MYSERVER + 'uploadPic',
+				type: 'post',
+				secureuri: false,
+				fileElementId: 'headimgurl',
+				dataType: 'json',
+				success: function success(data, status) {
+					_self.handleGetMyInfo();
+				}
+			});
+		},
+		handleGetMyInfo: function handleGetMyInfo() {
+			$.getJSON(MYSERVER + 'getMyInfo', function (json, textStatus) {
+				this.setState({
+					info: json.data
+				});
+			}.bind(this));
+		},
+		render: function render() {
+			var qrcode = this.state.info.my_qrcode;
+			return _react2.default.createElement(
+				'div',
+				{ className: 'my-wrap' },
+				_react2.default.createElement(
 					'div',
-					{ className: 'weui-infinite-scroll' },
-					_react2.default.createElement('div', { className: 'infinite-preloader' }),
-					'\u6B63\u5728\u52A0\u8F7D'
+					{ className: 'user' },
+					_react2.default.createElement(
+						'div',
+						{ className: 'set-btn' },
+						_react2.default.createElement(
+							'p',
+							null,
+							'\u8BBE\u7F6E'
+						)
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 'user-photo' },
+						_react2.default.createElement('input', { type: 'file', id: 'headimgurl', ref: 'headimgurl', name: 'headimgurl', onChange: this.handleUploadPic }),
+						_react2.default.createElement('img', { src: this.state.info.headimgurl })
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 'user-nick' },
+						_react2.default.createElement(
+							'p',
+							{ className: 'nick', id: 'J_myNick' },
+							this.state.info.name
+						),
+						_react2.default.createElement('p', { className: 'level level3' })
+					)
+				),
+				_react2.default.createElement(
+					'section',
+					{ className: 'user-behavior userBehavior' },
+					_react2.default.createElement(
+						'ul',
+						{ 'data-spm': '1' },
+						_react2.default.createElement(
+							'li',
+							null,
+							_react2.default.createElement(
+								'a',
+								{ href: '#' },
+								_react2.default.createElement(
+									'p',
+									null,
+									'41'
+								),
+								_react2.default.createElement(
+									'p',
+									null,
+									'\u6536\u85CF\u7684\u5B9D\u8D1D'
+								)
+							)
+						),
+						_react2.default.createElement(
+							'li',
+							null,
+							_react2.default.createElement(
+								'a',
+								{ href: '#' },
+								_react2.default.createElement(
+									'p',
+									null,
+									'17'
+								),
+								_react2.default.createElement(
+									'p',
+									null,
+									'\u6536\u85CF\u7684\u5E97\u94FA'
+								)
+							)
+						),
+						_react2.default.createElement(
+							'li',
+							null,
+							_react2.default.createElement(
+								'a',
+								{ href: '#' },
+								_react2.default.createElement(
+									'p',
+									null,
+									'42'
+								),
+								_react2.default.createElement(
+									'p',
+									null,
+									'\u6211\u7684\u8DB3\u8FF9'
+								)
+							)
+						)
+					)
+				),
+				_react2.default.createElement(
+					'section',
+					{ className: 'order-act', 'data-spm': '2' },
+					_react2.default.createElement(
+						'ul',
+						{ className: ' orderAct', id: 'orderAct3' },
+						_react2.default.createElement(
+							'li',
+							null,
+							_react2.default.createElement(
+								'a',
+								{ href: '//h5.m.taobao.com/mlapp/olist.html?tabCode=waitPay' },
+								_react2.default.createElement(
+									'p',
+									null,
+									_react2.default.createElement('span', { className: 'order-icons icon-pay' })
+								),
+								_react2.default.createElement(
+									'p',
+									{ className: 'sub' },
+									'\u5F85\u4ED8\u6B3E'
+								)
+							)
+						),
+						_react2.default.createElement(
+							'li',
+							null,
+							_react2.default.createElement(
+								'a',
+								{ href: '//h5.m.taobao.com/mlapp/olist.html?tabCode=waitSend' },
+								_react2.default.createElement(
+									'p',
+									null,
+									_react2.default.createElement('span', { className: 'order-icons icon-send' })
+								),
+								_react2.default.createElement(
+									'p',
+									{ className: 'sub' },
+									'\u5F85\u53D1\u8D27'
+								)
+							)
+						),
+						_react2.default.createElement(
+							'li',
+							null,
+							_react2.default.createElement(
+								'a',
+								{ href: '//h5.m.taobao.com/mlapp/olist.html?tabCode=waitConfirm' },
+								_react2.default.createElement(
+									'p',
+									null,
+									_react2.default.createElement('span', { className: 'order-icons icon-deliver' })
+								),
+								_react2.default.createElement(
+									'p',
+									{ className: 'sub' },
+									'\u5F85\u6536\u8D27'
+								),
+								_react2.default.createElement(
+									'p',
+									{ className: 'number' },
+									'1'
+								)
+							)
+						),
+						_react2.default.createElement(
+							'li',
+							null,
+							_react2.default.createElement(
+								'a',
+								{ href: '//h5.m.taobao.com/mlapp/olist.html?tabCode=waitRate' },
+								_react2.default.createElement(
+									'p',
+									null,
+									_react2.default.createElement('span', { className: 'order-icons icon-evaluate' })
+								),
+								_react2.default.createElement(
+									'p',
+									{ className: 'sub' },
+									'\u5F85\u8BC4\u4EF7'
+								),
+								_react2.default.createElement(
+									'p',
+									{ className: 'number' },
+									'4'
+								)
+							)
+						),
+						_react2.default.createElement(
+							'li',
+							null,
+							_react2.default.createElement(
+								'a',
+								{ href: '//h5.m.taobao.com/awp/mtb/olist.htm?sta=3' },
+								_react2.default.createElement(
+									'p',
+									null,
+									_react2.default.createElement('span', { className: 'order-icons icon-refund' })
+								),
+								_react2.default.createElement(
+									'p',
+									{ className: 'sub' },
+									'\u9000\u6B3E/\u552E\u540E'
+								)
+							)
+						)
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 'weui_cells weui_cells_access' },
+						_react2.default.createElement(_weui.FormList, { value: '\u67E5\u770B\u5168\u90E8\u8BA2\u5355', icon: 'form', href: '/Cart' })
+					)
+				),
+				_react2.default.createElement(
+					'div',
+					{ className: 'weui_cells weui_cells_access' },
+					_react2.default.createElement(_weui.FormList, { value: '\u8D2D\u7269\u8F66', icon: 'cart', href: '/Cart' }),
+					_react2.default.createElement(_weui.FormList, { value: '\u4E8C\u7EF4\u7801', icon: 'code', href: '/MyQrcode', query: qrcode })
 				)
 			);
 		}
 	});
 
 /***/ },
-/* 120 */
+/* 157 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	(function (UP) {
+		jQuery.extend({
+			createUploadIframe: function createUploadIframe(id, uri) {
+				//create frame
+				var frameId = 'jUploadFrame' + id;
+				var iframeHtml = '<iframe id="' + frameId + '" name="' + frameId + '" style="position:absolute; top:-9999px; left:-9999px"';
+				if (window.ActiveXObject) {
+					if (typeof uri == 'boolean') {
+						iframeHtml += ' src="' + 'javascript:false' + '"';
+					} else if (typeof uri == 'string') {
+						iframeHtml += ' src="' + uri + '"';
+					}
+				}
+				iframeHtml += ' />';
+				jQuery(iframeHtml).appendTo(document.body);
+
+				return jQuery('#' + frameId).get(0);
+			},
+			createUploadForm: function createUploadForm(id, fileElementId, data, fileElement) {
+				//create form	
+				var formId = 'jUploadForm' + id;
+				var fileId = 'jUploadFile' + id;
+				var form = jQuery('<form  action="" method="POST" name="' + formId + '" id="' + formId + '" enctype="multipart/form-data"></form>');
+				if (data) {
+					for (var i in data) {
+						jQuery('<input type="hidden" name="' + i + '" value="' + data[i] + '" />').appendTo(form);
+					}
+				}
+				var oldElement;
+				if (fileElement == null) oldElement = jQuery('#' + fileElementId);else oldElement = fileElement;
+
+				var newElement = jQuery(oldElement).clone();
+				jQuery(oldElement).attr('id', fileId);
+				jQuery(oldElement).before(newElement);
+				jQuery(oldElement).appendTo(form);
+
+				//set attributes
+				jQuery(form).css('position', 'absolute');
+				jQuery(form).css('top', '-1200px');
+				jQuery(form).css('left', '-1200px');
+				jQuery(form).appendTo('body');
+				return form;
+			},
+
+			ajaxFileUpload: function ajaxFileUpload(s) {
+				// TODO introduce global settings, allowing the client to modify them for all requests, not only timeout		
+				s = jQuery.extend({}, jQuery.ajaxSettings, s);
+				var id = new Date().getTime();
+				var form = jQuery.createUploadForm(id, s.fileElementId, typeof s.data == 'undefined' ? false : s.data, s.fileElement);
+				var io = jQuery.createUploadIframe(id, s.secureuri);
+				var frameId = 'jUploadFrame' + id;
+				var formId = 'jUploadForm' + id;
+				// Watch for a new set of requests
+				if (s.global && !jQuery.active++) {
+					jQuery.event.trigger("ajaxStart");
+				}
+				var requestDone = false;
+				// Create the request object
+				var xml = {};
+				if (s.global) jQuery.event.trigger("ajaxSend", [xml, s]);
+				// Wait for a response to come back
+				var uploadCallback = function uploadCallback(isTimeout) {
+					var io = document.getElementById(frameId);
+					try {
+						if (io.contentWindow) {
+							xml.responseText = io.contentWindow.document.body ? io.contentWindow.document.body.innerHTML : null;
+							xml.responseXML = io.contentWindow.document.XMLDocument ? io.contentWindow.document.XMLDocument : io.contentWindow.document;
+						} else if (io.contentDocument) {
+							xml.responseText = io.contentDocument.document.body ? io.contentDocument.document.body.innerHTML : null;
+							xml.responseXML = io.contentDocument.document.XMLDocument ? io.contentDocument.document.XMLDocument : io.contentDocument.document;
+						}
+					} catch (e) {
+						jQuery.handleError(s, xml, null, e);
+					}
+					if (xml || isTimeout == "timeout") {
+						requestDone = true;
+						var status;
+						try {
+							status = isTimeout != "timeout" ? "success" : "error";
+							// Make sure that the request was successful or notmodified
+							if (status != "error") {
+								// process the data (runs the xml through httpData regardless of callback)
+								var data = jQuery.uploadHttpData(xml, s.dataType);
+								// If a local callback was specified, fire it and pass it the data
+								if (s.success) s.success(data, status);
+
+								// Fire the global callback
+								if (s.global) jQuery.event.trigger("ajaxSuccess", [xml, s]);
+							} else jQuery.handleError(s, xml, status);
+						} catch (e) {
+							status = "error";
+							jQuery.handleError(s, xml, status, e);
+						}
+
+						// The request was completed
+						if (s.global) jQuery.event.trigger("ajaxComplete", [xml, s]);
+
+						// Handle the global AJAX counter
+						if (s.global && ! --jQuery.active) jQuery.event.trigger("ajaxStop");
+
+						// Process result
+						if (s.complete) s.complete(xml, status);
+
+						jQuery(io).unbind();
+
+						setTimeout(function () {
+							try {
+								jQuery(io).remove();
+								jQuery(form).remove();
+							} catch (e) {
+								jQuery.handleError(s, xml, null, e);
+							}
+						}, 100);
+
+						xml = null;
+					}
+				};
+				// Timeout checker
+				if (s.timeout > 0) {
+					setTimeout(function () {
+						// Check to see if the request is still happening
+						if (!requestDone) uploadCallback("timeout");
+					}, s.timeout);
+				}
+				try {
+
+					var form = jQuery('#' + formId);
+					jQuery(form).attr('action', s.url);
+					jQuery(form).attr('method', 'POST');
+					jQuery(form).attr('target', frameId);
+					if (form.encoding) {
+						jQuery(form).attr('encoding', 'multipart/form-data');
+					} else {
+						jQuery(form).attr('enctype', 'multipart/form-data');
+					}
+					jQuery(form).submit();
+				} catch (e) {
+					jQuery.handleError(s, xml, null, e);
+				}
+
+				jQuery('#' + frameId).load(uploadCallback);
+				return { abort: function abort() {
+						try {
+							jQuery('#' + frameId).remove();
+							jQuery(form).remove();
+						} catch (e) {}
+					} };
+			},
+
+			uploadHttpData: function uploadHttpData(r, type) {
+				var data = !type;
+				data = type == "xml" || data ? r.responseXML : r.responseText;
+
+				// If the type is "script", eval it in global context
+				if (type == "script") jQuery.globalEval(data);
+				// Get the JavaScript object, if JSON is used.
+				if (type == "json") eval("data = " + data);
+				// evaluate scripts within html
+				if (type == "html") jQuery("<div>").html(data).evalScripts();
+
+				return data;
+			},
+
+			handleError: function handleError(s, xml, status, e) {
+				// If a local callback was specified, fire it
+				if (s.error) s.error(xml, status, e);
+
+				// Fire the global callback
+				if (s.global) jQuery.event.trigger("ajaxError", [xml, s, e]);
+			}
+		});
+	})($);
+
+	module.exports = $;
+
+/***/ },
+/* 158 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	module.exports = React.createClass({
+		displayName: 'exports',
+
+
+		getDefaultProps: function getDefaultProps() {
+			return {
+				multiple: true,
+				btnValue: 'Upload Image',
+				className: 'upload-button'
+			};
+		},
+
+		propTypes: {
+			onChange: React.PropTypes.func.isRequired,
+			multiple: React.PropTypes.bool,
+			btnValue: React.PropTypes.string
+		},
+
+		_onChange: function _onChange(event) {
+			event.preventDefault();
+			var target = event.target;
+			var files = target.files;
+			var count = this.props.multiple ? files.length : 1;
+			var i;
+			for (i = 0; i < count; i++) {
+				files[i].thumb = URL.createObjectURL(files[i]);
+			}
+			// convert to array
+			files = Array.prototype.slice.call(files, 0);
+			files = files.filter(function (file) {
+				return (/image/i.test(file.type)
+				);
+			});
+			this.props.onChange(files, event);
+		},
+
+		render: function render() {
+			var className = this.props.className;
+			return React.createElement(
+				'a',
+				{ href: 'javascript:;', className: className },
+				React.createElement('input', { type: 'file', multiple: this.props.multiple, ref: 'fileInput', onChange: this._onChange }),
+				React.createElement(
+					'span',
+					null,
+					this.props.btnValue
+				)
+			);
+		}
+
+	});
+
+/***/ },
+/* 159 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _react2.default.createClass({
+		displayName: 'myqrcode',
+		render: function render() {
+			var my_qrcode = this.props.location.query.info;
+			console.log(my_qrcode);
+			return _react2.default.createElement(
+				'div',
+				null,
+				_react2.default.createElement('img', { src: my_qrcode })
+			);
+		}
+	});
+
+/***/ },
+/* 160 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;;(function () {
@@ -14974,1058 +17876,13 @@
 
 
 /***/ },
-/* 121 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactRedux = __webpack_require__(69);
-
-	var _cartItem = __webpack_require__(122);
-
-	var _cartItem2 = _interopRequireDefault(_cartItem);
-
-	var _carts = __webpack_require__(73);
-
-	var cartsActions = _interopRequireWildcard(_carts);
-
-	var _reactRouter = __webpack_require__(4);
-
-	__webpack_require__(123);
-
-	var _index = __webpack_require__(125);
-
-	var _index2 = _interopRequireDefault(_index);
-
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-	var CartContainer = function CartContainer(_ref) {
-		var rest = _objectWithoutProperties(_ref, []);
-
-		if (rest.products.length == 0) {
-			rest.init();
-		}
-		return _react2.default.createElement(
-			_index2.default,
-			{
-				carts: rest.carts,
-				chooseAll: rest.chooseAll,
-				settle: function settle() {
-					return rest.settle(rest.carts.chooseId);
-				}
-			},
-			rest.products.map(function (product) {
-				if (product.delete == 0) {
-					return _react2.default.createElement(_cartItem2.default, {
-						key: product.id,
-						elem: product,
-						editId: rest.editId,
-						edit: function edit() {
-							return rest.edit(product.id);
-						},
-						chooseById: function chooseById() {
-							return rest.chooseById(product.id);
-						},
-						addCartProductById: function addCartProductById() {
-							return rest.addCartProductById(product.id);
-						},
-						delCartProductById: function delCartProductById() {
-							return rest.delCartProductById(product.id, product.number);
-						},
-						removeCartProById: function removeCartProById() {
-							return rest.removeCartProById(product.id);
-						},
-						carts: rest.carts
-					});
-				}
-			})
-		);
-	};
-
-	var mapStateToProps = function mapStateToProps(state) {
-		return {
-			products: state.carts.products,
-			editId: state.carts.editId,
-			chooseNum: state.carts.chooseNum,
-			carts: state.carts
-		};
-	};
-
-	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-		return {
-			//点击编辑按钮
-			edit: function edit(cartId) {
-				dispatch(cartsActions.editCart(cartId));
-			},
-			//单选
-			chooseById: function chooseById(cartId) {
-				dispatch(cartsActions.chooseById(cartId));
-			},
-			//全选
-			chooseAll: function chooseAll() {
-				dispatch(cartsActions.chooseAll());
-			},
-			//增加购物车商品数量
-			addCartProductById: function addCartProductById(cartId) {
-				dispatch(cartsActions.addCartProductById(cartId));
-			},
-			//减少购物车商品数量
-			delCartProductById: function delCartProductById(cartId, number) {
-				dispatch(cartsActions.delCartProductById(cartId, number));
-			},
-			//结算
-			settle: function settle(cartIds) {
-				dispatch(cartsActions.settleCart(cartIds));
-			},
-			//购物车初始化
-			init: function init() {
-				dispatch(cartsActions.getAllProducts(true));
-			},
-			removeCartProById: function removeCartProById(cartId) {
-				dispatch(cartsActions.removeCartProById(cartId));
-			}
-		};
-	};
-
-	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(CartContainer);
-
-/***/ },
-/* 122 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var CartItem = function CartItem(_ref) {
-		var elem = _ref.elem,
-		    editId = _ref.editId,
-		    edit = _ref.edit,
-		    chooseById = _ref.chooseById,
-		    carts = _ref.carts,
-		    addCartProductById = _ref.addCartProductById,
-		    delCartProductById = _ref.delCartProductById,
-		    removeCartProById = _ref.removeCartProById;
-		return _react2.default.createElement(
-			"div",
-			{ className: "bundlev2" },
-			_react2.default.createElement(
-				"div",
-				{ className: "shop" },
-				_react2.default.createElement(
-					"div",
-					{ className: "o-t-title-shop" },
-					_react2.default.createElement(
-						"div",
-						{ className: "tcont" },
-						_react2.default.createElement(
-							"div",
-							{ className: "state" },
-							_react2.default.createElement(
-								"div",
-								{ className: "state-cont", onClick: edit },
-								_react2.default.createElement(
-									"p",
-									null,
-									editId.includes(elem.id) ? "完成" : "编辑"
-								)
-							)
-						)
-					)
-				)
-			),
-			_react2.default.createElement(
-				"div",
-				{ className: (editId.includes(elem.id) ? "edit-true" : "edit-false") + " item-list o-t-item undefined" },
-				_react2.default.createElement(
-					"div",
-					{ className: "item-cb" },
-					_react2.default.createElement(
-						"p",
-						null,
-						_react2.default.createElement("input", { id: "cb-" + elem.id, type: "checkbox", className: "cb o-t-cb", checked: carts.chooseId.includes(elem.id), onChange: chooseById }),
-						_react2.default.createElement("label", { htmlFor: "cb-" + elem.id })
-					)
-				),
-				_react2.default.createElement(
-					"div",
-					{ className: "item-detail" },
-					_react2.default.createElement(
-						"div",
-						null,
-						_react2.default.createElement(
-							"div",
-							{ className: "item-img" },
-							_react2.default.createElement(
-								"a",
-								{ href: "//a.m.taobao.com/i538664564931.htm" },
-								_react2.default.createElement("img", { className: "", src: elem.goods_logo, "data-src-checked": "true" })
-							)
-						),
-						_react2.default.createElement(
-							"div",
-							{ className: "item-info" },
-							_react2.default.createElement(
-								"a",
-								{ href: "//a.m.taobao.com/i538664564931.htm" },
-								_react2.default.createElement(
-									"h3",
-									{ className: "title" },
-									elem.goods_name
-								),
-								_react2.default.createElement(
-									"div",
-									{ className: "sku" },
-									_react2.default.createElement(
-										"p",
-										null,
-										elem.goods_attr
-									)
-								)
-							),
-							_react2.default.createElement(
-								"div",
-								{ className: "pay" },
-								_react2.default.createElement(
-									"div",
-									{ className: "pay-price" },
-									_react2.default.createElement(
-										"div",
-										{ className: "price" },
-										_react2.default.createElement(
-											"p",
-											{ className: "o-t-price" },
-											_react2.default.createElement(
-												"span",
-												null,
-												elem.goods_price
-											)
-										)
-									),
-									_react2.default.createElement(
-										"div",
-										{ className: "originPrice" },
-										_react2.default.createElement(
-											"p",
-											null,
-											" ",
-											_react2.default.createElement(
-												"del",
-												null,
-												"\uFFE5",
-												elem.market_price
-											)
-										)
-									)
-								),
-								_react2.default.createElement(
-									"div",
-									{ className: "quantity" },
-									_react2.default.createElement(
-										"p",
-										null,
-										_react2.default.createElement(
-											"span",
-											null,
-											"x"
-										),
-										_react2.default.createElement(
-											"span",
-											null,
-											elem.number
-										)
-									)
-								)
-							)
-						),
-						_react2.default.createElement(
-							"div",
-							{ className: "item-info2" },
-							_react2.default.createElement(
-								"div",
-								{ className: "edit-quantity" },
-								_react2.default.createElement(
-									"p",
-									{ className: "btn-minus" },
-									_react2.default.createElement("a", { className: "btn minus off", min: "1", onClick: delCartProductById })
-								),
-								_react2.default.createElement(
-									"p",
-									{ className: "btn-input" },
-									_react2.default.createElement("input", { type: "tel", value: elem.number, readOnly: true })
-								),
-								_react2.default.createElement(
-									"p",
-									{ className: "btn-plus" },
-									_react2.default.createElement("a", { className: "btn plus", onClick: addCartProductById })
-								)
-							),
-							_react2.default.createElement(
-								"div",
-								{ className: "edit-sku" },
-								_react2.default.createElement(
-									"div",
-									null,
-									_react2.default.createElement(
-										"p",
-										null,
-										elem.goods_attr
-									)
-								)
-							)
-						)
-					)
-				),
-				_react2.default.createElement(
-					"div",
-					{ className: "item-del c-edit-delhide", onClick: removeCartProById },
-					_react2.default.createElement(
-						"p",
-						null,
-						"\u5220\u9664"
-					)
-				)
-			)
-		);
-	};
-	exports.default = CartItem;
-
-/***/ },
-/* 123 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 124 */,
-/* 125 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _weui = __webpack_require__(107);
-
-	var _footer = __webpack_require__(126);
-
-	var _footer2 = _interopRequireDefault(_footer);
-
-	var _reactRouter = __webpack_require__(4);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var Cart = function Cart(_ref) {
-		var children = _ref.children,
-		    carts = _ref.carts,
-		    chooseAll = _ref.chooseAll,
-		    settle = _ref.settle;
-		return _react2.default.createElement(
-			'div',
-			{ className: 'cart-wrap' },
-			_react2.default.createElement(_weui.CommonHeader, {
-				value: '购物车(' + carts.chooseNum + ')',
-				back: true,
-				pathname: '/' }),
-			_react2.default.createElement(
-				'div',
-				{ className: 'cartbuy' },
-				children,
-				_react2.default.createElement(_footer2.default, {
-					carts: carts,
-					chooseAll: chooseAll,
-					settle: settle
-				})
-			)
-		);
-	};
-
-	exports.default = Cart;
-
-/***/ },
-/* 126 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var Footer = function Footer(_ref) {
-		var carts = _ref.carts,
-		    chooseAll = _ref.chooseAll,
-		    settle = _ref.settle;
-		return _react2.default.createElement(
-			"div",
-			{ className: "footer" },
-			_react2.default.createElement(
-				"div",
-				{ className: "f-fx" },
-				_react2.default.createElement(
-					"div",
-					null,
-					_react2.default.createElement(
-						"div",
-						{ className: "ft-cb" },
-						_react2.default.createElement(
-							"p",
-							null,
-							_react2.default.createElement("input", { id: "cb-footer", type: "checkbox", className: "cb o-t-cb", onChange: chooseAll, checked: carts.chooseAll }),
-							_react2.default.createElement("label", { htmlFor: "cb-footer" })
-						)
-					),
-					_react2.default.createElement(
-						"div",
-						{ className: "qx" },
-						"\u5168\u9009"
-					),
-					_react2.default.createElement(
-						"div",
-						{ className: "pay" },
-						_react2.default.createElement(
-							"div",
-							null,
-							_react2.default.createElement(
-								"div",
-								null,
-								_react2.default.createElement(
-									"span",
-									{ className: "hj" },
-									"\u5408\u8BA1\uFF1A"
-								),
-								_react2.default.createElement(
-									"p",
-									{ className: "o-t-price", "data-symbol": "\uFFE5" },
-									_react2.default.createElement(
-										"span",
-										null,
-										carts.totalFee
-									)
-								)
-							),
-							_react2.default.createElement(
-								"p",
-								null,
-								"\u4E0D\u542B\u8FD0\u8D39"
-							)
-						)
-					),
-					_react2.default.createElement(
-						"div",
-						{ className: "btn", onClick: settle },
-						_react2.default.createElement(
-							"p",
-							null,
-							_react2.default.createElement(
-								"span",
-								null,
-								"\u7ED3\u7B97(",
-								carts.chooseNum,
-								")"
-							)
-						)
-					)
-				)
-			)
-		);
-	};
-	exports.default = Footer;
-
-/***/ },
-/* 127 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactDom = __webpack_require__(3);
-
-	var _reactDom2 = _interopRequireDefault(_reactDom);
-
-	var _ajaxfileupload = __webpack_require__(128);
-
-	var _ajaxfileupload2 = _interopRequireDefault(_ajaxfileupload);
-
-	var _fileInput = __webpack_require__(129);
-
-	var _fileInput2 = _interopRequireDefault(_fileInput);
-
-	var _weui = __webpack_require__(107);
-
-	var _myqrcode = __webpack_require__(130);
-
-	var _myqrcode2 = _interopRequireDefault(_myqrcode);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = _react2.default.createClass({
-		displayName: 'my',
-		getInitialState: function getInitialState() {
-			return {
-				info: []
-			};
-		},
-		componentWillMount: function componentWillMount() {
-			this.handleGetMyInfo();
-		},
-		componentDidMount: function componentDidMount() {},
-		handleUploadPic: function handleUploadPic() {
-			var _self = this;
-			_ajaxfileupload2.default.ajaxFileUpload({
-				url: MYSERVER + 'uploadPic',
-				type: 'post',
-				secureuri: false,
-				fileElementId: 'headimgurl',
-				dataType: 'json',
-				success: function success(data, status) {
-					_self.handleGetMyInfo();
-				}
-			});
-		},
-		handleGetMyInfo: function handleGetMyInfo() {
-			$.getJSON(MYSERVER + 'getMyInfo', function (json, textStatus) {
-				this.setState({
-					info: json.data
-				});
-			}.bind(this));
-		},
-		render: function render() {
-			var qrcode = this.state.info.my_qrcode;
-			return _react2.default.createElement(
-				'div',
-				{ className: 'my-wrap' },
-				_react2.default.createElement(
-					'div',
-					{ className: 'user' },
-					_react2.default.createElement(
-						'div',
-						{ className: 'set-btn' },
-						_react2.default.createElement(
-							'p',
-							null,
-							'\u8BBE\u7F6E'
-						)
-					),
-					_react2.default.createElement(
-						'div',
-						{ className: 'user-photo' },
-						_react2.default.createElement('input', { type: 'file', id: 'headimgurl', ref: 'headimgurl', name: 'headimgurl', onChange: this.handleUploadPic }),
-						_react2.default.createElement('img', { src: this.state.info.headimgurl })
-					),
-					_react2.default.createElement(
-						'div',
-						{ className: 'user-nick' },
-						_react2.default.createElement(
-							'p',
-							{ className: 'nick', id: 'J_myNick' },
-							this.state.info.name
-						),
-						_react2.default.createElement('p', { className: 'level level3' })
-					)
-				),
-				_react2.default.createElement(
-					'section',
-					{ className: 'user-behavior userBehavior' },
-					_react2.default.createElement(
-						'ul',
-						{ 'data-spm': '1' },
-						_react2.default.createElement(
-							'li',
-							null,
-							_react2.default.createElement(
-								'a',
-								{ href: '#' },
-								_react2.default.createElement(
-									'p',
-									null,
-									'41'
-								),
-								_react2.default.createElement(
-									'p',
-									null,
-									'\u6536\u85CF\u7684\u5B9D\u8D1D'
-								)
-							)
-						),
-						_react2.default.createElement(
-							'li',
-							null,
-							_react2.default.createElement(
-								'a',
-								{ href: '#' },
-								_react2.default.createElement(
-									'p',
-									null,
-									'17'
-								),
-								_react2.default.createElement(
-									'p',
-									null,
-									'\u6536\u85CF\u7684\u5E97\u94FA'
-								)
-							)
-						),
-						_react2.default.createElement(
-							'li',
-							null,
-							_react2.default.createElement(
-								'a',
-								{ href: '#' },
-								_react2.default.createElement(
-									'p',
-									null,
-									'42'
-								),
-								_react2.default.createElement(
-									'p',
-									null,
-									'\u6211\u7684\u8DB3\u8FF9'
-								)
-							)
-						)
-					)
-				),
-				_react2.default.createElement(
-					'section',
-					{ className: 'order-act', 'data-spm': '2' },
-					_react2.default.createElement(
-						'ul',
-						{ className: ' orderAct', id: 'orderAct3' },
-						_react2.default.createElement(
-							'li',
-							null,
-							_react2.default.createElement(
-								'a',
-								{ href: '//h5.m.taobao.com/mlapp/olist.html?tabCode=waitPay' },
-								_react2.default.createElement(
-									'p',
-									null,
-									_react2.default.createElement('span', { className: 'order-icons icon-pay' })
-								),
-								_react2.default.createElement(
-									'p',
-									{ className: 'sub' },
-									'\u5F85\u4ED8\u6B3E'
-								)
-							)
-						),
-						_react2.default.createElement(
-							'li',
-							null,
-							_react2.default.createElement(
-								'a',
-								{ href: '//h5.m.taobao.com/mlapp/olist.html?tabCode=waitSend' },
-								_react2.default.createElement(
-									'p',
-									null,
-									_react2.default.createElement('span', { className: 'order-icons icon-send' })
-								),
-								_react2.default.createElement(
-									'p',
-									{ className: 'sub' },
-									'\u5F85\u53D1\u8D27'
-								)
-							)
-						),
-						_react2.default.createElement(
-							'li',
-							null,
-							_react2.default.createElement(
-								'a',
-								{ href: '//h5.m.taobao.com/mlapp/olist.html?tabCode=waitConfirm' },
-								_react2.default.createElement(
-									'p',
-									null,
-									_react2.default.createElement('span', { className: 'order-icons icon-deliver' })
-								),
-								_react2.default.createElement(
-									'p',
-									{ className: 'sub' },
-									'\u5F85\u6536\u8D27'
-								),
-								_react2.default.createElement(
-									'p',
-									{ className: 'number' },
-									'1'
-								)
-							)
-						),
-						_react2.default.createElement(
-							'li',
-							null,
-							_react2.default.createElement(
-								'a',
-								{ href: '//h5.m.taobao.com/mlapp/olist.html?tabCode=waitRate' },
-								_react2.default.createElement(
-									'p',
-									null,
-									_react2.default.createElement('span', { className: 'order-icons icon-evaluate' })
-								),
-								_react2.default.createElement(
-									'p',
-									{ className: 'sub' },
-									'\u5F85\u8BC4\u4EF7'
-								),
-								_react2.default.createElement(
-									'p',
-									{ className: 'number' },
-									'4'
-								)
-							)
-						),
-						_react2.default.createElement(
-							'li',
-							null,
-							_react2.default.createElement(
-								'a',
-								{ href: '//h5.m.taobao.com/awp/mtb/olist.htm?sta=3' },
-								_react2.default.createElement(
-									'p',
-									null,
-									_react2.default.createElement('span', { className: 'order-icons icon-refund' })
-								),
-								_react2.default.createElement(
-									'p',
-									{ className: 'sub' },
-									'\u9000\u6B3E/\u552E\u540E'
-								)
-							)
-						)
-					),
-					_react2.default.createElement(
-						'div',
-						{ className: 'weui_cells weui_cells_access' },
-						_react2.default.createElement(_weui.FormList, { value: '\u67E5\u770B\u5168\u90E8\u8BA2\u5355', icon: 'form', href: '/Cart' })
-					)
-				),
-				_react2.default.createElement(
-					'div',
-					{ className: 'weui_cells weui_cells_access' },
-					_react2.default.createElement(_weui.FormList, { value: '\u8D2D\u7269\u8F66', icon: 'cart', href: '/Cart' }),
-					_react2.default.createElement(_weui.FormList, { value: '\u4E8C\u7EF4\u7801', icon: 'code', href: '/MyQrcode', query: qrcode })
-				)
-			);
-		}
-	});
-
-/***/ },
-/* 128 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	(function (UP) {
-		jQuery.extend({
-			createUploadIframe: function createUploadIframe(id, uri) {
-				//create frame
-				var frameId = 'jUploadFrame' + id;
-				var iframeHtml = '<iframe id="' + frameId + '" name="' + frameId + '" style="position:absolute; top:-9999px; left:-9999px"';
-				if (window.ActiveXObject) {
-					if (typeof uri == 'boolean') {
-						iframeHtml += ' src="' + 'javascript:false' + '"';
-					} else if (typeof uri == 'string') {
-						iframeHtml += ' src="' + uri + '"';
-					}
-				}
-				iframeHtml += ' />';
-				jQuery(iframeHtml).appendTo(document.body);
-
-				return jQuery('#' + frameId).get(0);
-			},
-			createUploadForm: function createUploadForm(id, fileElementId, data, fileElement) {
-				//create form	
-				var formId = 'jUploadForm' + id;
-				var fileId = 'jUploadFile' + id;
-				var form = jQuery('<form  action="" method="POST" name="' + formId + '" id="' + formId + '" enctype="multipart/form-data"></form>');
-				if (data) {
-					for (var i in data) {
-						jQuery('<input type="hidden" name="' + i + '" value="' + data[i] + '" />').appendTo(form);
-					}
-				}
-				var oldElement;
-				if (fileElement == null) oldElement = jQuery('#' + fileElementId);else oldElement = fileElement;
-
-				var newElement = jQuery(oldElement).clone();
-				jQuery(oldElement).attr('id', fileId);
-				jQuery(oldElement).before(newElement);
-				jQuery(oldElement).appendTo(form);
-
-				//set attributes
-				jQuery(form).css('position', 'absolute');
-				jQuery(form).css('top', '-1200px');
-				jQuery(form).css('left', '-1200px');
-				jQuery(form).appendTo('body');
-				return form;
-			},
-
-			ajaxFileUpload: function ajaxFileUpload(s) {
-				// TODO introduce global settings, allowing the client to modify them for all requests, not only timeout		
-				s = jQuery.extend({}, jQuery.ajaxSettings, s);
-				var id = new Date().getTime();
-				var form = jQuery.createUploadForm(id, s.fileElementId, typeof s.data == 'undefined' ? false : s.data, s.fileElement);
-				var io = jQuery.createUploadIframe(id, s.secureuri);
-				var frameId = 'jUploadFrame' + id;
-				var formId = 'jUploadForm' + id;
-				// Watch for a new set of requests
-				if (s.global && !jQuery.active++) {
-					jQuery.event.trigger("ajaxStart");
-				}
-				var requestDone = false;
-				// Create the request object
-				var xml = {};
-				if (s.global) jQuery.event.trigger("ajaxSend", [xml, s]);
-				// Wait for a response to come back
-				var uploadCallback = function uploadCallback(isTimeout) {
-					var io = document.getElementById(frameId);
-					try {
-						if (io.contentWindow) {
-							xml.responseText = io.contentWindow.document.body ? io.contentWindow.document.body.innerHTML : null;
-							xml.responseXML = io.contentWindow.document.XMLDocument ? io.contentWindow.document.XMLDocument : io.contentWindow.document;
-						} else if (io.contentDocument) {
-							xml.responseText = io.contentDocument.document.body ? io.contentDocument.document.body.innerHTML : null;
-							xml.responseXML = io.contentDocument.document.XMLDocument ? io.contentDocument.document.XMLDocument : io.contentDocument.document;
-						}
-					} catch (e) {
-						jQuery.handleError(s, xml, null, e);
-					}
-					if (xml || isTimeout == "timeout") {
-						requestDone = true;
-						var status;
-						try {
-							status = isTimeout != "timeout" ? "success" : "error";
-							// Make sure that the request was successful or notmodified
-							if (status != "error") {
-								// process the data (runs the xml through httpData regardless of callback)
-								var data = jQuery.uploadHttpData(xml, s.dataType);
-								// If a local callback was specified, fire it and pass it the data
-								if (s.success) s.success(data, status);
-
-								// Fire the global callback
-								if (s.global) jQuery.event.trigger("ajaxSuccess", [xml, s]);
-							} else jQuery.handleError(s, xml, status);
-						} catch (e) {
-							status = "error";
-							jQuery.handleError(s, xml, status, e);
-						}
-
-						// The request was completed
-						if (s.global) jQuery.event.trigger("ajaxComplete", [xml, s]);
-
-						// Handle the global AJAX counter
-						if (s.global && ! --jQuery.active) jQuery.event.trigger("ajaxStop");
-
-						// Process result
-						if (s.complete) s.complete(xml, status);
-
-						jQuery(io).unbind();
-
-						setTimeout(function () {
-							try {
-								jQuery(io).remove();
-								jQuery(form).remove();
-							} catch (e) {
-								jQuery.handleError(s, xml, null, e);
-							}
-						}, 100);
-
-						xml = null;
-					}
-				};
-				// Timeout checker
-				if (s.timeout > 0) {
-					setTimeout(function () {
-						// Check to see if the request is still happening
-						if (!requestDone) uploadCallback("timeout");
-					}, s.timeout);
-				}
-				try {
-
-					var form = jQuery('#' + formId);
-					jQuery(form).attr('action', s.url);
-					jQuery(form).attr('method', 'POST');
-					jQuery(form).attr('target', frameId);
-					if (form.encoding) {
-						jQuery(form).attr('encoding', 'multipart/form-data');
-					} else {
-						jQuery(form).attr('enctype', 'multipart/form-data');
-					}
-					jQuery(form).submit();
-				} catch (e) {
-					jQuery.handleError(s, xml, null, e);
-				}
-
-				jQuery('#' + frameId).load(uploadCallback);
-				return { abort: function abort() {
-						try {
-							jQuery('#' + frameId).remove();
-							jQuery(form).remove();
-						} catch (e) {}
-					} };
-			},
-
-			uploadHttpData: function uploadHttpData(r, type) {
-				var data = !type;
-				data = type == "xml" || data ? r.responseXML : r.responseText;
-
-				// If the type is "script", eval it in global context
-				if (type == "script") jQuery.globalEval(data);
-				// Get the JavaScript object, if JSON is used.
-				if (type == "json") eval("data = " + data);
-				// evaluate scripts within html
-				if (type == "html") jQuery("<div>").html(data).evalScripts();
-
-				return data;
-			},
-
-			handleError: function handleError(s, xml, status, e) {
-				// If a local callback was specified, fire it
-				if (s.error) s.error(xml, status, e);
-
-				// Fire the global callback
-				if (s.global) jQuery.event.trigger("ajaxError", [xml, s, e]);
-			}
-		});
-	})($);
-
-	module.exports = $;
-
-/***/ },
-/* 129 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(1);
-
-	module.exports = React.createClass({
-		displayName: 'exports',
-
-
-		getDefaultProps: function getDefaultProps() {
-			return {
-				multiple: true,
-				btnValue: 'Upload Image',
-				className: 'upload-button'
-			};
-		},
-
-		propTypes: {
-			onChange: React.PropTypes.func.isRequired,
-			multiple: React.PropTypes.bool,
-			btnValue: React.PropTypes.string
-		},
-
-		_onChange: function _onChange(event) {
-			event.preventDefault();
-			var target = event.target;
-			var files = target.files;
-			var count = this.props.multiple ? files.length : 1;
-			var i;
-			for (i = 0; i < count; i++) {
-				files[i].thumb = URL.createObjectURL(files[i]);
-			}
-			// convert to array
-			files = Array.prototype.slice.call(files, 0);
-			files = files.filter(function (file) {
-				return (/image/i.test(file.type)
-				);
-			});
-			this.props.onChange(files, event);
-		},
-
-		render: function render() {
-			var className = this.props.className;
-			return React.createElement(
-				'a',
-				{ href: 'javascript:;', className: className },
-				React.createElement('input', { type: 'file', multiple: this.props.multiple, ref: 'fileInput', onChange: this._onChange }),
-				React.createElement(
-					'span',
-					null,
-					this.props.btnValue
-				)
-			);
-		}
-
-	});
-
-/***/ },
-/* 130 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = _react2.default.createClass({
-		displayName: 'myqrcode',
-		render: function render() {
-			var my_qrcode = this.props.location.query.info;
-			console.log(my_qrcode);
-			return _react2.default.createElement(
-				'div',
-				null,
-				_react2.default.createElement('img', { src: my_qrcode })
-			);
-		}
-	});
-
-/***/ },
-/* 131 */
+/* 161 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = (__webpack_require__(2))(190);
 
 /***/ },
-/* 132 */
+/* 162 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -16053,7 +17910,7 @@
 	exports['default'] = thunk;
 
 /***/ },
-/* 133 */
+/* 163 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16064,11 +17921,11 @@
 	  value: true
 	});
 
-	var _core = __webpack_require__(134);
+	var _core = __webpack_require__(164);
 
-	var _helpers = __webpack_require__(135);
+	var _helpers = __webpack_require__(165);
 
-	var _defaults = __webpack_require__(138);
+	var _defaults = __webpack_require__(168);
 
 	var _defaults2 = _interopRequireDefault(_defaults);
 
@@ -16171,7 +18028,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 134 */
+/* 164 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16181,9 +18038,9 @@
 	});
 	exports.printBuffer = printBuffer;
 
-	var _helpers = __webpack_require__(135);
+	var _helpers = __webpack_require__(165);
 
-	var _diff = __webpack_require__(136);
+	var _diff = __webpack_require__(166);
 
 	var _diff2 = _interopRequireDefault(_diff);
 
@@ -16312,7 +18169,7 @@
 	}
 
 /***/ },
-/* 135 */
+/* 165 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -16336,7 +18193,7 @@
 	var timer = exports.timer = typeof performance !== "undefined" && performance !== null && typeof performance.now === "function" ? performance : Date;
 
 /***/ },
-/* 136 */
+/* 166 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16346,7 +18203,7 @@
 	});
 	exports.default = diffLogger;
 
-	var _deepDiff = __webpack_require__(137);
+	var _deepDiff = __webpack_require__(167);
 
 	var _deepDiff2 = _interopRequireDefault(_deepDiff);
 
@@ -16432,7 +18289,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 137 */
+/* 167 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global) {/*!
@@ -16861,7 +18718,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 138 */
+/* 168 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -16912,7 +18769,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 139 */
+/* 169 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16921,30 +18778,35 @@
 		value: true
 	});
 
-	var _redux = __webpack_require__(131);
+	var _redux = __webpack_require__(161);
 
-	var _carts = __webpack_require__(140);
+	var _carts = __webpack_require__(170);
 
 	var _carts2 = _interopRequireDefault(_carts);
 
-	var _pdetails = __webpack_require__(141);
+	var _pdetails = __webpack_require__(171);
 
 	var _pdetails2 = _interopRequireDefault(_pdetails);
 
-	var _address = __webpack_require__(142);
+	var _address = __webpack_require__(172);
 
 	var _address2 = _interopRequireDefault(_address);
+
+	var _search = __webpack_require__(173);
+
+	var _search2 = _interopRequireDefault(_search);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = (0, _redux.combineReducers)({
 		carts: _carts2.default,
 		pdetails: _pdetails2.default,
-		address: _address2.default
+		address: _address2.default,
+		search: _search2.default
 	});
 
 /***/ },
-/* 140 */
+/* 170 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16955,7 +18817,7 @@
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _ActionTypes = __webpack_require__(72);
+	var _ActionTypes = __webpack_require__(85);
 
 	var types = _interopRequireWildcard(_ActionTypes);
 
@@ -17097,7 +18959,7 @@
 	exports.default = carts;
 
 /***/ },
-/* 141 */
+/* 171 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -17110,7 +18972,7 @@
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _ActionTypes = __webpack_require__(72);
+	var _ActionTypes = __webpack_require__(85);
 
 	var types = _interopRequireWildcard(_ActionTypes);
 
@@ -17210,7 +19072,7 @@
 	exports.default = pdetails;
 
 /***/ },
-/* 142 */
+/* 172 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -17221,7 +19083,7 @@
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _ActionTypes = __webpack_require__(72);
+	var _ActionTypes = __webpack_require__(85);
 
 	var types = _interopRequireWildcard(_ActionTypes);
 
@@ -17277,7 +19139,59 @@
 	exports.default = address;
 
 /***/ },
-/* 143 */
+/* 173 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _ActionTypes = __webpack_require__(85);
+
+	var types = _interopRequireWildcard(_ActionTypes);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	var initialState = {
+		list: [],
+		searchText: '',
+		scrollTop: 0
+	};
+
+	var search = function search() {
+		var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+		var action = arguments[1];
+
+		switch (action.type) {
+			case types.GET_PRODUCTS:
+				return _extends({}, state, {
+					list: action.products
+				});
+			case types.CANCEL_SEARCH:
+				return _extends({}, state, {
+					searchText: ''
+				});
+			case types.SEARCH_PRO:
+				return _extends({}, state, {
+					searchText: action.keys
+				});
+			case types.SCROLL_POSITION:
+				return _extends({}, state, {
+					scrollTop: action.location
+				});
+			default:
+				return state;
+		}
+	};
+
+	exports.default = search;
+
+/***/ },
+/* 174 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin

@@ -41,7 +41,7 @@ const mapStateToProps = (state) => ({
 	pdetails:state.pdetails
 })
 
-const mapDispatchToProps = (dispatch,state) => ({
+const mapDispatchToProps = (dispatch) => ({
 	//关闭商品规格选项
 	handleHidePra:() => {
 		dispatch(actions.handleHidePra())

@@ -5,14 +5,12 @@ import '../../components/pdetail/_parameter.scss';
 import Pdetail from '../../components/pdetail/index';
 
 const PdetailsContainer = React.createClass({
-	componentDidMount(){
-		let {init} = this.props;
+	componentWillMount(){
+		let {init,pdetails} = this.props;
 		let pid = this.props.location.query.id;
-		let h = (document.body.clientHeight - $('.bottom_bar').height());
-		$('.pro-detail').height(h);
-		setTimeout(()=>{
+		if(pdetails.pro.id != pid){
 			init(pid)
-		},200)
+		}
 	},
 	componentWillUnmount(){
 		let {handleHidePra} = this.props;
@@ -23,7 +21,6 @@ const PdetailsContainer = React.createClass({
 		let pro = pdetails.pro;
 		return(
 			<Pdetail
-				test = {pdetails.ban.length}
 				pdetails = {pdetails}
 				handleCollection = {()=>{handleCollection(pro.id)}}
 				addToCart = {()=>{handleShowPra('')}}

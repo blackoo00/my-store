@@ -4,7 +4,8 @@ import UP from '../../extend/ajaxfileupload.js';
 import FileInput from '../../extend/fileInput';
 import {FormList} from '../common/weui';
 import MyQrcode from './myqrcode';
-
+import './_my.scss';
+const MYSERVER="http://127.0.0.1/my-store/index.php/Home/My/";
 export default React.createClass({
 	getInitialState(){
 		return{
@@ -78,7 +79,7 @@ export default React.createClass({
 				<section className="order-act" data-spm="2">
 					<ul className=" orderAct" id="orderAct3">
 						<li>
-							<a href="//h5.m.taobao.com/mlapp/olist.html?tabCode=waitPay">
+							<a href="javascript:;">
 								<p>
 									<span className="order-icons icon-pay"></span>
 								</p>
@@ -86,7 +87,7 @@ export default React.createClass({
 							</a>
 						</li>
 						<li>
-							<a href="//h5.m.taobao.com/mlapp/olist.html?tabCode=waitSend">
+							<a href="javascript:;">
 								<p>
 									<span className="order-icons icon-send"></span>
 								</p>
@@ -94,7 +95,7 @@ export default React.createClass({
 							</a>
 						</li>
 						<li>
-							<a href="//h5.m.taobao.com/mlapp/olist.html?tabCode=waitConfirm">
+							<a href="javascript:;">
 								<p>
 									<span className="order-icons icon-deliver"></span>
 								</p>
@@ -103,7 +104,7 @@ export default React.createClass({
 							</a>
 						</li>
 						<li>
-							<a href="//h5.m.taobao.com/mlapp/olist.html?tabCode=waitRate">
+							<a href="javascript:;">
 								<p>
 									<span className="order-icons icon-evaluate"></span>
 								</p>
@@ -112,7 +113,7 @@ export default React.createClass({
 							</a>
 						</li>
 						<li>
-							<a href="//h5.m.taobao.com/awp/mtb/olist.htm?sta=3">
+							<a href="javascript:;">
 								<p>
 									<span className="order-icons icon-refund"></span>
 								</p>
