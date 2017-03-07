@@ -29,9 +29,9 @@ class Container extends React.Component {
     }
     componentWillUnmount(){
     }
-    handleScrollPosition(){
-        window.scrollTo(0, 100)
-    }
+    // handleScrollPosition(){
+    //     window.scrollTo(0, 100)
+    // }
  
     render() {
         const { children } = this.props;

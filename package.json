@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
+    "test": "babel-node server.test.js --presets react,es2015,stage-0",
     "clean": "rimraf build",
     "build:webpack": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
     "build": "npm run clean && npm run build:webpack"
@@ -61,6 +62,7 @@
     "react-css-modules": "^4.1.0",
     "react-dom": "^15.4.2",
     "react-hot-loader": "^1.3.1",
+    "react-keeper": "^1.0.8",
     "react-redux": "^5.0.2",
     "react-router": "^3.0.2",
     "react-router-scroll": "^0.4.1",
@@ -68,6 +70,7 @@
     "react-transform-hmr": "^1.0.4",
     "redbox-react": "^1.3.3",
     "redux": "^3.6.0",
+    "redux-devtools-extension": "^2.13.0",
     "redux-logger": "^2.8.1",
     "redux-thunk": "^2.2.0",
     "sass-loader": "^6.0.0",

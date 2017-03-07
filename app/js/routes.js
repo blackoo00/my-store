@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Route, hashHistory, browserHistory, applyRouterMiddleware, IndexRoute} from 'react-router';
+import { Router, Route, hashHistory, IndexRoute} from 'react-router';
 import Example from './components/Example';
 import StoreApp from './containers/index/index';
 import Pdetail from './containers/pdetailS/PdetailsController';
@@ -12,22 +12,25 @@ import Cart from './containers/cart/CartContainer';
 import My from './components/my/my';
 import MyQrcode from './components/my/myqrcode';
 import Container from './container';
+import {saveScroll,getScroll} from './store';
+import '../css/style.scss';
 
-const Routes = ({saveScroll,getScroll}) => (
+
+const Routes = () => (
     <Router history={hashHistory}>
-      <Route path="/" component={Container}>
-        <IndexRoute component={StoreApp} />
-        <Route path="example" component={Example}/>
-        <Route path="pdetail" onEnter={()=>getScroll('pdetail')} component={Pdetail}/>
-        <Route path="confirmOrderWap" component={confirmOrderWap}/>
-        <Route path="AddressList" component={AddressList}/>
-        <Route path="AddAddress" component={AddAddress}/>
-        <Route path="Wxpay" component={Wxpay}/>
-        <Route path="Search" onEnter={()=>getScroll('Search')} onLeave = {()=>saveScroll('Search')} component={Search}/>
-        <Route path="Cart" component={Cart}/>
-        <Route path="My" component={My}/>
-        <Route path="MyQrcode" component={MyQrcode}/>
-      </Route>
+        <Route path="/" component={Container}>
+            <IndexRoute component={StoreApp} />
+            <Route path="example" component={Example}/>
+            <Route path="pdetail" onEnter={()=>getScroll('pdetail')} component={Pdetail}/>
+            <Route path="confirmOrderWap" component={confirmOrderWap}/>
+            <Route path="AddressList" component={AddressList}/>
+            <Route path="AddAddress" component={AddAddress}/>
+            <Route path="Wxpay" component={Wxpay}/>
+            <Route path="Search" onEnter={()=>getScroll('Search')} onLeave = {()=>saveScroll('Search')} component={Search}/>
+            <Route path="Cart" component={Cart}/>
+            <Route path="My" component={My}/>
+            <Route path="MyQrcode" component={MyQrcode}/>
+        </Route>
     </Router>
 )
 

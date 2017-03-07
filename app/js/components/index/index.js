@@ -3,8 +3,8 @@ import SwiperDom from '../common/SwiperDom';
 import YourLike from './yourlike';
 import Cat from './cat';
 import Foot from '../foot/index';
-import styles from './style.css';
 import CSSModules from 'react-css-modules';
+import styles from './style.css';
 
 const Index = ({...rest}) => (
 	<div styleName="indexWrap">

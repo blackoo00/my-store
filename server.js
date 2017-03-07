@@ -3,7 +3,7 @@ var express = require('express');
 var webpack = require('webpack');
 var config = require('./webpack.config.dev');
 
-var app = express();
+var app = new express();
 var compiler = webpack(config);
 
 var webpackDevOptions = {
@@ -22,6 +22,7 @@ app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+
 app.listen(3001, '0.0.0.0', function(err) {
   if (err) {
     console.log(err);
@@ -30,3 +31,4 @@ app.listen(3001, '0.0.0.0', function(err) {
 
   console.log('Listening at http://localhost:3001');
 });
+

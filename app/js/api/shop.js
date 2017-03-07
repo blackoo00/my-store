@@ -46,7 +46,6 @@ export default {
 			async:false,
 			data:{count:count,load_num:load_num}
 		}
-		console.log(data);
 		let _pros = ajaxData(data)
 		cb(_pros);
 	},

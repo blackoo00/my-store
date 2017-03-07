@@ -16,7 +16,6 @@
 	display: flex;
 	justify-content: space-between;
 	flex-wrap: nowrap;
-	/*composes:flex-box from '../../../css/common.css';*/
 	padding: 0 15px;
 }
 .catItem{
@@ -46,5 +45,5 @@
     color: COLOR_INDEX_PRO_NAME;
 }
 .indexProPrice{
-	color: COLOR_INDEX_PRO_PRICE);
+	color: COLOR_INDEX_PRO_PRICE;
 }

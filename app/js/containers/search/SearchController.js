@@ -10,7 +10,10 @@ class SearchContainer extends React.Component{
 	componentWillMount(){
 		let {...rest} = this.props;
 		rest.init();
-		rest.handleWindowScroll(rest.loadMorePro);
+		//延时是为了滚动位置
+		setTimeout(() => {
+			rest.handleWindowScroll(rest.loadMorePro);
+		},200)
 
 	}
 	componentWillUnmount(){
@@ -41,36 +44,6 @@ class SearchContainer extends React.Component{
 		)
 	}
 }
-
-// const SearchContainer = ({...rest}) => {
-
-// 	if(rest.list.length == 0){
-// 		rest.init();
-// 	}else if(rest.bindscroll == 0){
-// 		rest.handleWindowScroll();
-// 	}
-
-// 	return(
-// 		<ProList
-// 			handleSearchPro = {() => {rest.handleSearchPro(seachkey.value)}}
-// 			handleCancelSearch = {() => {rest.handleCancelSearch()}}
-// 			refs = {node => {seachkey = node}}
-// 		>
-// 			{rest.list.map(item => {
-// 				if(item.name.includes(rest.searchText)){
-// 					return(
-// 						<ProItem
-// 							key = {item.id}
-// 							elem = {item}
-// 							ProDetails = {()=>{rest.LinkToDetails(item.id)}}
-// 						/>
-// 					)
-// 				}
-// 			}
-// 			)}
-// 		</ProList>
-// 	)
-// }
 
 const mapStateToProps = (state) => ({
 	list:state.search.list,
@@ -103,7 +76,6 @@ const mapDispatchToProps = (dispatch) => ({
 	loadMorePro:() => {
 		if((document.body.scrollTop + document.body.clientHeight) >= document.body.scrollHeight){
 			let count = $('.page-container li').length;
-			console.log(count);
 			dispatch(actions.searchGetMorePro(count,4))
 		}
 	}

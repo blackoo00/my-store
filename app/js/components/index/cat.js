@@ -1,6 +1,6 @@
 var React = require('react');
-import styles from './style.css';
 import CSSModules from 'react-css-modules';
+import styles from './style.css';
 
 const Cat = ({CatList}) => (
 	<div styleName="catWrap">

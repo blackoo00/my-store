@@ -1,5 +1,5 @@
-var React = require('react');
-var swiper = require('swiper');
+import React from 'react';
+import {swiper} from 'swiper';
 
 class SwiperDom extends React.Component{
 	componentDidUpdate(){
