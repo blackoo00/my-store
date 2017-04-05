@@ -7,46 +7,32 @@ var values = require('postcss-modules-values');
 module.exports = {
 	devtool: 'source-map',
 	entry:{
-		home:[
-			__dirname + '/dist/js/jquery-weui.min.js',
-			__dirname + '/workspace/meal/home.js',
- 		],
- 		orderdetail:[
-			__dirname + '/dist/js/jquery-weui.min.js',
-			__dirname + '/workspace/meal/orderdetail.js',
- 		],
- 		myorders:[
-			__dirname + '/workspace/meal/myorders.js',
- 		],
- 		settle:[
-			__dirname + '/workspace/meal/settle.js',
- 		],
- 		wpay:[
-			__dirname + '/dist/js/jquery-weui.min.js',
-			__dirname + '/workspace/meal/wpay.js',
- 		],
+		detail:[
+            'webpack-hot-middleware/client?reload=true',
+             __dirname + '/detail.js',
+        ],
  		vendors:['react','react-dom','classnames','jquery','react-redux','redux'],
 	},
 	output:{
-		path:path.resolve(__dirname,'build'),
+		path:path.resolve(__dirname + '/../../','build'),
 		filename:'[name].js',
 	},
 	module:{
 		rules:[
 			{
-				test: /\.js(x)*$/, 
+				test: /\.js(x)*$/,
 				exclude: /node_modules/,
 				loaders:['babel-loader'],
-				include: [
-	                // 只去解析运行目录下的 src(提高webpack性能)
-	                path.join(process.cwd(), './workspace'),
-	            ],
+				// include: [
+	   //              // 只去解析运行目录下的 src(提高webpack性能)
+	   //              path.join(process.cwd(), './workspace'),
+	   //          ],
 			},
 			{
 				test: /\.(css)$/,
-				include:[
-					path.resolve(__dirname,'./workspace'),
-				],
+				// include:[
+				// 	path.resolve(__dirname,'./workspace'),
+				// ],
 	            loader:ExtractTextPlugin.extract({
 	            	fallbackLoader: 'style-loader',
 	            	loader: 'css-loader?modules!postcss-loader'
@@ -54,9 +40,9 @@ module.exports = {
 			},
 			{
 				test:/\.scss$/,
-				include:[
-					path.resolve(__dirname,'./workspace'),
-				],
+				// include:[
+				// 	path.resolve(__dirname,'./workspace'),
+				// ],
 				loader:ExtractTextPlugin.extract({
 					fallbackLoader: 'style-loader',
 					loader: 'css-loader!sass-loader?modules!postcss-loader'
@@ -64,9 +50,9 @@ module.exports = {
 			},
 			{
 				test:/\.(png|jpg)$/,
-				include:[
-					path.resolve(__dirname,'./workspace'),
-				],
+				// include:[
+				// 	path.resolve(__dirname,'./workspace'),
+				// ],
 				loader:'url-loader?limit=8192',
 			},
 		],

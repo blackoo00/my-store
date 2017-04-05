@@ -1,6 +1,7 @@
 var path = require('path');
 var express = require('express');
 var webpack = require('webpack');
+// var config = require('./webpack.config.work.dev');
 var config = require('./webpack.config.work.dev');
 
 var app = new express();
