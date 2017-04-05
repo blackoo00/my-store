@@ -1,0 +1,15 @@
+.nav{
+	background-color: #fff;
+	display: flex;
+	box-shadow: 0 0 5px #888;
+}
+
+.nav item{
+	flex: 1;
+	height: 3.5rem;
+	line-height: 3.5rem;
+	font-size: 1.3rem;
+	color: #444;
+	text-align: center;
+	/*border-bottom: 4px solid #F00;*/
+}

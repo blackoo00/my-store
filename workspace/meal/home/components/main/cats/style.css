@@ -1,0 +1,35 @@
+@value colors: '../../../../common/css/colors.css';
+@value THEME_COLOR from colors;
+.mainTabs{
+	background-color: #fff;
+	border-top: 1px solid #e3e3e3;
+	flex: 1;
+	overflow: auto;
+	padding-top: 0.5rem;
+}
+.mainTabsLi{
+	height: 3.5rem;
+	line-height: 3.5rem;
+	text-align: center;
+	font-size: 1em;
+	color: #777;
+	border-bottom: 1px solid #e3e3e3;
+	border-right: 1px solid #e3e3e3;
+	background: #f6f6f6;
+	position: relative;
+	cursor: pointer;
+}
+.mainTabsLiChoose{
+	composes: mainTabsLi;
+	color: THEME_COLOR;
+	border-left: 4px solid THEME_COLOR;
+	border-right: none;
+}
+.cartNums{
+	composes: cartNums from '../../footer/style';
+	top: 0.2rem;
+}
+.cartNumsHide{
+	composes:cartNums;
+	display: none;
+}

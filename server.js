@@ -23,12 +23,12 @@ app.get('*', function(req, res) {
 });
 
 
-app.listen(3001, '0.0.0.0', function(err) {
+app.listen(3002, '0.0.0.0', function(err) {
   if (err) {
     console.log(err);
     return;
   }
 
-  console.log('Listening at http://localhost:3001');
+  console.log('Listening at http://localhost:3002');
 });
 

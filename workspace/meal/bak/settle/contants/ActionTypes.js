@@ -1,0 +1,1 @@
+export const SETTLE_INIT = 'SETTLE_INIT'; //结算页初始化

@@ -55,7 +55,7 @@ module.exports = {
 		new webpack.LoaderOptionsPlugin({
 		    options: {
 			    postcss:[
-			    	values
+			    	values,
 		    	],
 		    }
 		}),

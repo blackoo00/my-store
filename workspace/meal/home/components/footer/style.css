@@ -1,0 +1,71 @@
+@font-face {
+  font-family: 'iconfont';
+  src: url('//at.alicdn.com/t/font_ybat47vt7nl8fr.eot'); /* IE9*/
+  src: url('//at.alicdn.com/t/font_ybat47vt7nl8fr.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('//at.alicdn.com/t/font_ybat47vt7nl8fr.woff') format('woff'), /* chrome、firefox */
+  url('//at.alicdn.com/t/font_ybat47vt7nl8fr.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('//at.alicdn.com/t/font_ybat47vt7nl8fr.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+                    
+
+.toCartWrap{
+	display: flex;
+	position: fixed;
+	width: 100%;
+	bottom: 0;
+	height: 4rem;
+	line-height: 4rem;
+	z-index: 10;
+}
+.cartIcon{
+	flex: 2;
+	background: rgba(0,0,0,0.8);
+}
+
+.cart{
+	position: relative;
+	padding: 1rem;
+}
+.cart:before{
+	content: "\e6e4";
+	font-family: iconfont;
+	color: #fff;
+	font-size: 2.3rem;
+}
+.cartNums{
+	position: absolute;
+    background-color: #ff591f;
+    border-radius: 50%;
+    color: #fff;
+    text-align: center;
+    right: 0.6rem;
+    top: 0;
+    width: 1.2rem;
+    height: 1.2rem;
+    line-height: 1.3rem;
+}
+.totalFee{
+	color: #fff;
+	font-size: 1.6rem;
+}
+.cartIconHide{
+	composes:cartIcon;
+}
+.cartIconHide .cartNums,.cartIconHide .totalFee{
+	display: none;
+}
+.cartSubmit{
+	flex: 1;
+	background-color: #ccc;
+	text-align: center;
+	color: #fff;
+	font-size: 1.4rem;
+}
+.cartSubmitChoose{
+	composes: cartSubmit;
+	background-color: #ff591f;
+}
+.orderSettle{
+	composes: cartSubmit;
+	background-color: #2dc852;
+}

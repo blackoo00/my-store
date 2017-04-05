@@ -1,0 +1,111 @@
+@font-face {
+  font-family: 'iconfont';  /* project id 251832 */
+  src: url('//at.alicdn.com/t/font_mizxnhk8okc323xr.eot');
+  src: url('//at.alicdn.com/t/font_mizxnhk8okc323xr.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_mizxnhk8okc323xr.woff') format('woff'),
+  url('//at.alicdn.com/t/font_mizxnhk8okc323xr.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_mizxnhk8okc323xr.svg#iconfont') format('svg');
+}
+
+.cartListWrap {
+    height: 150vw;
+}
+.myCarts{
+	display: block;
+}
+.myCartsHiden{
+	display: none;
+}
+.Shopping{
+	composes: Shopping from '../prods/style.css';
+}
+.add{
+	composes: add from '../prods/style.css';
+}
+.del{
+	composes: del from '../prods/style.css';
+}
+.num{
+	composes: num from '../prods/style.css';
+}
+.goSettle{
+	display: block;
+}
+.goSettleHide{
+	display: none;
+}
+.cartRemak header{
+	padding: 0.4rem 1rem;
+	color: #777;
+}
+.cartRemak textarea{
+	border: none;
+	width: 100%;
+	height: 5rem;
+	padding: 1rem;
+	resize: none;
+	font-size: 1rem;
+}
+.cartListCon{
+	background-color: #fff;
+}
+.cartListCon header{
+	display: flex;
+	justify-content: space-between;
+	padding: 0.8rem 0 0.6rem 0;
+}
+.title{
+	padding-left: 1rem;
+	position: relative;
+	font-size: 1.2rem;
+}
+.title:before{
+	content: "\e600";
+	font-family: iconfont;
+	font-size: 2rem;
+	color: #ff591f;
+	padding:0.5rem 0.4rem 0 0;
+}
+.clear{
+	color: #a1a1a1;
+	position: relative;
+	padding:0.5rem 1.3rem 0 0;
+	font-size: 1.1rem;
+}
+.clear:after{
+	content:"\e601";
+	font-family: iconfont;
+}
+.cartLists{
+	padding: 0.5rem;
+	display: flex;
+}
+.prodName{
+	flex: 3;
+	text-indent: 1rem;
+	font-size: 1rem;
+}
+.prodNum{
+	flex: 1;
+	text-align: center;
+	font-size: 1.1rem;
+}
+.prodPrice{
+	flex: 1;
+	text-align: right;
+	font-size: 1rem;
+	margin-right: 1rem;
+}
+.prodPrice label{
+	color: #ff591f;
+}
+.cartSettle{
+	font-size: 1.2rem;
+	text-align: right;
+	line-height: 3rem;
+	margin-right: 1.5rem;
+}
+.cartSettle label{
+	color: #ff591f;
+}
+

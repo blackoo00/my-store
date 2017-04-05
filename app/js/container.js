@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import Perf from 'react-addons-perf';
 
 class Container extends React.Component {
 
@@ -10,6 +11,11 @@ class Container extends React.Component {
         }
     }
     componentWillEnter(){
+        Perf.start();
+        Perf.stop();
+        let r = Perf.getLastMeasurements();
+        Perf.printInclusive(r);
+        Perf.printWasted(r)
         // let options = render.findDOMNode(this.refs.options)
         // options.style.display = 'block'
         // setTimeout(() => {

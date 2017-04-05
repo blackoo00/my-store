@@ -1,0 +1,45 @@
+@font-face {
+  font-family: 'iconfont';  /* project id 251832 */
+  src: url('//at.alicdn.com/t/font_ytyawc545qshh0k9.eot');
+  src: url('//at.alicdn.com/t/font_ytyawc545qshh0k9.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_ytyawc545qshh0k9.woff') format('woff'),
+  url('//at.alicdn.com/t/font_ytyawc545qshh0k9.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_ytyawc545qshh0k9.svg#iconfont') format('svg');
+}
+.OrderFooterWrap{
+	position: fixed;
+	width: 100%;
+	bottom: 0;
+}
+.scanCodeWrap{
+	background: rgba(0,0,0,0.4);
+	display: flex;
+	height: 4rem;
+	justify-content: center;
+}
+
+.scanCode{
+	width: 10rem;
+	margin:0.5rem 0;
+	background-color: rgb(170, 170, 170);
+	border-radius: 3px;
+	position: relative;
+}
+
+.scanCode:before{
+	content:'\e752';
+	font-family: iconfont;
+	position: absolute;
+	font-size: 1.4rem;
+	color: #fff;
+	left: 10%;
+	top: 0.5rem;
+}
+.scanCode:after{
+	content:'扫码下单';
+	position: absolute;
+	left: 30%;
+	top: 0.5rem;
+	font-size: 1.2rem;
+	color: #fff;
+}

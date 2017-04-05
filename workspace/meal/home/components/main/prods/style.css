@@ -1,0 +1,63 @@
+.mainProds { flex: 3; overflow: auto; padding: 1rem 0 0 0;}
+.prodItem { display: flex; margin-bottom: 0.4rem; border-bottom: 1px solid #e3e3e3}
+.prodImg{ width: 6rem; height: 6rem; margin-left: 0.5rem;}
+
+.prodDetail { padding-left: 0.4rem; width: 100%; display: flex; flex-direction: column }
+.homeProdName { font-weight: bold; color: #444; font-size: 1.1rem;}
+.prodDesc { color: #777; height: 1.4rem;}
+.HomeProdPrice{
+	color: #888;
+	font-size: 0.8rem;
+	height: 1.3rem;
+}
+.HomeProdPrice label{
+	color: #ff591f;
+	font-size: 1.2rem;
+}
+
+.Shopping{
+	display: flex;
+	justify-content:flex-end;
+}
+.add{
+	border: 1px solid #e3e3e3;
+	border-radius: 50%;
+	width: 2rem;
+	height: 2rem;
+	margin: 0 0.6rem 0.3rem 0;
+	position: relative;
+}
+.add:before,.add:after{
+	content: "";
+	position: absolute;
+	background-color: #ff591f;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	width: 1.2rem;
+	height: 3px;
+}
+.add:after{
+	height: 1.2rem;
+	width: 3px;
+}
+
+.del{
+	composes:add;
+	margin-right: 0;
+}
+.del:after{
+	display: none;
+}
+.num{
+	color: #444;
+	line-height: 2rem;
+	text-align: center;
+	width: 2.2rem;
+}
+.ShoppingHide{
+	composes:Shopping;
+}
+.ShoppingHide .del, .ShoppingHide .num{
+	display: none;
+}

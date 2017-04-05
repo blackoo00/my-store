@@ -1,0 +1,43 @@
+.OrderProdListWrap{
+	padding: 1rem 1.3rem;
+	background-color: #fff;
+}
+.OrderProdListWrap header{
+	color: color;
+	margin-bottom: 1rem;
+}
+.OrderProdListWrap header item{
+	border-radius: 50%;
+	background-color: #ff591f;
+	color: #fff;
+	width: 1.5rem;
+	height: 1.5rem;
+	display: inline-block;
+	text-align: center;
+	line-height: 1.5rem;
+	margin-left: 0.5rem;
+}
+.OrderProdLi{
+	display: flex;
+}
+.OrderProdName{
+	flex: 5
+}
+.OrderProdNum{
+	flex: 1;
+	text-align:center;
+}
+.OrderProdPrice{
+	flex: 1;
+	text-align: right;
+}
+.OrderProdPrice label{
+	color: #ff591f;
+}
+.OrderTotalFee{
+	color: #ff591f;
+}
+.OrderSettle{
+	text-align: right;
+	padding: 1rem 0;
+}
