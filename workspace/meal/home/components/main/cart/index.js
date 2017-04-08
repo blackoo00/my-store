@@ -20,7 +20,7 @@ const Cart = ({list,addToCart,delCartNums,clearAll,totalFee,showlist,settle,rema
 						<div styleName ="title">列表</div>
 						<div styleName ="clear" onClick={clearAll}>清空</div>
 					</header>
-					<section>
+					<section styleName="cartProdList">
 						{
 							list.map(item=>{
 								if(item){
@@ -50,7 +50,7 @@ const Cart = ({list,addToCart,delCartNums,clearAll,totalFee,showlist,settle,rema
 					<header>
 						<div styleName ="title">列表</div>
 					</header>
-					<section>
+					<section styleName="cartProdList2">
 						{
 							list.map(item=>{
 								if(item){

@@ -8,7 +8,15 @@
 }
 
 .cartListWrap {
-    height: 150vw;
+    height: 450px;
+}
+.cartProdList{
+    height: 330px;
+    overflow: auto;
+}
+.cartProdList2{
+    height: 270px;
+    overflow: auto;
 }
 .myCarts{
 	display: block;

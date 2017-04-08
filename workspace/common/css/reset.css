@@ -8,6 +8,7 @@ li{
 }
 img{
 	display: block;
+    width: 100%;
 }
 .weui_dialog_hd{
     padding: 1.2em 0 .5em;

@@ -74,7 +74,7 @@ const mapStateToProps = state =>({
 const mapDispatchToProps = dispatch =>({
 	init:() => {
 		dispatch(actions.getCopyInfo());
-        dispatch(wxActions.wxShare());
+        // dispatch(wxActions.wxShare());
 	},
     phoneType:(type) => {
         dispatch(actions.phoneType(type));

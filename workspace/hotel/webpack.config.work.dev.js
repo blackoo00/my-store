@@ -6,9 +6,10 @@ var cssnano = require('cssnano');
 module.exports = {
     devtool: 'cheap-module-eval-source-map',
     entry:{
-        detail:[
+        home:[
             'webpack-hot-middleware/client?reload=true',
-             __dirname + '/detail.js',
+             __dirname + '/../common/js/jquery-weui.min.js',
+             __dirname + '/home.js',
         ],
         vendors:['react','react-dom','classnames'],
     },
