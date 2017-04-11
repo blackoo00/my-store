@@ -9,24 +9,27 @@ import { composeWithDevTools } from 'redux-devtools-extension';//devToolsEnhance
 
 import '../common/css/reset.css';
 import '../common/css/style.scss';
-import './common/css/style.css';
+import './common/css/style.scss';
 
-import Home from './home/controller/';
-import homeReducer from './home/reducers/index';
+import Reducer from './reducers';
+import Routes from './routes';
 
 import FastClick from 'fastclick';
+
 FastClick.attach(document.body);
 
 export const store = createStore(
-  homeReducer,
-  composeWithDevTools(
-    applyMiddleware(thunk)
-  )
+    Reducer,
+    composeWithDevTools(
+        applyMiddleware(thunk)
+    )
 )
+
+
 
 render(
     <Provider store={store}>
-        <Home/>
+        <Routes/>
     </Provider>,
     document.getElementById('wrapper')
 )

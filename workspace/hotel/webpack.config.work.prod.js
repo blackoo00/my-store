@@ -7,11 +7,11 @@ var values = require('postcss-modules-values');
 module.exports = {
 	devtool: 'source-map',
 	entry:{
-		detail:[
-            'webpack-hot-middleware/client?reload=true',
-             __dirname + '/detail.js',
+		home:[
+            __dirname + '/../common/js/jquery-weui.min.js',
+            __dirname + '/home.js',
         ],
- 		vendors:['react','react-dom','classnames','jquery','react-redux','redux'],
+ 		vendors:['react','react-dom','classnames','jquery','react-redux','redux','react-router'],
 	},
 	output:{
 		path:path.resolve(__dirname + '/../../','build'),
@@ -20,41 +20,27 @@ module.exports = {
 	module:{
 		rules:[
 			{
-				test: /\.js(x)*$/,
-				exclude: /node_modules/,
-				loaders:['babel-loader'],
-				// include: [
-	   //              // 只去解析运行目录下的 src(提高webpack性能)
-	   //              path.join(process.cwd(), './workspace'),
-	   //          ],
-			},
-			{
-				test: /\.(css)$/,
-				// include:[
-				// 	path.resolve(__dirname,'./workspace'),
-				// ],
-	            loader:ExtractTextPlugin.extract({
-	            	fallbackLoader: 'style-loader',
-	            	loader: 'css-loader?modules!postcss-loader'
-	            }),
-			},
-			{
-				test:/\.scss$/,
-				// include:[
-				// 	path.resolve(__dirname,'./workspace'),
-				// ],
-				loader:ExtractTextPlugin.extract({
-					fallbackLoader: 'style-loader',
-					loader: 'css-loader!sass-loader?modules!postcss-loader'
-				}),
-			},
-			{
-				test:/\.(png|jpg)$/,
-				// include:[
-				// 	path.resolve(__dirname,'./workspace'),
-				// ],
-				loader:'url-loader?limit=8192',
-			},
+                test: /\.js(x)*$/,
+                exclude: /node_modules/,
+                loaders: ['react-hot-loader','babel-loader'],
+                exclude: function(path) {
+                    // 路径中含有 node_modules 的就不去解析。(提高webpack性能)
+                    var isNpmModule = !!path.match(/node_modules/);
+                    return isNpmModule;
+                },
+            },
+            {
+                test: /\.css$/,
+                loader: "style-loader!css-loader?modules!postcss-loader"
+            },
+            {
+                test:/\.scss$/,
+                loader:'style-loader!css-loader!sass-loader?sourceMap=true&sourceMapContents=true',
+            },
+            {
+                test:/\.(png|jpg)$/,
+                loader:'url-loader?limit=8192',
+            },
 		],
 	},
 	resolve:{

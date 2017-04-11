@@ -11,7 +11,7 @@ module.exports = {
              __dirname + '/../common/js/jquery-weui.min.js',
              __dirname + '/home.js',
         ],
-        vendors:['react','react-dom','classnames'],
+        vendors:['react','react-dom','classnames','react-router'],
     },
     output:{
         filename:'[name].js',

@@ -1,0 +1,54 @@
+html,body{
+    background-color: #eee;
+    font-size: 22px;
+}
+.weui-cells{
+    font-size:15px;
+}
+@keyframes page-enter-animate {
+  0% {opacity: 0.01;transform: translate3d(100%, 0, 0);}
+  100% {opacity: 1;transform: translate3d(0, 0, 0);}
+}
+
+@keyframes wui-enter-animate {
+    0% {opacity: 0.01;transform: translate3d(0, 100%, 0);}
+    100% {opacity: 1;transform: translate3d(0, 20%, 0);}
+}
+.page-appear {
+    z-index: 1024;
+    opacity: 0.01;
+    transform: translate3d(100%, 0, 0);
+    /*transition: all .2s ease;*/
+    &.page-appear-active {
+        animation:page-enter-animate 1s ease forwards;
+    }
+}
+
+.page-enter {
+    z-index: 1024;
+    opacity: 0.01;
+    transform: translate3d(100%, 0, 0);
+    &.page-enter-active{
+         animation:page-enter-animate 0.3s ease forwards;
+    }
+}
+
+.page-leave{
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    transition: all .5s ease;
+    &.page-leave-active {
+        opacity: 0.01;
+        transform: translate3d(100%, 0, 0);
+    }
+}
+.page {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    /*background-color: #fbf9fe;*/
+    display: block;
+    z-index: 1;
+}

@@ -15,22 +15,33 @@ class home extends React.Component{
         init();
     }
     render(){
-        let {indexbans,indexprods} = this.props;
-        let icons = ['icon-home','icon-dingdan1','icon-geren']
+        let {...rest} = this.props;
+        let footer_data = [['icon-home','首页'],['icon-dingdan1','订单'],['icon-geren','我的']]
         return(
             <div style={{fontSize:'14px'}}>
                 <SwiperDom
-                    BanList = {indexbans}
+                    BanList = {rest.home.indexbans}
                 />
-                <NameTel/>
+                <NameTel
+                    info = {rest.home.info}
+                />
                 <BaiduMap/>
                 <Address/>
-                <TimeChoose/>
+                <TimeChoose
+                    intime = {rest.intime}
+                    outtime = {rest.outtime}
+                />
                 <HoustList
-                    list = {indexprods}
+                    list = {rest.home.indexprods}
+                    livedays = {rest.order.livedays}
+                    intime = {rest.order.intime}
+                    outtime = {rest.order.outtime}
+                    orderRoom = {rest.orderRoom}
                 />
                 <Footer
-                    icons = {icons}
+                    data = {footer_data}
+                    clicknum = {0}
+                    clickcolor = {'#33bbaf'}
                 />
             </div>
         )
@@ -38,13 +49,26 @@ class home extends React.Component{
 }
 
 const mapStateToProps = state => ({
-    indexbans:state.indexbans,
-    indexprods:state.indexprods
+    home:state.home,
+    order:state.order
 })
 
 const mapDispatchToProps = dispatch => ({
     init:() => {
         dispatch(actions.indexInit());
+    },
+    intime:(value,values) => {
+        dispatch(actions.inTime(value,values))
+    },
+    outtime:(value,values) => {
+        dispatch(actions.outTime(value,values))
+    },
+    orderRoom:(livedays,pid,price,intime,outtime) => {
+        if(livedays <= 0){
+           $.alert('请选择入驻与退房时间')
+        }else{
+            dispatch(actions.orderRoom(pid,price,intime,outtime,livedays))
+        }
     }
 })
 

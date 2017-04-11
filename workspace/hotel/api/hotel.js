@@ -1,4 +1,4 @@
-const SERVER="http://127.0.0.1/wg_hunqing/index.php/Wap/Hotel/";
+// const SERVER="http://127.0.0.1/wg_hunqing/index.php/Wap/Hotel/";
 // const SERVER="http://1979.tzwg.net/index.php?g=Wap&m=Meal&a=";
 // const SERVER="http://192.168.1.119/wg_meal/index.php?g=Wap&m=Meal&a=";
 const initialArr = {
@@ -35,5 +35,22 @@ export default {
             url:'index',
         })
         cb(_data.data);
+    },
+    //提交订单
+    settle:(cb,data) => {
+        console.log(data);
+        let _data = ajaxData({
+            url:'settle',
+            data:{data:JSON.stringify(data)},
+            type:'post'
+        })
+        cb(_data)
+    },
+    //获取订单信息
+    orderInfo:(cb) =>{
+        let _data = ajaxData({
+            url:'orderInfoAjax'
+        })
+        cb(_data.data)
     }
 }
