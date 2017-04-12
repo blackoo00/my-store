@@ -38,11 +38,6 @@ class home extends React.Component{
                     outtime = {rest.order.outtime}
                     orderRoom = {rest.orderRoom}
                 />
-                <Footer
-                    data = {footer_data}
-                    clicknum = {0}
-                    clickcolor = {'#33bbaf'}
-                />
             </div>
         )
     }

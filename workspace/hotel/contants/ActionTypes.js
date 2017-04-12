@@ -20,3 +20,17 @@ export const SETTLE_INFO_INIT = 'SETTLE_INFO_INIT';//结算选项初始化
  * 支付页面
  */
 export const PAY_INIT = 'PAY_INIT';//支付中心初始化
+
+/**
+ * 我的订单
+ */
+export const MYORDERS_LIST = 'MYORDERS_LIST';//获取我的订单列表
+export const CHOOSE_LIVE_TYPE = 'CHOOSE_LIVE_TYPE';//选择订单类型
+
+/**
+ * 个人中心
+ */
+export const MYINFO = 'MYINFO';//个人信息
+export const EDIT_NAME = 'EDIT_NAME';//修改个人姓名
+export const EDIT_TEL = 'EDIT_TEL';//修改个人姓名
+export const EDIT_FEEDBACK = 'EDIT_FEEDBACK';//修改留言

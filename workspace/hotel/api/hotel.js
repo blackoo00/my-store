@@ -29,6 +29,31 @@ const TIMEOUT = 100
 
 
 export default {
+    //留言
+    feedback:(cb,info) => {
+        let _data = ajaxData({
+            url:'feedback',
+            data:{con:info},
+            type:'post'
+        })
+        cb(_data.status);
+    },
+    //编辑个人信息
+    editMyInfo:(cb,data) => {
+        let _data = ajaxData({
+            url:'editMyInfo',
+            data:{data:JSON.stringify(data)},
+            type:'post'
+        })
+        cb(_data.status);
+    },
+    //获取我的信息
+    myInfo:(cb) => {
+        let _data = ajaxData({
+            url:'myInfo'
+        })
+        cb(_data.data)
+    },
     //首页初始化
     indexInit:(cb) => {
         let _data = ajaxData({
@@ -38,7 +63,6 @@ export default {
     },
     //提交订单
     settle:(cb,data) => {
-        console.log(data);
         let _data = ajaxData({
             url:'settle',
             data:{data:JSON.stringify(data)},
@@ -52,5 +76,14 @@ export default {
             url:'orderInfoAjax'
         })
         cb(_data.data)
+    },
+    //我的订单
+    myOrders:(cb) => {
+        let _data = ajaxData({
+            url:'myOrders'
+        })
+        if(_data.data){
+            cb(_data.data)
+        }
     }
 }

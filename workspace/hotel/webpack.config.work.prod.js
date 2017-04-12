@@ -11,7 +11,7 @@ module.exports = {
             __dirname + '/../common/js/jquery-weui.min.js',
             __dirname + '/home.js',
         ],
- 		vendors:['react','react-dom','classnames','jquery','react-redux','redux','react-router'],
+ 		vendors:['react','react-dom','classnames','jquery','react-redux','redux','react-router','react-addons-css-transition-group'],
 	},
 	output:{
 		path:path.resolve(__dirname + '/../../','build'),

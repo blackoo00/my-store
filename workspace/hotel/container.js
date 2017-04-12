@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import Perf from 'react-addons-perf';
 import Footer from '../common/components/footer';
 
 class Container extends React.Component {
@@ -14,7 +13,21 @@ class Container extends React.Component {
     render() {
         const { children } = this.props;
         let content = this.state.showContent ? children : false;
-        // this.handleScrollPosition();
+        let pathname = this.props.location.pathname;
+        let footer_index = 0;
+        switch(pathname){
+            case '/myorders':
+                footer_index = 1;
+                break;
+            case '/my':
+                footer_index = 2;
+                break;
+            default:
+                footer_index = 0;
+                break;
+        }
+        let footer_data = [['icon-home','首页'],['icon-dingdan1','订单'],['icon-geren','我的']];
+        let paths = ['/','/myorders','/my'];
         return (
             <div>
                 <ReactCSSTransitionGroup
@@ -29,6 +42,12 @@ class Container extends React.Component {
                         {
                             content
                         }
+                        {pathname == '/' || pathname == '/myorders' || pathname == '/my' ? <Footer
+                            data = {footer_data}
+                            paths = {paths}
+                            clicknum = {footer_index}
+                            clickcolor = {'#33bbaf'}
+                        />: ''}
                     </div>
                 </ReactCSSTransitionGroup>
              </div>
