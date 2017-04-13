@@ -3,7 +3,7 @@ import {Grid,Row,Col,ListGroup,ListGroupItem,Button} from 'react-bootstrap';
 import {Link} from 'react-router';
 
 const index = ({list,orderRoom,livedays,intime,outtime}) => (
-    <Grid style={{background:'#fff',paddingBottom:'3em'}}>
+    <Grid style={{background:'#fff',paddingBottom:'5em'}}>
         {list.map(item => (
             <Row key={item.id} className="show-grid" style={{borderTop:'1px solid #eee',padding:'0.5rem 0'}}>
                 <Col xs={3} md={8} style={{paddingRight:'10px'}}><img src={item.logourl}/></Col>

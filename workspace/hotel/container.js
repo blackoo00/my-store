@@ -42,14 +42,14 @@ class Container extends React.Component {
                         {
                             content
                         }
-                        {pathname == '/' || pathname == '/myorders' || pathname == '/my' ? <Footer
-                            data = {footer_data}
-                            paths = {paths}
-                            clicknum = {footer_index}
-                            clickcolor = {'#33bbaf'}
-                        />: ''}
                     </div>
                 </ReactCSSTransitionGroup>
+                {pathname == '/' || pathname == '/myorders' || pathname == '/my' ? <Footer
+                    data = {footer_data}
+                    paths = {paths}
+                    clicknum = {footer_index}
+                    clickcolor = {'#33bbaf'}
+                />: ''}
              </div>
         );
     }

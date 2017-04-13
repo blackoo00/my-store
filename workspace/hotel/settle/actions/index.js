@@ -3,8 +3,9 @@ import hotel from '../../api/hotel';
 import {hashHistory} from 'react-router';
 
 //结算选项初始化
-export const infoInit = () => ({
+export const infoInit = (keeptime) => ({
     type:types.SETTLE_INFO_INIT,
+    keeptime:keeptime
 })
 
 //初始化
@@ -38,9 +39,16 @@ export const signInTel = (tel) => ({
     tel:tel
 })
 //提交
-export const settle = (data) => dispatch => {
+const settleDip = (defaultkeeptime,defaulttotal) => ({
+    type:types.SETTLE,
+    defaultkeeptime:defaultkeeptime,
+    defaulttotal:defaulttotal
+})
+
+export const settle = (data,defaultkeeptime,defaulttotal) => dispatch => {
     hotel.settle(result => {
         if(result){
+            dispatch(settleDip(defaultkeeptime,defaulttotal));
             hashHistory.push({pathname:'/pay'})
         }else{
             $.alert('提交失败',() => {

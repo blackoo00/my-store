@@ -3,6 +3,7 @@ import Header from '../../../common/components/header/';
 import Details from '../components/details';
 import * as actions from '../actions/';
 import {connect} from 'react-redux';
+import {hashHistory} from 'react-router';
 
 class pay extends React.Component{
     componentWillMount(){
@@ -22,6 +23,7 @@ class pay extends React.Component{
                 <Details
                     themeColor = '#33bbaf'
                     data = {rest.data}
+                    pay = {() => rest.pay(rest.data.id)}
                 />
             </div>
         )
@@ -38,8 +40,14 @@ const mapDispatchToProps = dispatch => ({
             dispatch(actions.init())
         }
     },
-    pay:() => {
-        window.location.href = SERVER + 'payOrder';
+    pay:(oid) => {
+        if(oid != 0){
+            window.location.href = SERVER + 'payOrder' + '&oid=' + oid;
+        }else{
+            $.alert('提交失败',() => {
+                hashHistory.push({pathname:'/'});
+            })
+        }
     }
 })
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const index = ({themeColor,data}) => (
+const index = ({themeColor,data,pay}) => (
     <div>
         <div className="weui-cells">
             <div className="weui-cell">
@@ -43,7 +43,7 @@ const index = ({themeColor,data}) => (
             </div>
         </div>
         <div style={{padding:'15px'}}>
-            <button className="weui-btn weui-btn_primary" style={{background:themeColor}}>提交</button>
+            <button onClick={pay} className="weui-btn weui-btn_primary" style={{background:themeColor}}>提交</button>
         </div>
     </div>
 )

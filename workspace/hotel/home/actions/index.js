@@ -26,10 +26,11 @@ export const outTime = (outtime,values) => ({
     values:values
 })
 //预约房间
-const orderRoomDip = (pid,price) => ({
+const orderRoomDip = (pid,price,id) => ({
     type:types.ORDER_ROOM,
     pid:pid,
-    price:price
+    price:price,
+    id:id
 })
 
 export const orderRoom = (pid,price,intime,outtime,livedays) => dispatch => {
@@ -40,9 +41,9 @@ export const orderRoom = (pid,price,intime,outtime,livedays) => dispatch => {
         'outtime':outtime,
         'livedays':livedays
     }
-    hotel.settle(status => {
-        if(status.status == 1){
-            dispatch(orderRoomDip(pid,price))
+    hotel.settle(data => {
+        if(data.status == 1){
+            dispatch(orderRoomDip(pid,price,data.data))
             hashHistory.push({pathname:'/settle'})
         }else{
             $.alert('预约失败');

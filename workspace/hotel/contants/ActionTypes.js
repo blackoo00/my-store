@@ -15,6 +15,7 @@ export const SIGN_IN_NAME = 'SIGN_IN_NAME';//入驻人名
 export const SIGN_IN_TEL = 'SIGN_IN_TEL';//入驻人手机
 export const SETTLE_INIT = 'SETTLE_INIT';//结算页初始化
 export const SETTLE_INFO_INIT = 'SETTLE_INFO_INIT';//结算选项初始化
+export const SETTLE = 'SETTLE';//结算提交
 
 /**
  * 支付页面

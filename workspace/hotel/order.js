@@ -1,5 +1,6 @@
 import * as types from './contants/ActionTypes';
 const initialState = {
+    id:0,
     intime:'',
     intimevalue:'',
     outtime:'',
@@ -25,6 +26,19 @@ const liveDays = (intime,outtime) => {
 
 const order = (state = initialState, action) => {
     switch(action.type){
+        //首页初始化
+        case types.INDEX_INIT:
+            return {
+                ...state,
+                ...initialState
+            }
+        //结算提交
+        case types.SETTLE:
+            return {
+                ...state,
+                keeptime:state.keeptime == '' ? action.defaultkeeptime: state.keeptime,
+                total:state.total == '' ? action.defaulttotal: state.total
+            }
         //支付中心初始
         case types.PAY_INIT:
             return {
@@ -43,7 +57,9 @@ const order = (state = initialState, action) => {
                 ...state,
                 pid:action.pid,
                 total_fee:action.price,
-                price:action.price
+                price:action.price,
+                id:action.id,
+                total:0,
             }
         //入驻人姓名
         case types.SIGN_IN_NAME:

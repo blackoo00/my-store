@@ -6,9 +6,9 @@ import {hashHistory} from 'react-router';
 import * as actions from '../actions/';
 
 class settle extends React.Component{
-    componentWillMount(){
-        let {init,order} = this.props;
-        init(order.livedays);
+    componentDidMount(){
+        let {init,order,keeptimes} = this.props;
+        init(order.livedays,keeptimes[0]);
     }
     render(){
         let {...rest} = this.props;
@@ -29,7 +29,7 @@ class settle extends React.Component{
                     chooseKeepTime = {rest.chooseKeepTime}
                     signInName = {rest.signInName}
                     signInTel = {rest.signInTel}
-                    settle = {() => {rest.settle(rest.order)}}
+                    settle = {() => {rest.settle(rest.order,rest.keeptimes[0],rest.roomnums[0])}}
                 />
             </div>
         )
@@ -43,8 +43,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    init: (livedays) => {
-        dispatch(actions.infoInit());
+    init: (livedays,keeptime) => {
+        dispatch(actions.infoInit(keeptime));
         if(livedays <= 0){
             // hashHistory.push({pathname:'/'})
             dispatch(actions.init())
@@ -62,7 +62,7 @@ const mapDispatchToProps = dispatch => ({
     signInTel:(tel) => {
         dispatch(actions.signInTel(tel))
     },
-    settle:(order) => {
+    settle:(order,defaultkeeptime,defaulttotal) => {
         if(order.name == ''){
             $.alert('请输入入住人姓名');
             return false;
@@ -71,7 +71,7 @@ const mapDispatchToProps = dispatch => ({
             $.alert('请输入入住人电话');
             return false;
         }
-        dispatch(actions.settle(order));
+        dispatch(actions.settle(order,defaultkeeptime,defaulttotal));
     }
 })
 
