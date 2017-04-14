@@ -1,0 +1,116 @@
+@import "_iconfont";
+@import "./weui.min.css";
+@import "./jquery-weui.min.css";
+html,body{
+	background-color: #eee;
+	height: 100%;
+}
+@import "common";
+@import "mui";
+$color1: rgb(102, 102, 102);
+img{
+	width: 100%;
+}
+ul li{
+	list-style: none;
+}
+img{
+	display: block;
+}
+a{
+	color: #051b28;
+}
+.test{
+	height: 100px;
+	width: 100px;
+	background-color: red;
+}
+*{
+	-webkit-tap-highlight-color: transparent;
+}
+/**{
+	color: rgb(102, 102, 102);
+}*/
+.flex-box{
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: nowrap;
+}
+.bottom_bar{
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	z-index: 1;
+	display: flex;
+	width: 100%;
+	background-color: #fff;
+}
+.bottom_bar_icon,.sys_button{
+	display: flex;
+	box-align: center;
+	align-items: center;
+	flex-align: center;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}
+.bottom_bar_icon{
+	padding: 0.5rem;
+}
+.sys_button{
+	color: #fff;
+	flex: 1;
+}
+
+#wrapper{
+	overflow: hidden;
+}
+.pro-detail-wrapper{
+	.pro-detail{
+		.pro-name{
+			overflow: hidden;
+		    text-overflow: ellipsis;
+		    display: -webkit-box;
+		    -webkit-line-clamp: 2;
+		    -webkit-box-orient: vertical;			
+		    font-size: .426667rem;
+			line-height: 1.1rem;
+			padding: 0 0.4rem 0.4rem;
+		}
+		.pro-price{
+			color: #ff5000;
+		}
+	}
+	.bottom_bar{
+		.collection{
+			align-self: flex-end;
+			padding: .5rem .5rem .2rem;
+			position: relative;
+			font-size: 0.5rem;
+			&:after{
+				content:'\e600';
+				position: absolute;
+				top: -0.5rem;
+				left: 0;
+				right: 0;
+				font-size: 0.76rem;
+			}
+		}
+		.active{
+			color: #ff5000;
+		}
+		.cart,.buy{
+			padding: 0.32rem 0.6rem;
+		}
+		.cart{
+			background-color: #ff9402;
+		}
+		.buy{
+			background-color: #ff5000;
+		}
+	}
+}
+@import "../js/components/wxpay/wxpay";
+.footer{
+	position: fixed !important;
+}

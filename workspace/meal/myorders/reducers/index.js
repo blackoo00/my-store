@@ -10,7 +10,7 @@ const myOrders = (state = initialState, action) =>{
 		case types.GET_MYORDERS:
 			return {
 				...state,
-				list:action.data,
+				list:action.data ? action.data : [],
 			}
 		case types.LOAD_MORE_ORDERS:
 			return {

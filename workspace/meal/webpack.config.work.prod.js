@@ -28,7 +28,7 @@ module.exports = {
  		vendors:['react','react-dom','classnames','jquery','react-redux','redux'],
 	},
 	output:{
-		path:path.resolve(__dirname + '/../../','build'),
+		path:path.resolve(__dirname + '/../../','mealbuild'),
 		filename:'[name].js',
 	},
 	module:{
@@ -37,16 +37,9 @@ module.exports = {
 				test: /\.js(x)*$/,
 				exclude: /node_modules/,
 				loaders:['babel-loader'],
-				// include: [
-	   //              // 只去解析运行目录下的 src(提高webpack性能)
-	   //              path.join(process.cwd(), './workspace'),
-	   //          ],
 			},
 			{
 				test: /\.(css)$/,
-				// include:[
-				// 	path.resolve(__dirname,'./workspace'),
-				// ],
 	            loader:ExtractTextPlugin.extract({
 	            	fallbackLoader: 'style-loader',
 	            	loader: 'css-loader?modules!postcss-loader'
@@ -54,9 +47,6 @@ module.exports = {
 			},
 			{
 				test:/\.scss$/,
-				// include:[
-				// 	path.resolve(__dirname,'./workspace'),
-				// ],
 				loader:ExtractTextPlugin.extract({
 					fallbackLoader: 'style-loader',
 					loader: 'css-loader!sass-loader?modules!postcss-loader'
@@ -64,9 +54,6 @@ module.exports = {
 			},
 			{
 				test:/\.(png|jpg)$/,
-				// include:[
-				// 	path.resolve(__dirname,'./workspace'),
-				// ],
 				loader:'url-loader?limit=8192',
 			},
 		],

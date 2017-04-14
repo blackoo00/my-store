@@ -18,10 +18,10 @@ class settle extends React.Component{
                     value = {'结算中心'}
                     back = {true}
                     pathname = {'/'}
-                    bgcolor = '#33bbaf'
+                    bgcolor = {THEME_COLOR}
                 />
                 <OrderInfo
-                    themeColor = '#33bbaf'
+                    themeColor = {THEME_COLOR}
                     order = {rest.order}
                     roomnums = {rest.roomnums}
                     keeptimes = {rest.keeptimes}

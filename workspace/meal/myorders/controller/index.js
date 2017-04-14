@@ -4,22 +4,33 @@ import List from '../components/list/';
 import {connect} from 'react-redux';
 import * as actions from '../actions/';
 import * as wxActions from '../../actions/wx.sdk';
+import ScrollLoadMore from '../../../common/components/scroll-loadmore/';
 
-const Myorders = ({...rest}) => {
-	if(rest.list.length == 0){
-		rest.init();
-	}
-	return(
-		<div>
-			<Nav/>
-			<List
-				list = {rest.list}
-				nomore = {rest.nomore}
-				myOrdersLoadMore = {rest.myOrdersLoadMore}
-				OrderDetail = {rest.OrderDetail}
-			/>
-		</div>
-	)
+class Myorders extends React.Component{
+    componentWillMount(){
+        let {list,init} = this.props;
+        if(list.length == 0){
+            init();
+        }
+    }
+    render(){
+        let {...rest} = this.props;
+        return(
+            <div>
+                <Nav/>
+                <ScrollLoadMore
+                    nomore = {rest.nomore}
+                    myOrdersLoadMore = {rest.myOrdersLoadMore}
+
+                >
+                    <List
+                        list = {rest.list}
+                        OrderDetail = {rest.OrderDetail}
+                    />
+                </ScrollLoadMore>
+            </div>
+        )
+    }
 }
 
 const mapStateToProps = state => ({

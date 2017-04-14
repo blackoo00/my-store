@@ -1,0 +1,49 @@
+@value font: "../../../css/font.css";
+@value FONT_INDEX_PRO_NAME from font;
+
+@value color: "../../../css/color.css";
+@value COLOR_INDEX_WRAP,COLOR_INDEX_ITEM,COLOR_INDEX_PRO_NAME,COLOR_INDEX_PRO_PRICE from color;
+
+.indexWrap{
+	background-color: COLOR_INDEX_WRAP;
+	height: 100%;
+}
+.indexItem{
+	margin-bottom: 0.5rem;
+	background-color: COLOR_INDEX_ITEM;
+}
+.catWrap{
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: nowrap;
+	padding: 0 15px;
+}
+.catItem{
+	padding: 0.5rem 0 0 0;
+	width:6.4rem;
+	p{
+		text-align: center;
+	}
+}
+.catName{
+	text-align: center;
+}
+
+.indexProItem{
+	display: inline-block;
+	width: 50%;
+}
+.indexProName{
+	font-size: FONT_INDEX_PRO_NAME;
+    line-height: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    height:2.2rem;
+    color: COLOR_INDEX_PRO_NAME;
+}
+.indexProPrice{
+	color: COLOR_INDEX_PRO_PRICE;
+}

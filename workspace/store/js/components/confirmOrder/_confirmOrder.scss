@@ -1,0 +1,81 @@
+.confirm-order-wrapper{
+	.order-address{
+		margin-top: 0;
+		box-shadow: 0 1px 0 0 rgba(0,0,0,.2),0 .5px 0 0 rgba(0,0,0,.3);
+		.address-icon{
+			font-size: 1.2rem;
+			margin: 0 0.3rem 0 0;
+		}
+		.weui_cell{
+			padding: 10px 9px;
+		}
+	}
+	.order-order{
+		background-color: #fff;
+		.order-remark{
+			width: 85%;
+			input{
+				width: 100%;
+				background-color: #fff;
+				color: #666;
+				font-size: 14px;
+				appearance: none;
+				border: none;
+				line-height: 1.5rem;
+			}
+		}
+		.order-product-name{
+			font-size: 0.7rem;
+		    line-height: 1rem;
+		    overflow: hidden;
+		    text-overflow: ellipsis;
+		    display: -webkit-box;
+		    -webkit-line-clamp: 4;
+		    -webkit-box-orient: vertical;
+		    margin-bottom: 0.4rem;
+		}
+		.product-logo{
+			width: 4rem;
+			height: 4rem;
+		}
+		.sku-info{
+			color: #999;
+			font-size: 0.5rem;
+		}
+		.main-price{
+			color: #DD2727;
+		}
+	}
+	.order-submitOrder{
+		position: fixed;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		background-color: #fff;
+		margin-top: 9px;
+		z-index: 999;
+		box-shadow: 0 -1px 0 0 rgba(0,0,0,.1),0 -.5px .5px 0 rgba(0,0,0,.2);
+		.realPay {
+		    text-align: right;
+		    margin-right: 9px;
+		}
+		.action {
+		    pointer-events: none;
+		    background-color: #DD2727;
+		    color: #fff;
+		    .mui-flex {
+		        padding: 0.75rem 1.2rem;
+		        pointer-events: all;
+		        font-size: 16px;
+		    }
+		}
+		.price {
+		    color: #DD2727;
+		    font-weight: bolder;
+		}
+		& .count, & .weight {
+		    color: #DD2727;
+		    font-weight: 400;
+		}
+	}
+}

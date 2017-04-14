@@ -15,7 +15,7 @@ const index = ({list,orderRoom,livedays,intime,outtime}) => (
                     </ListGroup>
                 </Col>
                 <Col xs={3} md={8} style={{paddingTop:'0.7em'}}>
-                    <Button bsStyle="info" style={{backgroundColor:'#33bbaf'}} onClick={() => {orderRoom(livedays,item.id,item.price,intime,outtime)}}>预约</Button>
+                    <Button bsStyle="info" style={{backgroundColor:THEME_COLOR}} onClick={() => {orderRoom(livedays,item.id,item.price,intime,outtime)}}>预约</Button>
                 </Col>
             </Row>
         ))}

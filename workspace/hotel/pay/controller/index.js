@@ -18,10 +18,10 @@ class pay extends React.Component{
                     value = {'支付中心'}
                     back = {true}
                     pathname = {'/settle'}
-                    bgcolor = '#33bbaf'
+                    bgcolor = {THEME_COLOR}
                 />
                 <Details
-                    themeColor = '#33bbaf'
+                    themeColor = {THEME_COLOR}
                     data = {rest.data}
                     pay = {() => rest.pay(rest.data.id)}
                 />

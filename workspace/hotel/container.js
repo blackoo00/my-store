@@ -1,9 +1,14 @@
 import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Footer from '../common/components/footer';
+import * as WxActions from '../common/actions/wx.sdk';
+import {connect} from 'react-redux';
 
 class Container extends React.Component {
-
+    componentWillMount(){
+        let {wxShare} = this.props;
+        wxShare();
+    }
     constructor(props) {
         super(props)
         this.state = {
@@ -48,10 +53,28 @@ class Container extends React.Component {
                     data = {footer_data}
                     paths = {paths}
                     clicknum = {footer_index}
-                    clickcolor = {'#33bbaf'}
+                    clickcolor = {THEME_COLOR}
                 />: ''}
              </div>
         );
     }
 }
-module.exports = Container;
+
+const mapStateToProps = state => ({
+
+})
+
+const mapDispatchToProps = dispatch =>  ({
+    wxShare:(pathname)=>{
+        if(pathname == '/' || pathname == '/intro'){
+            dispatch(WxActions.wxShare());
+        }else{
+            dispatch(WxActions.wxHide());
+        }
+    }
+})
+
+module.exports = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Container);

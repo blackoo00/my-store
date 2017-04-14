@@ -19,7 +19,7 @@ class myorders extends React.Component{
                 <WeuiNav
                     data = {nav_data}
                     active = {lived}
-                    active_color = {'#33bbaf'}
+                    active_color = {THEME_COLOR}
                     choose = {chooseLive}
                 />
                 <MyOrdersList

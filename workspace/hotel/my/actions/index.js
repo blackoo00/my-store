@@ -1,5 +1,6 @@
 import * as types from '../../contants/ActionTypes';
 import hotel from '../../api/hotel';
+import {hashHistory} from 'react-router';
 
 const myInfoDip = (data) => ({
     type:types.MYINFO,
@@ -27,7 +28,9 @@ export const editTel = (tel) => ({
 export const editMyInfo = (data) => dispatch => {
     hotel.editMyInfo(status => {
         if(status == 1){
-            $.alert('修改成功');
+            $.alert('修改成功',() => {
+                hashHistory.push({pathname:'/my'});
+            });
         }else{
             $.alert('修改失败');
         }
@@ -45,7 +48,8 @@ export const feedback = (info) => dispatch => {
     hotel.feedback(status => {
         if(status == 1){
             $.alert('留言成功',() => {
-                dispatch(editFeedback(''))
+                dispatch(editFeedback(''));
+                hashHistory.push({pathname:'/my'});
             });
         }else{
             $.alert('留言失败');

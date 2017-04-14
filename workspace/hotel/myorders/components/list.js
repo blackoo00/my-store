@@ -8,8 +8,8 @@ const index = ({list,lived}) => (
                 <Col xs={3} md={8} style={{paddingRight:'10px'}}><img src={item.logourl}/></Col>
                 <Col xs={6} md={8} style={{padding:0}}>
                     <ListGroup style={{margin:0,fontSize:'15px'}}>
-                        <ListGroupItem style={{padding:0,border:'none'}}>{item.name}</ListGroupItem>
-                        <ListGroupItem style={{padding:0,border:'none',color:'#cc0000'}}>{item.price}</ListGroupItem>
+                        <ListGroupItem style={{padding:0,border:'none'}}>{item.pname}</ListGroupItem>
+                        <ListGroupItem style={{padding:0,border:'none',color:'#cc0000'}}>{item.pprice}</ListGroupItem>
                         <ListGroupItem style={{padding:0,border:'none',color:'#ccc'}}>{item.des}</ListGroupItem>
                     </ListGroup>
                 </Col>

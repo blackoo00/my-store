@@ -5,10 +5,11 @@ import styles from './style.css';
 
 const CommonHeader = ({value,back,pathname,bgcolor}) => (
     <div styleName="header" style={{background:bgcolor}}>
-        <Link to={{pathname:pathname}}>
-            <span styleName={back ? bgcolor ? 'back-white' : 'back' : ""}></span>
+        <Link to={{pathname:pathname}} styleName="headerLeft">
+            <div styleName={back ? bgcolor ? 'back-white' : 'back' : ""}></div>
         </Link>
-        <span style={{color:bgcolor ? '#fff' : ''}}>{value}</span>
+        <div style={{color:bgcolor ? '#fff' : ''}} styleName="headerCon">{value}</div>
+        <div styleName="headerRight"></div>
     </div>
 )
 
