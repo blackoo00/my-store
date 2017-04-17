@@ -18,7 +18,7 @@ const index = ({name,tel,editName,editTel,editMyInfo}) => (
                 </div>
                 <div className="weui-cell__bd">
                     <div>
-                        <input type="tel" className="weui-input" value={name} onChange={(e) => {editName(e.target.value)}} placeholder="请输入姓名"/>
+                        <input type="text" className="weui-input" value={name} onChange={(e) => {editName(e.target.value)}} placeholder="请输入姓名"/>
                     </div>
                 </div>
             </div>

@@ -29,6 +29,13 @@ const TIMEOUT = 100
 
 
 export default {
+    //结算中心选项初始化
+    settleInfoInit:(cb) => {
+        let _data = ajaxData({
+            url:'settleInfo',
+        })
+        cb(_data.data)
+    },
     //留言
     feedback:(cb,info) => {
         let _data = ajaxData({

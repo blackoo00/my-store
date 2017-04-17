@@ -6,7 +6,8 @@ import {connect} from 'react-redux';
 
 class Container extends React.Component {
     componentWillMount(){
-
+        let {wxShare} = this.props;
+        wxShare();
     }
     constructor(props) {
         super(props)
@@ -30,8 +31,6 @@ class Container extends React.Component {
                 footer_index = 0;
                 break;
         }
-        let footer_data = [['icon-home','首页'],['icon-dingdan1','订单'],['icon-geren','我的']];
-        let paths = ['/','/myorders','/my'];
         return (
             <div>
                 <ReactCSSTransitionGroup
@@ -48,15 +47,26 @@ class Container extends React.Component {
                         }
                     </div>
                 </ReactCSSTransitionGroup>
-                {pathname == '/' || pathname == '/myorders' || pathname == '/my' ? <Footer
-                    data = {footer_data}
-                    paths = {paths}
-                    clicknum = {footer_index}
-                    clickcolor = {THEME_COLOR}
-                />: ''}
              </div>
         );
     }
 }
 
-export default Container;
+const mapStateToProps = state => ({
+
+})
+
+const mapDispatchToProps = dispatch =>  ({
+    wxShare:(pathname)=>{
+        if(pathname == '/' || pathname == '/intro'){
+            dispatch(WxActions.wxShare());
+        }else{
+            dispatch(WxActions.wxHide());
+        }
+    }
+})
+
+module.exports = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Container);

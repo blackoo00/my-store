@@ -13,7 +13,7 @@ class myorders extends React.Component{
     render(){
         let footer_data = [['icon-home','首页'],['icon-dingdan1','订单'],['icon-geren','我的']]
         let nav_data = ['全部','待入住','已入住'];
-        let {showlist,lived,chooseLive} = this.props;
+        let {showlist,lived,chooseLive,payOrder} = this.props;
         return(
             <div>
                 <WeuiNav
@@ -24,6 +24,7 @@ class myorders extends React.Component{
                 />
                 <MyOrdersList
                     list = {showlist}
+                    payOrder = {payOrder}
                 />
             </div>
         )
@@ -41,6 +42,9 @@ const mapDispatchToProps = dispatch => ({
     },
     chooseLive:(lived) => {
         dispatch(actions.chooseLive(lived))
+    },
+    payOrder:(oid) => {
+        window.location.href = SERVER +'payOrder&oid=' +oid
     }
 })
 

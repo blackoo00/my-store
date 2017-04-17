@@ -9,8 +9,8 @@ const index = (state = initialState, action) => {
         case types.SETTLE_INFO_INIT:
             return {
                 ...state,
-                roomnums:[1,2,3],
-                keeptimes:['18:00','19:00'],
+                roomnums:action.data['roomnums'],
+                keeptimes:action.data['keeptimes'],
             }
         default:
             return state

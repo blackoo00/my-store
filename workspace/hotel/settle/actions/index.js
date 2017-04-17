@@ -3,11 +3,16 @@ import hotel from '../../api/hotel';
 import {hashHistory} from 'react-router';
 
 //结算选项初始化
-export const infoInit = (keeptime) => ({
+const infoInitDip = (data) => ({
     type:types.SETTLE_INFO_INIT,
-    keeptime:keeptime
+    data:data,
 })
 
+export const infoInit = () => dispatch =>{
+    hotel.settleInfoInit(data => {
+        dispatch(infoInitDip(data))
+    })
+}
 //初始化
 const initDip = data =>({
     type:types.SETTLE_INIT,

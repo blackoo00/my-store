@@ -6,12 +6,12 @@ import {Link} from 'react-router';
 const footer = ({data,clicknum,clickcolor = '#ddd',paths}) => (
     <div styleName="publicFotoer">
         {data.map((item,index) => (
-            <div key={'publicfooter'+index}>
-                <Link to = {paths[index]} style={{color:clicknum == index ? clickcolor: '#333'}}>
+            <Link styleName='publicFotoerItem' key={'publicfooter'+index} to = {paths[index]} style={{color:clicknum == index ? clickcolor: '#333'}}>
+                <div>
                     <p className={item[0] + ' iconfont'}></p>
                     <p>{item[1]}</p>
-                </Link>
-            </div>
+                </div>
+            </Link>
         ))}
     </div>
 )

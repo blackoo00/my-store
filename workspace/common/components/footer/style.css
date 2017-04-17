@@ -6,21 +6,21 @@
     background-color: #fff;
     z-index: 20;
 }
-.publicFotoer > div{
+.publicFotoerItem{
     flex: 1;
     text-align: center;
 }
-.publicFotoer > div p{
+.publicFotoerItem p{
     margin: 0;
     padding: 0;
 }
-.publicFotoer > div p:nth-of-type(1){
+.publicFotoerItem p:nth-of-type(1){
     font-size: 25px;
     margin: 0;
     height: 35px;
     line-height: 40px;
 }
-.publicFotoer > div p:nth-of-type(2){
+.publicFotoerItem p:nth-of-type(2){
     font-size: 18px;
     height: 25px;
     line-height: 25px;

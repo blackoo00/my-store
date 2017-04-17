@@ -1,5 +1,8 @@
 import React from 'react';
 import { Router, Route, hashHistory, IndexRoute} from 'react-router';
+import {connect} from 'react-redux';
+import * as WxActions from '../common/actions/wx.sdk';
+
 import Container from './container';
 import Settle from './settle/controller/';
 import Home from './home/controller/';
@@ -10,13 +13,13 @@ import MyInfo from './my/controller/myinfo';
 import Feedback from './my/controller/feedback';
 import CompanyIntro from './home/controller/intro';
 
-const Routes = () => (
-    <Router history = {hashHistory}>
+const Routes = ({wxShare,wxHide}) => (
+    <Router history={hashHistory}>
         <Route path = "/" component = {Container}>
-            <IndexRoute component = {Home} />
-            <Route path = 'settle' component = {Settle} />
+            <IndexRoute onEnter={() => {wxShare()}} component = {Home} />
+            <Route onEnter={() => {wxHide()}} path = 'settle' component = {Settle} />
             <Route path = 'pay' component = {Pay} />
-            <Route path = 'myorders' component = {MyOrders} />
+            <Route onEnter={() => {wxHide()}} path = 'myorders' component = {MyOrders} />
             <Route path = 'my' component = {My} />
             <Route path = 'myinfo' component = {MyInfo} />
             <Route path = 'feedback' component = {Feedback} />
@@ -25,4 +28,20 @@ const Routes = () => (
     </Router>
 )
 
-export default Routes
+const mapStateToProps = state => ({
+
+})
+
+const mapDispatchToProps = dispatch =>  ({
+    wxShare:()=>{
+        dispatch(WxActions.wxShare());
+    },
+    wxHide:() => {
+        dispatch(WxActions.wxHide());
+    }
+})
+
+module.exports = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Routes);

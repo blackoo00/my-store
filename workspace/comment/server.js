@@ -2,7 +2,7 @@ var path = require('path');
 var express = require('express');
 var webpack = require('webpack');
 // var config = require('./webpack.config.work.dev');
-var config = require('./webpack.config.work.dev');
+var config = require('./webpack.config.dev');
 
 var app = new express();
 var compiler = webpack(config);
@@ -24,12 +24,12 @@ app.get('*', function(req, res) {
 });
 
 
-app.listen(3001, '0.0.0.0', function(err) {
+app.listen(3003, '0.0.0.0', function(err) {
   if (err) {
     console.log(err);
     return;
   }
 
-  console.log('Listening at http://localhost:3001');
+  console.log('Listening at http://localhost:3003');
 });
 
